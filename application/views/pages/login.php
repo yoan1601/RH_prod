@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Mafy zahay e
+    LOGIN <a href="<?= site_url('front/connect'); ?>">Se connecter</a>
 </body>
 </html>
