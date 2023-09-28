@@ -31,16 +31,16 @@ class Login extends CI_Controller {
         $mdpUser=$this->input->post("mdpUser");
         $user=$this->login->checkLogin($emailUser, $mdpUser);
         if($user===false){
-            redirect(site_url("login"));
+            redirect("login");
         }
         $this->session->set_userdata('user', $user);
 
 		// var_dump($user);
 		if($user->est_admin == '1') {
-			redirect(site_url('recrutement/index/2'));
+			redirect('recrutement/index/2');
 		} else {
 			// tokony front office
-			redirect(site_url("login"));
+			redirect("login");
 		}
     }
 }

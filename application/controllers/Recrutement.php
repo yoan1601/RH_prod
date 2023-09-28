@@ -21,25 +21,25 @@ class Recrutement extends CI_Controller {
 	public function index($service)
 	{
         $this->session->set_userdata('idService', $service);
-        echo "<form action='".site_url("recrutement/hommeJour")."' method='post'>
+        echo "<form action='".site_url("recrutement/hommeJour")."' method='get'>
         <input type='number' name='hommeJour' value='100' min='0'>
         <button type='submit'>Valider</button>
         </form>";
 	}
     public function hommeJour(){
-        $hommeJour=$this->input->post("hommeJour");
+        $hommeJour=$this->input->get("hommeJour");
         $this->session->set_userdata("hommeJour", $hommeJour);
-		redirect(site_url('critere'));
+		redirect('critere');
     }
     public function enregistreRecrutement(){
         $idService=$this->session->idService;
         $currentDateTime = new DateTime();
         $this->recrutement->saveRecrutement($currentDateTime->format("Y-m-d H:i:s"), $idService);
-		
+        $this->recrutement->saveBesoins($this->session->hommeJour);
 		$criteresOptions = $this->session->criteresOptions;
 		$this->recrutement->saveCritere($criteresOptions);
         $this->session->set_userdata("dateAnnonce", $currentDateTime);
-        redirect(site_url("recrutement/genererAnnonce"));
+        redirect("recrutement/genererAnnonce");
     }
     public function genererAnnonce(){
         $nomSociete="DIMPEX";
@@ -71,5 +71,32 @@ class Recrutement extends CI_Controller {
         <h2>".$dateAnnonce->format("Y-m-d H:i:s")."</h2>
         <h2>".$service->nom_service."</h2>
         ".$listeCriteres;
+    }
+    public function listeAnnonce($idService){
+        $this->session->set_userdata("idService", $idService);
+        $recrutements=$this->recrutement->getRecrutements($idService);
+        $html="<ul>";
+        foreach($recrutements as $r){
+            $html.="<a href='".site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement)."'><li>".$r->dateheure_recrutement.", ".$r->besoins[0]->homme_jour."</li></a>";
+        }
+        $html.="</ul>";
+        echo $html;
+    }
+    public function genererAnnonceFromListe(){
+        $idRecrutement=$this->input->get("idRecrutement");
+        $recrutement=$this->recrutement->getRecrutementById($idRecrutement);
+        if($recrutement===false){
+            redirect(site_url("recrutement/listeAnnonce"));
+        }
+        $this->session->set_userdata("hommeJour", $recrutement->besoins[0]->homme_jour);
+        $this->session->set_userdata("idService", $recrutement->id_service_recrutement);
+        for($i=1;$i<=count($recrutement->criteres);$i++){
+            $criteresOptions["critere".$i]=$recrutement->criteres[$i-1];
+            for($j=1;$j<=count($recrutement->criteres[$i-1]->choix);$j++){
+                $criteresOptions["option".$i.$j]=$recrutement->criteres[$i-1]->choix[$j-1];
+            }
+        }
+        //$this->session->set_userdata("criteresOptions", $criteresOptions);
+        //redirect(site_url("recrutement/enregistreRecrutement"));
     }
 }
