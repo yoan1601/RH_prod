@@ -23,18 +23,23 @@ class Critere extends CI_Controller {
 		$this->load->view('pages/login');
 	}
 
-    public function setInSession()
+    public function setInSessionAndSave()
 	{
+        $idService = $this->session->idService;
+
 		$nbCriteres = $this->input->post('nbCriteres'); 
         $criteresOptions = [];
         for ($i=1; $i <= $nbCriteres; $i++) { 
             $criteresOptions['critere'.$i] = $this->input->post('critere'.$i);
             for($k = 1; $this->input->post('option'.$i.$k) !== null; $k++) {
                 $criteresOptions['option'.$i.$k] = $this->input->post('option'.$i.$k);
+                $criteresOptions['coeff'.$i.$k] = $this->input->post('coeff'.$i.$k);
             }
         }
 
         $this->session->set_userdata('criteresOptions', $criteresOptions);
+
+        $this->recrutement->saveCritere($criteresOptions);
 
         redirect(site_url('recrutement/enregistreRecrutement'));
 	}
