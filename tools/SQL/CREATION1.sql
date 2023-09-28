@@ -1,7 +1,7 @@
 -- create database rh_prod
 -- code wifi 37637055
 
-CREATE  TABLE entretien ( 
+CREATE  TABLE entretiens ( 
 	id_entretien         INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	dateheure_entretien  DATETIME  NOT NULL DEFAULT (CURRENT_TIMESTAMP)    ,
 	lieu_entretien       VARCHAR(35)  NOT NULL     ,
@@ -10,7 +10,7 @@ CREATE  TABLE entretien (
 	etat_entretien       INT  NOT NULL DEFAULT (1)    
  ) engine=InnoDB;
 
-CREATE  TABLE questionnaire_reponse ( 
+CREATE  TABLE questionnaire_reponses ( 
 	id_questionnaire_reponse INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_questionnaire_questionnaire_reponse INT  NOT NULL     ,
 	questionnaire_reponse TEXT  NOT NULL     ,
