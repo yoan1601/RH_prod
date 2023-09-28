@@ -18,6 +18,7 @@ class RecrutementModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+    
     public function saveCritere($criteresOptions) {
         $nextIdRecrutement = $this->getLastIdRecrutement() + 1;
         

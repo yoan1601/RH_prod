@@ -54,7 +54,6 @@ function ajoutCritere() {
     let nbOptions = document.getElementById('nbOptions').value;
 
     let div_criteres = document.getElementById("criteres");
-    
     let nbCriteres = document.getElementById('nbCriteres').value;
     let new_input_critere = document.createElement('input');
     new_input_critere.type = 'text';
@@ -65,7 +64,7 @@ function ajoutCritere() {
 
     let ajoutOptionBoutton = document.getElementById('ajoutOption');
     ajoutOptionBoutton.style.display = 'block';
-    li.appendChild(ajoutOptionBoutton);
+    // li.appendChild(ajoutOptionBoutton);
 
     div_criteres.appendChild(li);
 

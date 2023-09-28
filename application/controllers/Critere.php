@@ -20,7 +20,7 @@ class Critere extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('pages/login');
+		$this->load->view('pages/creation_critere');
 	}
 
     public function setInSessionAndSave()

@@ -29,6 +29,7 @@ class Recrutement extends CI_Controller {
     public function hommeJour(){
         $hommeJour=$this->input->post("hommeJour");
         $this->session->set_userdata("hommeJour", $hommeJour);
+		redirect(site_url('critere'));
     }
     public function genererAnnonce(){
         $idService=$this->session->idService;
