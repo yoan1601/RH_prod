@@ -26,3 +26,7 @@ create table information_users(
     addresse_info varchar(35) not null,
     etat_info int not null
 ) engine=InnoDB;
+
+alter table besoins add foreign key(id_recrutement_besoin) references recrutements(id_recrutement);
+alter table choix_criteres add foreign key(id_critere_choix) references criteres(id_critere);
+alter table information_users add foreign key(id_user_information_user) references users(id_user);
