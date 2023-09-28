@@ -9,10 +9,10 @@
 
 <body>
     <button id="ajoutCritere" onclick="ajoutCritere()">Ajouter critere</button>
-    <input type="hidden" id="nbCriteres" name="nbCriteres" value="0">
-    <input type="hidden" id="nbOptions" name="nbOptions" value="0">
     <div>
         <form action="<?= site_url('critere/setInSessionAndSave') ?>" method="post">
+            <input type="hidden" id="nbCriteres" name="nbCriteres" value="0">
+            <input type="hidden" id="nbOptions" name="nbOptions" value="0">
             <ul id="criteres">
 
             </ul>

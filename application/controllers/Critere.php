@@ -25,7 +25,7 @@ class Critere extends CI_Controller {
 
     public function setInSessionAndSave()
 	{
-        $idService = $this->session->idService;
+        // $idService = $this->session->idService;
 
 		$nbCriteres = $this->input->post('nbCriteres'); 
         $criteresOptions = [];
@@ -37,9 +37,10 @@ class Critere extends CI_Controller {
             }
         }
 
-        $this->session->set_userdata('criteresOptions', $criteresOptions);
+		// var_dump('$nbCriteres '.$nbCriteres);
+		// var_dump($criteresOptions);
 
-        $this->recrutement->saveCritere($criteresOptions);
+        $this->session->set_userdata('criteresOptions', $criteresOptions);
 
         redirect(site_url('recrutement/enregistreRecrutement'));
 	}
