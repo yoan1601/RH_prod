@@ -29,10 +29,18 @@ class Login extends CI_Controller {
     public function seConnecter(){
         $emailUser=$this->input->post("emailUser");
         $mdpUser=$this->input->post("mdpUser");
-        $checkLogin=$this->login->checkLogin($emailUser, $mdpUser);
-        if($checkLogin===false){
+        $user=$this->login->checkLogin($emailUser, $mdpUser);
+        if($user===false){
             redirect(site_url("login"));
         }
-        var_dump($checkLogin);
+        $this->session->set_userdata('user', $user);
+
+		// var_dump($user);
+		if($user->est_admin == '1') {
+			redirect(site_url('recrutement/index/2'));
+		} else {
+			// tokony front office
+			redirect(site_url("login"));
+		}
     }
 }
