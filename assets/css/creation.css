@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'titillium_weblight';
+    src: url('../font/titillunium/titilliumweb-light-webfont.woff2') format('woff2'),
+         url('../font/titillunium/titilliumweb-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+h3{
+    font-size: large;
+    color:rgb(23, 12, 61);
+    font-family: 'titillium_weblight';
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-top: 10%;
+}
+
+form div{
+    /* border: solid 1px; */
+    border-bottom: 2px ;
+    border-radius: 3px;
+	background-color: rgb(243, 243, 243);
+    width: 80%;
+    box-shadow: 0px 0px 3px rgba(128, 128, 128, 0.815);
+    height: 160px;
+}
+
+
+form input[type="text"]{
+    border: none;
+    background: none;
+    border-radius: 3px;
+    width: 50%;
+    height: 3em;
+    border-bottom: 2px solid rgb(13, 163, 81);
+}
+
+form input[type="text"]::placeholder{
+    font-size: medium;
+    color: rgba(13, 163, 80, 0.582);
+}
+
+form input[type="submit"]{
+    margin-left: 2%;
+	height:45px;
+    min-width: 80px;
+    font-size: medium;
+    font-weight:bolder;
+    background-color: rgb(7, 0, 31);
+    color:  rgb(255, 255, 255);
+    font-family: 'titillium_weblight';
+	border: none;
+	border-radius: 3px;
+    cursor: pointer;
+    transition: 0.4s;
+    position: relative;
+}
+
+form input[type="submit"]:hover{
+    background-color: rgb(23, 12, 61);
+	transition: 0.4s;
+	transform: scale(1.1);
+	transition-timing-function: ease-in-out;
+}
