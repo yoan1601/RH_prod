@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginModel extends CI_Model {
+class ServiceModel extends CI_Model {
 
 	/**
 	 * Index Page for this controller.
@@ -18,14 +18,14 @@ class LoginModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function checkLogin($email, $mdp){
-        $query="select id_user from users where email_user='%s' and mdp_user='%s'";
-        $query=sprintf($query, $email, $mdp);
+    public function getServiceById($idService){
+        $query="select * from services where id_service=%s";
+        $query=sprintf($query, $idService);
         $query=$this->db->query($query);
         $query=$query->result();
         if(count($query)>0){
             return $query[0];
         }
-        return false;
+        return $query;
     }
 }

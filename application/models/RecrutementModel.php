@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginModel extends CI_Model {
+class RecrutementModel extends CI_Model {
 
 	/**
 	 * Index Page for this controller.
@@ -18,14 +18,19 @@ class LoginModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function checkLogin($email, $mdp){
-        $query="select id_user from users where email_user='%s' and mdp_user='%s'";
-        $query=sprintf($query, $email, $mdp);
+    public function saveRecrutement($date, $idService){
+        $query="insert into recrutements values(null, %s, '%s', null)";
+        $query=sprintf($query, $idService, $date);
+        $this->db->query($query);
+    }
+    public function getLastIdRecrutement(){
+        $query="select max(id_recrutement) as last_id from recrutements";
         $query=$this->db->query($query);
         $query=$query->result();
+        $lastId=0;
         if(count($query)>0){
-            return $query[0];
+            $lastId=$query[0]->last_id;
         }
-        return false;
+        return $lastId;
     }
 }
