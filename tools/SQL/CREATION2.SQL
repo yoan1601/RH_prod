@@ -47,7 +47,7 @@ create table questionnaires(
 create table questionnaire_reponse_choisis(
     id_questionnaire_reponse_choisi int auto_increment primary key,
     id_user_questionnaire_reponse_choisi int not null,
-    id_questionnaire_reponse int not null
+    id_choix_reponse int not null
 ) engine=InnoDB;
 
 alter table cv_selections add foreign key(id_user_cv_selection) references users(id_user);
