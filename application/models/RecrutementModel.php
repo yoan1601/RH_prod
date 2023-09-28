@@ -18,8 +18,9 @@ class RecrutementModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+    
     public function saveCritere($criteresOptions) {
-        $nextIdRecrutement = $this->getLastIdRecrutement() + 1;
+        $nextIdRecrutement = $this->getLastIdRecrutement();
         
         for($i = 1; isset($criteresOptions['critere'.$i]); $i++) {
             $data = array(
@@ -44,7 +45,7 @@ class RecrutementModel extends CI_Model {
     }
     
      public function saveRecrutement($date, $idService){
-        $query="insert into recrutements values(null, %s, '%s', null)";
+        $query="insert into recrutements values(null, %s, '%s', 1)";
         $query=sprintf($query, $idService, $date);
         $this->db->query($query);
     }
