@@ -33,7 +33,7 @@ class RecrutementModel extends CI_Model {
                 for($k = 1; isset($criteresOptions['option'.$i.$k]); $k++) {
                     $dataOption = array(
                         'choix_critere' => $criteresOptions['option'.$i.$k],
-                        'coefficient_critere' => $criteresOptions['critere'.$i.$k],
+                        'coefficient_critere' => $criteresOptions['coeff'.$i.$k],
                         'id_critere_choix' => $id_critere_vao_tafiditra
                     );
                     $this->db->insert('choix_criteres', $dataOption);
