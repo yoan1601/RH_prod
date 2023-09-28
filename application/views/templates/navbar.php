@@ -35,7 +35,7 @@
 					<?php } ?>
 				</div>
 			</li>
-            <li><button>Deconnection</button></li>
+            <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
           </ul>
         </div>
       </nav> 
