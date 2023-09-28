@@ -20,8 +20,8 @@
         </a>
         <div class="navbar-links">
           <ul>
-            <li><a href="<?= site_url('front/home')?>">Accueil</a></li>
-            <li class="active" id="serveur">Services
+		  <li><a href="<?= site_url('front/home')?>">Accueil</a></li>
+            <li id="serveur">Services
 				<div class="Layout service">
 						<p>Listes des Services</p>
 						<hr>
@@ -43,7 +43,7 @@
 			</li>
             <li id="recruteur" >Recruter
 			<div class="Layout recrutement">
-						<p >Finance</p>
+						<p ><a href="<?= site_url('front/besoin')?>">Finance</a></p>
 						<hr>
 						<p >Plantation</p>
 						<hr>

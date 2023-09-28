@@ -39,4 +39,12 @@ class Front extends CI_Controller {
 	public function creation(){
 		$this->load->view('pages/creation_service');
 	}
+
+	public function besoin(){
+		$this->load->view('pages/definitionBesoin');
+	}
+
+	public function listAnnonce(){
+		$this->load->view('pages/listAnnonce');
+	}
 }

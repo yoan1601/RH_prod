@@ -27,12 +27,12 @@ form div{
     border-radius: 3px;
 	background-color: rgb(243, 243, 243);
     width: 80%;
-    box-shadow: 0px 0px 3px rgba(128, 128, 128, 0.815);
+	box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
     height: 160px;
 }
 
 
-form input[type="text"]{
+form input[type="text"] ,form input[type="number"]{
     border: none;
     background: none;
     border-radius: 3px;
@@ -41,7 +41,7 @@ form input[type="text"]{
     border-bottom: 2px solid rgb(13, 163, 81);
 }
 
-form input[type="text"]::placeholder{
+form input[type="number"]::placeholder ,form input[type="text"]::placeholder{
     font-size: medium;
     color: rgba(13, 163, 80, 0.582);
 }
