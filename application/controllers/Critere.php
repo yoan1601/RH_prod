@@ -23,7 +23,7 @@ class Critere extends CI_Controller {
 		$this->load->view('pages/login');
 	}
 
-    public function setInSession()
+    public function setInSessionAndSave()
 	{
         $idService = $this->session->idService;
 
