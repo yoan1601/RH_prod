@@ -18,7 +18,32 @@ class RecrutementModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-    public function saveRecrutement($date, $idService){
+    public function saveCritere($criteresOptions) {
+        $nextIdRecrutement = $this->getLastIdRecrutement() + 1;
+        
+        for($i = 1; isset($criteresOptions['critere'.$i]); $i++) {
+            $data = array(
+                'id_recrutement_critere' => $nextIdRecrutement,
+                'descri_critere' => $criteresOptions['critere'.$i],
+                'etat_critere' => 1
+            );
+
+            if ($this->db->insert('criteres', $data)) {
+                $id_critere_vao_tafiditra = $this->db->insert_id();
+                for($k = 1; isset($criteresOptions['option'.$i.$k]); $k++) {
+                    $dataOption = array(
+                        'choix_critere' => $criteresOptions['option'.$i.$k],
+                        'coefficient_critere' => $criteresOptions['critere'.$i.$k],
+                        'id_critere_choix' => $id_critere_vao_tafiditra
+                    );
+                    $this->db->insert('choix_criteres', $dataOption);
+                }
+            }
+        }
+   
+    }
+    
+     public function saveRecrutement($date, $idService){
         $query="insert into recrutements values(null, %s, '%s', null)";
         $query=sprintf($query, $idService, $date);
         $this->db->query($query);
