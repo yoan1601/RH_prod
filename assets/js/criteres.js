@@ -17,8 +17,19 @@ function ajoutOption() {
     new_input_option.type = 'text';
     new_input_option.name = 'option'+nbCriteres+nbOptions;
 
+    let new_input_coeff = document.createElement('input');
+    new_input_coeff.type = 'text';
+    new_input_coeff.name = 'coeff'+nbCriteres+nbOptions;
+
+    let divOptionCoeff = document.createElement('div');
+    divOptionCoeff.style.display = 'flex';
+    divOptionCoeff.style.justifyContent = 'space-evenly';
+
+    divOptionCoeff.appendChild(new_input_option);
+    divOptionCoeff.appendChild(new_input_coeff);
+
     let li = document.createElement('li');
-    li.appendChild(new_input_option);
+    li.appendChild(divOptionCoeff);
 
     ulOptions.appendChild(li);
 
