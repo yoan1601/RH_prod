@@ -64,12 +64,18 @@
 				<p></p>
 				<p><h3 class="card-title">Liste des annonces</h3></p>
               <div class="list-group">
-				<table >
-					<tr class="title">
+				<table>
+					<tr class="title_text">
 						<td>Debut d'annonce</td>
 						<td>Services</td>
 						<td>Date</td>
 						<td>Action</td>
+					</tr>
+					<tr>
+						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
+						<td>Emballage</td>
+						<td>10-09-2023</td>
+						<td><button>Publier</button></td>
 					</tr>
 					<tr>
 						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
