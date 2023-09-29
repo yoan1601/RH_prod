@@ -15,42 +15,14 @@
 						<td>Date</td>
 						<td>Action</td>
 					</tr>
+					<?php foreach($recrutements as $r){ ?>
 					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
+						<td ><?= $r->besoins[0]->homme_jour." homme/jour ;".$r->criteres[0]->descri_critere." : ".$r->criteres[0]->choix[0]->choix_critere.". . ." ?></td>
+						<td><?= $r->service->nom_service ?></td>
+						<td><?= $r->dateheure_recrutement ?></td>
+						<td><a href='<?= site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement) ?>'><button>Publier</button></a></td>
 					</tr>
-					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
-					</tr>
-					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
-					</tr>
-					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
-					</tr>
-					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
-					</tr>
-					<tr>
-						<td > Distinctio velit nemo placeat! Veniam, ullam?...</td>
-						<td>Emballage</td>
-						<td>10-09-2023</td>
-						<td><button>Publier</button></td>
-					</tr>
+					<?php } ?>
 				</table>
               </div>
             </div>
