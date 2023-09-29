@@ -93,12 +93,13 @@ class Recrutement extends CI_Controller {
         $this->session->set_userdata("hommeJour", $recrutement->besoins[0]->homme_jour);
         $this->session->set_userdata("idService", $recrutement->id_service_recrutement);
         for($i=1;$i<=count($recrutement->criteres);$i++){
-            $criteresOptions["critere".$i]=$recrutement->criteres[$i-1];
+            $criteresOptions["critere".$i]=$recrutement->criteres[$i-1]->descri_critere;
             for($j=1;$j<=count($recrutement->criteres[$i-1]->choix);$j++){
-                $criteresOptions["option".$i.$j]=$recrutement->criteres[$i-1]->choix[$j-1];
+                $criteresOptions["option".$i.$j]=$recrutement->criteres[$i-1]->choix[$j-1]->choix_critere;
+                $criteresOptions["coeff".$i.$j]=$recrutement->criteres[$i-1]->choix[$j-1]->coefficient_critere;
             }
         }
-        //$this->session->set_userdata("criteresOptions", $criteresOptions);
-        //redirect(site_url("recrutement/enregistreRecrutement"));
+        $this->session->set_userdata("criteresOptions", $criteresOptions);
+        redirect(site_url("recrutement/enregistreRecrutement"));
     }
 }
