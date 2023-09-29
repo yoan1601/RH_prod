@@ -33,22 +33,32 @@ class Front extends CI_Controller {
 	}
 
 	public function home(){
-		$this->load->view('pages/home');	
+        $data = [];
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view('pages/home', $data);	
 	}
 
 	public function creation(){
-		$this->load->view('pages/creation_service');
+		$data = [];
+        $data['services'] = $this->service->getAllServices();
+		$this->load->view('pages/creation_service',$data);
 	}
 
 	public function besoin(){
-		$this->load->view('pages/definitionBesoin');
+		$data = [];
+        $data['services'] = $this->service->getAllServices();
+		$this->load->view('pages/definitionBesoin',$data);
 	}
 
 	public function listAnnonce(){
-		$this->load->view('pages/listAnnonce');
+		$data = [];
+        $data['services'] = $this->service->getAllServices();
+		$this->load->view('pages/listAnnonce',$data);
 	}
 
 	public function generation(){
-		$this->load->view('pages/annoncesGenere');
+		$data = [];
+        $data['services'] = $this->service->getAllServices();
+		$this->load->view('pages/annoncesGenere',$data);
 	}
 }

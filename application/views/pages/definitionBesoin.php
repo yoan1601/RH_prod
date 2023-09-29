@@ -7,7 +7,7 @@
         <form action="<?= site_url('critere') ?>" method="post">
             <div class="service-creation-form">
                 <h3>Besoin en homme jour</h3>
-                <input type="number" name="hommeJour" placeholder="Taper le nombre ici" id="">
+                <input type="number" class="hommeJour" name="hommeJour" placeholder="Taper le nombre ici" id="">
                 <input class="button" type="submit" value="Valider">
             </div>
         </form>

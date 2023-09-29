@@ -19,14 +19,18 @@
 }
 
 .head{
-	width: 400px;
+	width: 90%;
 	margin-left: 10%;
 	display: grid;
-    grid-template-columns:repeat(auto-fill,120px);
-	gap:132px;
+    grid-template-columns:repeat(auto-fill,50%);
 }
 
-.description ,img{
+.description ,.cl{
+	width: 50%;
+}
+
+img{
+	margin-left:70%;
 	width: 120px;
 }
 

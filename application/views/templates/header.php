@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="<?= base_url('assets\css\navbar.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets\css\creation.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets\css\home.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('assets\css\annoncesGenere.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('assets\css\listeAnnonce.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('assets\css\creationCritere.css') ?>">
 	<script src="<?=base_url('assets/js/navbar.js') ?>" defer></script>
 	<title>Definition de besion</title>
 </head>

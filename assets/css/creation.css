@@ -32,7 +32,7 @@ form div{
 }
 
 
-form input[type="text"] ,form input[type="number"]{
+.nomSevice ,.hommeJour{
     border: none;
     background: none;
     border-radius: 3px;
@@ -41,7 +41,7 @@ form input[type="text"] ,form input[type="number"]{
     border-bottom: 2px solid rgb(13, 163, 81);
 }
 
-form input[type="number"]::placeholder ,form input[type="text"]::placeholder{
+.hommeJour::placeholder ,.nomSevice::placeholder{
     font-size: medium;
     color: rgba(13, 163, 80, 0.582);
 }
