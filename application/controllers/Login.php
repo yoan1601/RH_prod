@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 		// var_dump([$emailUser, $mdpUser]);
         $user=$this->login->checkLogin($emailUser, $mdpUser);
         if($user===false){
-            redirect(site_url("login"));
+            redirect("login");
         }
         $this->session->set_userdata('user', $user);
 
@@ -42,7 +42,7 @@ class Login extends CI_Controller {
 			redirect(site_url('recrutement/index'));
 		} else {
 			// tokony front office
-			redirect(site_url("login"));
+			redirect("login");
 		}
     }
 }
