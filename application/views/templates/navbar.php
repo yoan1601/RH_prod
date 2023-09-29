@@ -27,8 +27,6 @@
 			</li>
             <li id="recruteur" >Recruter
 			<div class="Layout recrutement">
-						<p >Finance</p>
-						<hr>
 						<?php foreach ($services as $key => $service) { ?>
 						<p ><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
 						<hr>
