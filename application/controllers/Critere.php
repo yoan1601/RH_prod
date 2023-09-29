@@ -44,6 +44,6 @@ class Critere extends CI_Controller {
 
         $this->session->set_userdata('criteresOptions', $criteresOptions);
 
-        redirect(site_url('recrutement/enregistreRecrutement'));
+        redirect('recrutement/enregistreRecrutement');
 	}
 }
