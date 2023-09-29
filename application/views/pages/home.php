@@ -98,6 +98,7 @@
             </div>
         </div>
         </center>
-	  
+
+		<div><h1><a href="<?= site_url('front/generation') ?>">Ivii</a></h1></div>
 </body>
 </html>
