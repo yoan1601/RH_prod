@@ -17,7 +17,7 @@
 		<div class="pt-4 pb-2">
 		<center>
 		  <h2 class="card-title text-center pb-0 fs-4">Creer un compte</h2>
-          <video id="background-video" class="brand-title" autoplay loop muted poster="e.png">
+          <video id="background-video" class="brand-title" autoplay loop muted >
             <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
         </video>
         </center>

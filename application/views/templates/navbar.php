@@ -1,5 +1,5 @@
 <nav class="navbar">
-        <video id="background-video" class="brand-title" autoplay loop muted poster="e.png">
+        <video id="background-video" class="brand-title" autoplay loop muted >
             <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
         </video>
         <a href="#" class="toggle-button">
@@ -27,8 +27,6 @@
 			</li>
             <li id="recruteur" >Recruter
 			<div class="Layout recrutement">
-						<p >Finance</p>
-						<hr>
 						<?php foreach ($services as $key => $service) { ?>
 						<p ><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
 						<hr>
