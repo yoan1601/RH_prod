@@ -97,16 +97,18 @@ class RecrutementModel extends CI_Model {
         $query="select * from recrutements where id_service_recrutement=%s";
         $query=sprintf($query, $idService);
         $query=$this->db->query($query);
-        $query=$query->result();
-        if(count($query)>0){
-            foreach($query as $row){
+        $result=$query->result();
+        if(count($result)>0){
+            foreach($result as $row){
                 $row->besoins=$this->getBesoinsByRecrutement($row->id_recrutement);
                 $row->criteres=$this->getCriteresByRecrutement($row->id_recrutement);
-                foreach($row->criteres as $critere){
-                    $critere->choix=$this->getChoixByCritere($critere->id_critere);
+                if($row->criteres!==false){
+                    foreach($row->criteres as $critere){
+                        $critere->choix=$this->getChoixByCritere($critere->id_critere);
+                    }
                 }
             }
-            return $query;
+            return $result;
         }
         return false;
     }
@@ -118,8 +120,10 @@ class RecrutementModel extends CI_Model {
         if(count($query)>0){
             $query[0]->besoins=$this->getBesoinsByRecrutement($query[0]->id_recrutement);
             $query[0]->criteres=$this->getCriteresByRecrutement($query[0]->id_recrutement);
-            foreach($query[0]->criteres as $critere){
-                $critere->choix=$this->getChoixByCritere($critere->id_critere);
+            if($query[0]->criteres!==false){
+                foreach($query[0]->criteres as $critere){
+                    $critere->choix=$this->getChoixByCritere($critere->id_critere);
+                }
             }
             return $query[0];
         }
