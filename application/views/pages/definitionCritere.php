@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="<?= base_url('assets\css\navbar.css') ?>">
+	<script src="<?=base_url('assets/js/navbar.js') ?>" defer></script>
+	<title>Document</title>
+</head>
+<body>
 <nav class="navbar">
         <video id="background-video" class="brand-title" autoplay loop muted >
             <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
@@ -9,7 +19,7 @@
         </a>
         <div class="navbar-links">
           <ul>
-            <li><a class="active" href="<?= site_url('recrutement/index'); ?>">Accueil</a></li>
+            <li><a class="active" href="#">Accueil</a></li>
             <li id="serveur">Services
 				<div class="Layout service">
 						<p>Listes des Services</p>
@@ -19,21 +29,33 @@
 			</li>
             <li id="annonceur">Annonces	  
 				<div class="Layout annonce">
-					<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="#"><?= $service->nom_service ?></a></p>
+						<p >Finance</p>
 						<hr>
-					<?php } ?>
+						<p >Plantation</p>
+						<hr>
+						<p >Fabrique</p>
+						<hr>
+						<p >Emballage</p>
+						<hr>
+						<p >Generer Annonce</p>
 				</div>
 			</li>
             <li id="recruteur" >Recruter
 			<div class="Layout recrutement">
-						<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
+						<p ><a href="<?= site_url('front/besoin')?>">Finance</a></p>
 						<hr>
-					<?php } ?>
+						<p >Plantation</p>
+						<hr>
+						<p >Fabrique</p>
+						<hr>
+						<p >Emballage</p>
 				</div>
 			</li>
-            <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
+            <li><button>Deconnection</button></li>
           </ul>
         </div>
       </nav> 
+
+
+</body>
+</html>
