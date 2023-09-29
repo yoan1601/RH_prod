@@ -18,6 +18,18 @@ class ServiceModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+
+	public function getAllServices() {
+        // Utilisez la fonction where() pour spécifier la condition WHERE
+        $this->db->where('etat_service >', 0);
+
+        // Effectuez la requête SELECT sur la table "services"
+        $query = $this->db->get('services');
+
+        // Retournez les résultats de la requête
+        return $query->result();
+    }
+
     public function getServiceById($idService){
         $query="select * from services where id_service=%s";
         $query=sprintf($query, $idService);

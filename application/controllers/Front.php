@@ -27,4 +27,24 @@ class Front extends CI_Controller {
 	{
 		$this->load->view('pages/accueil');
 	}
+
+	public function inscription(){
+		$this->load->view('pages/inscription');	
+	}
+
+	public function home(){
+		$this->load->view('pages/home');	
+	}
+
+	public function creation(){
+		$this->load->view('pages/creation_service');
+	}
+
+	public function besoin(){
+		$this->load->view('pages/definitionBesoin');
+	}
+
+	public function listAnnonce(){
+		$this->load->view('pages/listAnnonce');
+	}
 }
