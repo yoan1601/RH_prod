@@ -28,8 +28,8 @@ class Recrutement extends CI_Controller {
         $data['services'] = $this->service->getAllServices();
         $this->load->view('pages/home', $data);
 	}
-    public function hommeJour($service){
-        $this->session->set_userdata('idService', $service);
+    public function hommeJour($idService){
+        $this->session->set_userdata('idService', $idService);
         $this->load->view('pages/definitionBesoin');
 		// redirect(site_url('critere'));
     }
@@ -62,32 +62,21 @@ class Recrutement extends CI_Controller {
         $data["dateAnnonce"]=$dateAnnonce->format("Y-m-d H:i:s");
         $data["criteresOptions"]=$criteresOptions;
         $this->load->view("pages/annoncesGenere", $data);
-		// var_dump($criteres);
-        /*$listeCriteres="<ol>";
-        for($i=1;isset($criteresOptions["critere".$i]);$i++){
-			$critere = $criteresOptions["critere".$i];
-            $listeCriteres.="<li>".$critere."<ul>";
-            foreach($criteres[$critere] as $option){
-                $listeCriteres.="<li>".$option."</li>";
-            }
-            $listeCriteres.="</ul></li>";
-        }
-        $listeCriteres.="<ol>";
-        echo "<h1>Avis de recrutement</h1>
-        <h2>".$nomSociete."</h2>
-        <h2>".$dateAnnonce->format("Y-m-d H:i:s")."</h2>
-        <h2>".$service->nom_service."</h2>
-        ".$listeCriteres;*/
     }
     public function listeAnnonce($idService){
         $this->session->set_userdata("idService", $idService);
         $recrutements=$this->recrutement->getRecrutements($idService);
-        $html="<ul>";
+        foreach($recrutements as $r){
+            $r->service=$this->service->getServiceById($idService);
+        }
+        $data["recrutements"]=$recrutements;
+        $this->load->view("pages/listAnnonce", $data);
+        /*$html="<ul>";
         foreach($recrutements as $r){
             $html.="<a href='".site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement)."'><li>".$r->dateheure_recrutement.", ".$r->besoins[0]->homme_jour."</li></a>";
         }
         $html.="</ul>";
-        echo $html;
+        echo $html;*/
     }
     public function genererAnnonceFromListe(){
         $idRecrutement=$this->input->get("idRecrutement");

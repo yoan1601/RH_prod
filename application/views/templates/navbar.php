@@ -1,5 +1,5 @@
 <nav class="navbar">
-        <video id="background-video" class="brand-title" autoplay loop muted poster="e.png">
+        <video id="background-video" class="brand-title" autoplay loop muted >
             <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
         </video>
         <a href="#" class="toggle-button">

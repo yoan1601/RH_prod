@@ -27,8 +27,7 @@ class Critere extends CI_Controller {
 
     public function setInSession()
 	{
-        // $idService = $this->session->idService;
-
+        $idService = $this->session->idService;
 		$nbCriteres = $this->input->post('nbCriteres'); 
         $criteresOptions = [];
         for ($i=1; $i <= $nbCriteres; $i++) { 

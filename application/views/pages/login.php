@@ -24,7 +24,7 @@
 <center>
   <h2 class="card-title text-center pb-0 fs-4">Se connecter</h2>
   <p>            
-	<video id="background-video" class="brand-title" autoplay loop muted poster="e.png">
+	<video id="background-video" class="brand-title" autoplay loop muted >
 	<source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
 	</video>
   </p>
