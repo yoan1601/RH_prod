@@ -30,7 +30,8 @@ class Recrutement extends CI_Controller {
 	}
     public function hommeJour($idService){
         $this->session->set_userdata('idService', $idService);
-        $this->load->view('pages/definitionBesoin');
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view('pages/definitionBesoin', $data);
 		// redirect(site_url('critere'));
     }
     public function enregistreRecrutement(){
@@ -61,6 +62,7 @@ class Recrutement extends CI_Controller {
         $data["service"]=$service;
         $data["dateAnnonce"]=$dateAnnonce->format("Y-m-d H:i:s");
         $data["criteresOptions"]=$criteresOptions;
+        $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/annoncesGenere", $data);
     }
     public function listeAnnonce($idService){
@@ -70,6 +72,7 @@ class Recrutement extends CI_Controller {
             $r->service=$this->service->getServiceById($idService);
         }
         $data["recrutements"]=$recrutements;
+        $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/listAnnonce", $data);
         /*$html="<ul>";
         foreach($recrutements as $r){
