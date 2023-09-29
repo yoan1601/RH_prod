@@ -25,6 +25,7 @@
 .list-group{
 	overflow-y: auto;
 	max-height: 300px;
+	border-radius: 5px;
 }
 
 .card-body table{
@@ -53,12 +54,6 @@
 
 }
 
-.title td{
-	color: white;
-	border-left: solid 3px rgb(78, 124, 66);
-	background-color: rgb(78, 124, 66);
-}
-
 
 table button{
     font-family: 'titillium_weblight';	
@@ -77,3 +72,20 @@ table button:hover{
 	border: none;
 }
 
+table{
+	width: auto;
+	height: auto;  
+	border-collapse: collapse;
+  }
+  
+  table tbody tr:nth-of-type(even){
+	background-color: #e4e2e2;
+  }
+  .title_text {
+	  top: 10%;
+	  background-color: rgb(78, 124, 66);
+	  box-shadow: 1px 1px 1px rgb(148, 148, 148);
+	  height: 40px;
+	  color: white;
+	  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }

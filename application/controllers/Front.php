@@ -47,4 +47,8 @@ class Front extends CI_Controller {
 	public function listAnnonce(){
 		$this->load->view('pages/listAnnonce');
 	}
+
+	public function generation(){
+		$this->load->view('pages/annoncesGenere');
+	}
 }
