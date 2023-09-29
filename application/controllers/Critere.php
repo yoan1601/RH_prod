@@ -22,13 +22,13 @@ class Critere extends CI_Controller {
 	{
 		$hommeJour=$this->input->post("hommeJour");
         $this->session->set_userdata("hommeJour", $hommeJour);
-		$this->load->view('pages/creation_critere');
+		$data['services'] = $this->service->getAllServices();
+		$this->load->view('pages/creation_critere', $data);
 	}
 
     public function setInSession()
 	{
-        // $idService = $this->session->idService;
-
+        $idService = $this->session->idService;
 		$nbCriteres = $this->input->post('nbCriteres'); 
         $criteresOptions = [];
         for ($i=1; $i <= $nbCriteres; $i++) { 
