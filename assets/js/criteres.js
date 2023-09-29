@@ -3,7 +3,7 @@ function disableSave() {
     bouttonSave.disabled = true;
   }
   
-  function ajoutOption() {
+  function ajoutOption(appendAjoutBoutton = true) {
     let nbCriteres = document.getElementById("nbCriteres").value; //string
     let nbOptionsActu = parseInt(document.getElementById("nbOptions").value, 10);
   
@@ -43,9 +43,11 @@ function disableSave() {
     let div_criteres = document.getElementById("criteres");
     div_criteres.appendChild(ulOptions);
   
-    let ajoutOptionBoutton = document.getElementById("ajoutOption");
-    ulOptions.appendChild(ajoutOptionBoutton);
-  
+    if(appendAjoutBoutton) {
+      let ajoutOptionBoutton = document.getElementById("ajoutOption");
+      ulOptions.appendChild(ajoutOptionBoutton);  
+    }
+    
     console.log("nbCriteres " + nbCriteres + " nbOptions " + nbOptions);
   }
   
@@ -80,6 +82,8 @@ function disableSave() {
   
     let bouttonSave = document.getElementById("soumission");
     bouttonSave.disabled = false;
+  
+    ajoutOption(false);
   }
   
   function incrementeCritere() {
