@@ -1,8 +1,7 @@
-<?php $this->load->view("templates/header");
-$this->load->view("templates/navbar"); ?>
-<link rel="stylesheet" href="<?= base_url('assets\css\listeAnnonce.css') ?>">
-
-
+<?php 
+	$this->load->view('templates/header');
+	$this->load->view('templates/navbar');
+?>
 	  	<div class="card">
 			<div class="card-body">
 				<p></p>
