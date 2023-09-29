@@ -57,8 +57,13 @@ class Recrutement extends CI_Controller {
                 array_push($criteres[$criteresOptions["critere".$i]], $criteresOptions["option".$i.$j]);
             }
         }
+        $data["nomSociete"]=$nomSociete;
+        $data["service"]=$service;
+        $data["dateAnnonce"]=$dateAnnonce->format("Y-m-d H:i:s");
+        $data["criteresOptions"]=$criteresOptions;
+        $this->load->view("pages/annoncesGenere", $data);
 		// var_dump($criteres);
-        $listeCriteres="<ol>";
+        /*$listeCriteres="<ol>";
         for($i=1;isset($criteresOptions["critere".$i]);$i++){
 			$critere = $criteresOptions["critere".$i];
             $listeCriteres.="<li>".$critere."<ul>";
@@ -72,7 +77,7 @@ class Recrutement extends CI_Controller {
         <h2>".$nomSociete."</h2>
         <h2>".$dateAnnonce->format("Y-m-d H:i:s")."</h2>
         <h2>".$service->nom_service."</h2>
-        ".$listeCriteres;
+        ".$listeCriteres;*/
     }
     public function listeAnnonce($idService){
         $this->session->set_userdata("idService", $idService);
