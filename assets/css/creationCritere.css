@@ -1,19 +1,20 @@
 .creation_form{
 	position: relative;
-	margin-top: 3%;
-	margin-left: 5%;
+	margin-top: 1%;
+	margin-left: 10%;
 	background-color: white;
 	height: auto;
-	width: 90%;
+	width: 80%;
 	border: solid 1px white;
 	box-shadow: 0px 0px 6px gray;
 	border-radius: 10px;
 }
 .critere_div button{
     font-family: 'titillium_weblight';	
-	background: none;
+	border: none;
+	color: white;
 	height: 3em;
-	border:solid 1px rgb(6, 0, 63);
+	background-color:  rgb(6, 0, 63);
 	border-radius: 10px;
 	transition: 0.3s;
 }
@@ -21,19 +22,19 @@
 .critere_div button:hover{
 	transition: 0.3s;
 	transform: scale(1.1);
-	background-color:  rgb(6, 0, 63);
-	color: white;
-	border: none;
+	border:solid 1px rgb(6, 0, 63);
+	color: rgb(6, 0, 63);
+	background: none;
 }
 
 #ajoutCritere{
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-left:5%;
 }
 
 .critere_div button[type="submit"]{
-	margin-top: -5%;
-	margin-left: 50%;
+	margin-top: -10%;
+	margin-left: 60%;
 	position: fixed;
 }
 
@@ -52,12 +53,22 @@ label{
 	color: rgb(0, 26, 13);
 }
 
-
-.critere_div #nbCriteres , .critere_div #nbOptions{
-	border:solid 1px gray;
-	height: 2em;
-	border-radius: 10px;
+.intro{
+	margin-left: 10%;
+	font-family: 'astonpolizregular';
+	font-size: medium;
+	color: rgb(88, 88, 88);	
 }
-.critere_div #nbCriteres:focus , .critere_div #nbOptions:focus{
-	box-shadow: 1px 1px 6px blue;
+
+.critere_div input{
+	border:solid 1px gray;
+	height: 2.5em;
+	border-left: solid 3px rgb(1, 59, 1);
+	box-shadow: 0px 0px 3px rgba(116, 116, 116, 0.658);
+	margin-top: 3%;
+	margin-left: 10%;
+}
+
+#ajoutOption{
+	margin-top: 5%;
 }
