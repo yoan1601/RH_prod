@@ -20,10 +20,12 @@ class Critere extends CI_Controller {
 	 */
 	public function index()
 	{
+		$hommeJour=$this->input->post("hommeJour");
+        $this->session->set_userdata("hommeJour", $hommeJour);
 		$this->load->view('pages/creation_critere');
 	}
 
-    public function setInSessionAndSave()
+    public function setInSession()
 	{
         // $idService = $this->session->idService;
 
@@ -42,6 +44,6 @@ class Critere extends CI_Controller {
 
         $this->session->set_userdata('criteresOptions', $criteresOptions);
 
-        redirect(site_url('recrutement/enregistreRecrutement'));
+        redirect('recrutement/enregistreRecrutement');
 	}
 }

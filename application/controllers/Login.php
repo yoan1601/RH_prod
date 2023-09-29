@@ -20,27 +20,29 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
-        echo "<form action='".site_url("login/seConnecter")."' method='post'>
-        <input type='email' name='emailUser' value='jean'>
-        <input type='password' name='mdpUser' value='jean'>
-        <button type='submit'>Valider</button>
-        </form>";
+        // echo "<form action='".site_url("login/seConnecter")."' method='post'>
+        // <input type='email' name='emailUser' value='jean'>
+        // <input type='password' name='mdpUser' value='jean'>
+        // <button type='submit'>Valider</button>
+        // </form>";
+		$this->load->view('pages/login');
 	}
     public function seConnecter(){
         $emailUser=$this->input->post("emailUser");
         $mdpUser=$this->input->post("mdpUser");
+		// var_dump([$emailUser, $mdpUser]);
         $user=$this->login->checkLogin($emailUser, $mdpUser);
         if($user===false){
-            redirect(site_url("login"));
+            redirect("login");
         }
         $this->session->set_userdata('user', $user);
 
 		// var_dump($user);
 		if($user->est_admin == '1') {
-			redirect(site_url('recrutement/index/2'));
+			redirect(site_url('recrutement/index'));
 		} else {
 			// tokony front office
-			redirect(site_url("login"));
+			redirect("login");
 		}
     }
 }

@@ -28,23 +28,23 @@
 	<source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
 	</video>
   </p>
-  <p class="text-center small">Entrer votre nom d'utilisateur & mots de passe</p>
+  <p class="text-center small">Entrer votre email & mots de passe</p>
 </center>
 </div>
 
-<form class="row g-3 needs-validation" novalidate>
+<form action="<?= site_url("login/seConnecter") ?>" class="row g-3 needs-validation" method="POST" novalidate>
 
   <div class="col-12">
-	<label for="yourUsername" class="form-label">Nom d'utilisateur</label>
+	<label for="yourmail" class="form-label">email</label>
 	<div class="input-group has-validation">
-	  <input type="text" name="username" class="form-control" id="yourUsername" required>
+	  <input type="email" name="emailUser" class="form-control" id="yourmail" required>
 	</div>
   </div>
 
   <div class="col-12">
 	<label for="yourPassword" class="form-label">Mots de passe</label>
 	<div class="input-group has-validation">
-	<input type="password" name="password" class="form-control" id="yourPassword" required>
+	<input type="password" name="mdpUser" class="form-control" id="yourPassword" required>
 	</div>
   </div>
 
@@ -55,7 +55,7 @@
 	<p class="small mb-0">Pas de compte? <a href="<?= site_url('front/inscription') ?>">Creer un compte</a></p>
   </div>
 </form>
-<a href="<?= site_url('front/home') ?>">ici</a>
+
 </div>
 </div>
 
