@@ -3,7 +3,7 @@
 	$this->load->view('templates/navbar');
 ?>
 
-	<div class="template-annonce">
+	<div id="printable"  class="template-annonce">
 		<p class="title"><center><h2>Avis de recrutement</h2></center></p>
 		
 		<div class="head">
@@ -34,6 +34,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div><a href="javascript:void(0);"><button id="imprimer">exporter en PDF</button></a></div>
+
+	<script>
+        // Fonction pour déclencher l'impression de la partie spécifique
+        function imprimerPartie() {
+            window.print();
+        }
+
+        // Écouteur d'événement pour le bouton
+        var boutonImprimer = document.getElementById('imprimer');
+        boutonImprimer.addEventListener('click', imprimerPartie);
+    </script>
 
 </body>
 </html>
