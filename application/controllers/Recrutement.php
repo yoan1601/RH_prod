@@ -68,10 +68,14 @@ class Recrutement extends CI_Controller {
     public function listeAnnonce($idService){
         $this->session->set_userdata("idService", $idService);
         $recrutements=$this->recrutement->getRecrutements($idService);
-        foreach($recrutements as $r){
-            $r->service=$this->service->getServiceById($idService);
+        if($recrutements !== false) {
+            foreach($recrutements as $r){
+                $r->service=$this->service->getServiceById($idService);
+            }
+            $data["recrutements"]=$recrutements;
+        } else {
+            $data["recrutements"]=false;
         }
-        $data["recrutements"]=$recrutements;
         $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/listAnnonce", $data);
         /*$html="<ul>";
