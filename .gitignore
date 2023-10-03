@@ -32,3 +32,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 
 deploy.bat
+CREATION.sql
+TODO.xlsx
+Wireframe.epgz
+ToDo_gestionrh.xls

@@ -5,9 +5,10 @@
 	<div class="critere_div">
     <button id="ajoutCritere" onclick="ajoutCritere()">Ajouter critere</button>
     <div class="creation_form">
-	<p><label for="">Creer vos critere de Selection</label></p>
+	<p><label for="">Creer vos criteres de Selection</label></p>
+	<p class="intro">Pour le vos preferences particuliere en terme d'embauche.</p>
         <form  action="<?= site_url('critere/setInSession') ?>" method="post">
-            <input type="hidden" id="nbCriteres" name="nbCriteres" value="0">
+            <input type="hidden" id="nbCriteres" name="nbCriteres" value="0" placeholder="Nom critere">
             <input type="hidden" id="nbOptions" name="nbOptions" value="0">
             <ul id="criteres">
 

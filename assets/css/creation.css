@@ -21,7 +21,7 @@ form{
     margin-top: 10%;
 }
 
-form div{
+form .service-creation-form{
     /* border: solid 1px; */
     border-bottom: 2px ;
     border-radius: 3px;
@@ -32,7 +32,7 @@ form div{
 }
 
 
-.nomSevice ,.hommeJour{
+.nomService ,.hommeJour{
     border: none;
     background: none;
     border-radius: 3px;
@@ -41,7 +41,7 @@ form div{
     border-bottom: 2px solid rgb(13, 163, 81);
 }
 
-.hommeJour::placeholder ,.nomSevice::placeholder{
+.hommeJour::placeholder ,.nomService::placeholder{
     font-size: medium;
     color: rgba(13, 163, 80, 0.582);
 }
