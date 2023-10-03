@@ -1,6 +1,4 @@
 .test-plan{
-	width: 80%;
-	margin-left: 10%;
 	display: list-item;
 	font-family: 'titillium_weblight';
 }
@@ -10,8 +8,10 @@
 }
 
 .main-plan{
-	width: 90%;
-	height: 350px;
+	width: 50%;
+	margin-left: 25%;
+	height: auto;
+	margin-top: 2%;
 	margin-left: 2%;
 	background-color: white;
 	box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.719);

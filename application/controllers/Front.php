@@ -59,6 +59,6 @@ class Front extends CI_Controller {
 	public function linker(){
 		$data = [];
         $data['services'] = $this->service->getAllServices();
-		$this->load->view('pages/listeAdmis',$data);
+		$this->load->view('pages/planificationEntretien',$data);
 	}
 }
