@@ -59,3 +59,30 @@
 .fin{
 	color: white;
 }
+
+
+.absolutive-btn{
+	margin-left: 20%;
+	height: 2.5em;
+    width: 10%;
+    font-size: medium;
+    font-weight:bolder;
+    background-color: rgb(7, 0, 31);
+    color:  rgb(255, 255, 255);
+    font-family: 'titillium_weblight';
+	border: none;
+	border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    position: absolute;
+	top: 80%;
+	left: 60%;
+}
+
+.absolutive-btn:hover{
+    background-color: rgb(23, 12, 61);
+	transition: 0.4s;
+	transform: scale(1.1);
+	transition-timing-function: ease-in-out;
+}
+
