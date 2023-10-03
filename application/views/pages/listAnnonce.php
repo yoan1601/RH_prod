@@ -6,6 +6,7 @@
 			<div class="card-body">
 				<p></p>
 				<p></p>
+				<p class="fin">nun</p>
 				<p><h3 class="card-title">Liste des annonces</h3></p>
               <div class="list-group">
 				<table>

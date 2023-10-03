@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="<?= base_url('assets\css\creationCritere.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets\css\annoncesGenere.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets\css\planificationTest.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('assets\css\questionnaire1.css') ?>">
 	<script src="<?=base_url('assets/js/navbar.js') ?>" defer></script>
 	<title>Definition de besion</title>
 </head>
