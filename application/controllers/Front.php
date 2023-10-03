@@ -56,9 +56,9 @@ class Front extends CI_Controller {
 		$this->load->view('pages/listAnnonce',$data);
 	}
 
-	public function generation(){
+	public function linker(){
 		$data = [];
         $data['services'] = $this->service->getAllServices();
-		$this->load->view('pages/annoncesGenere',$data);
+		$this->load->view('pages/listeCVSelection',$data);
 	}
 }
