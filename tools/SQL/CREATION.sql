@@ -62,20 +62,28 @@ CREATE  TABLE criteres (
 	id_critere           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_recrutement_critere INT  NOT NULL     ,
 	descri_critere       VARCHAR(35)  NOT NULL     ,
-	etat_critere         INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
+	etat_critere         INT  NOT NULL DEFAULT (1)    ,
+	fichier_critere      TEXT       
+ ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE INDEX fk_criteres_recrutements ON criteres ( id_recrutement_critere );
 
 CREATE  TABLE cv ( 
 	id_cv                INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_user_cv           INT  NOT NULL     ,
+	id_info_user_cv      INT  NOT NULL     ,
 	dateheure_remplissage DATETIME  NOT NULL DEFAULT (now())    ,
 	id_recrutement_cv    INT  NOT NULL     ,
 	etat_cv              INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE INDEX fk_cv_users ON cv ( id_user_cv );
+CREATE INDEX fk_cv_users ON cv ( id_info_user_cv );
+
+CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
+
+ALTER TABLE cv ADD CONSTRAINT fk_cv_recrutements FOREIGN KEY ( id_recrutement_cv ) REFERENCES recrutements( id_recrutement ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE cv ADD CONSTRAINT fk_cv_information_users FOREIGN KEY ( id_info_user_cv ) REFERENCES information_users( id_information_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
 
@@ -96,10 +104,12 @@ CREATE  TABLE entretiens (
 	id_entretien         INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	dateheure_entretien  DATETIME  NOT NULL DEFAULT (now())    ,
 	lieu_entretien       VARCHAR(35)  NOT NULL     ,
-	id_user_entretien    INT  NOT NULL     ,
+	id_user_entretien    INT  NOT NULL     ,.
+	
 	id_recrutement_entretien INT  NOT NULL     ,
-	etat_entretien       INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
+	etat_entretien       INT  NOT NULL DEFAULT (1)    ,
+	duree_entretien      DECIMAL(10,2)  NOT NULL     
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_entretien ON entretiens ( id_user_entretien );
 
@@ -148,11 +158,18 @@ CREATE INDEX id_questionnaire_questionnaire_reponse ON questionnaire_reponses ( 
 
 CREATE  TABLE questionnaire_reponse_choisis ( 
 	id_questionnaire_reponse_choisi INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_user_questionnaire_reponse_choisi INT  NOT NULL     ,
+	id_info_user_questionnaire_reponse_choisi INT  NOT NULL     ,
 	id_choix_reponse     INT  NOT NULL     
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE INDEX id_user_questionnaire_reponse_choisi ON questionnaire_reponse_choisis ( id_user_questionnaire_reponse_choisi );
+CREATE INDEX id_user_questionnaire_reponse_choisi ON questionnaire_reponse_choisis ( id_info_user_questionnaire_reponse_choisi );
+
+CREATE INDEX id_choix_reponse ON questionnaire_reponse_choisis ( id_choix_reponse );
+
+ALTER TABLE questionnaire_reponse_choisis ADD CONSTRAINT questionnaire_reponse_choisis_ibfk_2 FOREIGN KEY ( id_choix_reponse ) REFERENCES questionnaire_reponses( id_questionnaire_reponse ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE questionnaire_reponse_choisis ADD CONSTRAINT fk_questionnaire_reponse_choisis_information_users FOREIGN KEY ( id_info_user_questionnaire_reponse_choisi ) REFERENCES information_users( id_information_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 CREATE INDEX id_choix_reponse ON questionnaire_reponse_choisis ( id_choix_reponse );
 
