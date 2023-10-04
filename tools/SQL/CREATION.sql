@@ -1,3 +1,13 @@
+CREATE  TABLE test_selections ( 
+	id_test_selection    INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_test_test_selection INT  NOT NULL     ,
+	id_info_user_test_selection INT  NOT NULL     
+ ) engine=InnoDB;
+
+ALTER TABLE test_selections ADD CONSTRAINT fk_test_selections_tests FOREIGN KEY ( id_test_test_selection ) REFERENCES tests( id_test ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE test_selections ADD CONSTRAINT fk_test_selections_information_users FOREIGN KEY ( id_info_user_test_selection ) REFERENCES information_users( id_information_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 CREATE  TABLE services ( 
 	id_service           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nom_service          VARCHAR(35)  NOT NULL     ,
