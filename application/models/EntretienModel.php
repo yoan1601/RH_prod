@@ -121,4 +121,14 @@ class EntretienModel extends CI_Model {
         $query=$query->result();
         return $query;
 	}
+	public function saveSelectionTest($idTest, $idInfoUser){
+		$query="insert into test_selections values(null, %s, %s)";
+		$query=sprintf($query, $idTest, $idInfoUser);
+        $query=$this->db->query($query);
+	}
+	public function saveEntretien($dateHeure, $lieu, $idUser, $idRecrutement, $duree){
+		$query="insert into entretien values(null, '%s', '%s', %s, %s, 1, %s)";
+		$query=sprintf($query, $dateHeure, $lieu, $idUser, $idRecrutement, $duree);
+        $query=$this->db->query($query);
+	}
 }
