@@ -3,7 +3,7 @@
 ?>
 
 	<div class="content-build">
-	<center>
+	<center class="home-fond">
 		<div class="container-welcome">
 		
 			<p><h2>Welcome in Dev Soft</h2></p>
