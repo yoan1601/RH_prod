@@ -1,0 +1,79 @@
+.creation_form{
+	position: relative;
+	margin-top: 1%;
+	margin-left: 10%;
+	background-color: white;
+	height: auto;
+	width: 80%;
+	border: solid 1px white;
+	box-shadow: 0px 0px 6px gray;
+	border-radius: 10px;
+}
+.critere_div button{
+    font-family: 'titillium_weblight';	
+	border: none;
+	color: white;
+	height: 3em;
+	background-color:  rgb(6, 0, 63);
+	border-radius: 10px;
+	transition: 0.3s;
+}
+
+.critere_div button:hover{
+	transition: 0.3s;
+	transform: scale(1.1);
+	border:solid 1px rgb(6, 0, 63);
+	color: rgb(6, 0, 63);
+	background: none;
+}
+
+#ajoutCritere{
+	margin-top: 2%;
+	margin-left:5%;
+}
+
+.critere_div button[type="submit"]{
+	margin-top: -10%;
+	margin-left: 65%;
+	position: fixed;
+}
+
+@font-face {
+    font-family: 'titillium_weblight';
+    src: url('../font/titillunium/titilliumweb-light-webfont.woff2') format('woff2'),
+         url('../font/titillunium/titilliumweb-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+label{
+	margin-left: 10%;
+	font-family: 'nebularegular';
+	font-size: large;
+	color: rgb(0, 26, 13);
+}
+
+.intro{
+	margin-left: 10%;
+	font-family: 'astonpolizregular';
+	font-size: medium;
+	color: rgb(88, 88, 88);	
+}
+
+.critere_div input{
+	border:solid 1px gray;
+	height: 2.5em;
+	border-left: solid 3px rgb(1, 59, 1);
+	box-shadow: 0px 0px 3px rgba(116, 116, 116, 0.658);
+	margin-top: 3%;
+	margin-left: -2%;
+}
+
+#ajoutOption{
+	margin-top: 5%;
+}
+
+form .enr {
+	background-color: antiquewhite;
+	margin-left:20%;
+}

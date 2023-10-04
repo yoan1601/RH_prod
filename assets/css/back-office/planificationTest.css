@@ -1,0 +1,60 @@
+.test-plan{
+	display: list-item;
+	font-family: 'titillium_weblight';
+}
+
+.main-plan p{
+	font-family: 'titillium_weblight';
+}
+
+.main-plan{
+	width: 50%;
+	margin-left: 25%;
+	height: auto;
+	margin-top: 2%;
+	margin-left: 2%;
+	background-color: white;
+	box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.719);
+	border-radius: 10px;
+}
+
+.main-plan input{
+	width: 80%;
+	height: 2em;
+	font-size:100%;
+	border: solid 1px rgb(163, 163, 163);
+	border-radius: 5px;
+	border-left:solid 5px rgb(13, 163, 81);
+}
+
+.main-plan button{
+	height: 3em;
+    width: 70%;
+    font-size: medium;
+    font-weight:bolder;
+    background-color: rgb(7, 0, 31);
+    color:  rgb(255, 255, 255);
+    font-family: 'titillium_weblight';
+	border: none;
+	border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    position: relative;
+}
+
+.main-plan label{
+	font-family: 'titillium_weblight';
+	color:rgb(23, 12, 61);
+}
+
+.main-plan button:hover{
+    background-color: rgb(23, 12, 61);
+	transition: 0.4s;
+	transform: scale(1.1);
+	transition-timing-function: ease-in-out;
+}
+
+/* .main-plan .sentence{
+	font-family: 'titillium_weblight';
+	margin-right: 10%;
+} */
