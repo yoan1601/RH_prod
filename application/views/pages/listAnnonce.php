@@ -16,6 +16,7 @@
 						<td>Date</td>
 						<td>Action</td>
 					</tr>
+					<?php if($recrutements !== false) { ?>
 					<?php foreach($recrutements as $r){ ?>
 					<tr>
 						<td ><?= $r->besoins[0]->homme_jour." homme/jour ;".$r->criteres[0]->descri_critere." : ".$r->criteres[0]->choix[0]->choix_critere.". . ." ?></td>
@@ -24,6 +25,7 @@
 						<td><a href='<?= site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement) ?>'><button>Publier</button></a></td>
 					</tr>
 					<?php } ?>
+					<?php } else { echo 'donnée vide'; } ?>
 				</table>
               </div>
             </div>

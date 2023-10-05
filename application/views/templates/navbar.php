@@ -1,6 +1,6 @@
 <nav class="navbar">
         <video id="background-video" class="brand-title" autoplay loop muted >
-            <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
+            <source src="<?= base_url('assets/video/DS (1).mp4') ?>" type="video/mp4">
         </video>
         <a href="#" class="toggle-button">
           <span class="bar"></span>
@@ -20,7 +20,7 @@
             <li id="annonceur">Annonces	  
 				<div class="Layout annonce">
 					<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="#"><?= $service->nom_service ?></a></p>
+						<p ><a href="<?= site_url('recrutement/listeAnnonce/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
 						<hr>
 					<?php } ?>
 				</div>

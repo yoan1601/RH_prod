@@ -1,64 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="<?= base_url('assets\css\navbar.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('assets\css\annoncesGenere.css') ?>">
-	<script src="<?=base_url('assets/js/navbar.js') ?>" defer></script>
-	<title>Document</title>
-</head>
-<body>
-<nav class="navbar">
-        <video id="background-video" class="brand-title" autoplay loop muted poster="e.png">
-            <source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
-        </video>
-        <a href="#" class="toggle-button">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </a>
-        <div class="navbar-links">
-          <ul>
-		  <li><a href="<?= site_url('front/home')?>">Accueil</a></li>
-            <li id="serveur">Services
-				<div class="Layout service">
-						<p>Listes des Services</p>
-						<hr>
-						<p><a href="<?= site_url('front/creation')?>">Creer</a></p>
-				</div>
-			</li>
-            <li id="annonceur">Annonces	  
-				<div class="Layout annonce">
-						<p >Finance</p>
-						<hr>
-						<p >Plantation</p>
-						<hr>
-						<p >Fabrique</p>
-						<hr>
-						<p >Emballage</p>
-						<hr>
-						<p >Generer Annonce</p>
-				</div>
-			</li>
-            <li id="recruteur" >Recruter
-			<div class="Layout recrutement">
-						<p ><a href="<?= site_url('front/besoin')?>">Finance</a></p>
-						<hr>
-						<p >Plantation</p>
-						<hr>
-						<p >Fabrique</p>
-						<hr>
-						<p >Emballage</p>
-				</div>
-			</li>
-            <li><button>Deconnection</button></li>
-          </ul>
-        </div>
-      </nav>
+<?php
+	$this->load->view('templates/header');
+	$this->load->view('templates/navbar');
+?>
 
+<<<<<<< HEAD
 	<div class="template-annonce">
 	<p class="trans">...</p>
+=======
+	<div id="printable"  class="template-annonce">
+>>>>>>> 5376e20422a8e0793f65fbcaee17b743cb4a058e
 		<p class="title"><center><h2>Avis de recrutement</h2></center></p>
 		
 		<div class="head">
@@ -90,6 +40,19 @@
 		</div>
 		<p class="trans">...</p>
 	</div>
+
+	<div><a href="javascript:void(0);"><button id="imprimer">exporter en PDF</button></a></div>
+
+	<script>
+        // Fonction pour déclencher l'impression de la partie spécifique
+        function imprimerPartie() {
+            window.print();
+        }
+
+        // Écouteur d'événement pour le bouton
+        var boutonImprimer = document.getElementById('imprimer');
+        boutonImprimer.addEventListener('click', imprimerPartie);
+    </script>
 
 </body>
 </html>

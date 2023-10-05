@@ -1,3 +1,25 @@
+/* PRINT */
+@media print {
+	body * {
+		display: none;
+	}
+
+	#printable, #printable * {
+		display: block;
+	}
+}
+
+button{
+    font-family: 'titillium_weblight';	
+	background: none;
+	height: 2em;
+	background-color: solid 1px black;
+	border-radius: 10px;
+	transition: 0.3s;
+}
+
+/* END PRINT */
+
 .template-annonce{
 	background-image: url('../../img/rm222-mind-24.jpg');
 	background-size: cover;
