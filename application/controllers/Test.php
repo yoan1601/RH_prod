@@ -28,8 +28,11 @@ class Test extends CI_Controller {
 
 		$data['liste_cv'] = $liste_cv;
 		$data['idService'] = $idService;
+		$data['service'] = $this->service->getServiceById($idService);
 		// var_dump($data);
-		$this->load->view('back_test/listeCv', $data);
+		$data['services'] = $this->service->getAllServices();
+		// $this->load->view('back_test/listeCv', $data);
+		$this->load->view('pages/listeCVSelection', $data);
     }
 
 	public function save()
@@ -67,7 +70,9 @@ class Test extends CI_Controller {
 
 			$this->test->insertQuestionnaire($questionsReponses, $idTestInserted);
 
-			$this->load->view('back_test/questionnaireGenere', $data);
+			$data['services'] = $this->service->getAllServices();
+			// $this->load->view('back_test/questionnaireGenere', $data);
+			$this->load->view('pages/questionnaireGenere', $data);
 		}
 
 		else {
@@ -89,7 +94,9 @@ class Test extends CI_Controller {
 
 			$data['service'] = $this->service->getServiceById($idService);
 			$data['idRecrutement'] = $idRecrutement;
-			$this->load->view('back_test/planTest', $data);
+			$data['services'] = $this->service->getAllServices();
+			// $this->load->view('back_test/planTest', $data);
+			$this->load->view('pages/planificationTest', $data);
 		}
 	}
 
@@ -111,7 +118,9 @@ class Test extends CI_Controller {
 		$this->session->set_userdata('test', $test);
 		$data['idService'] = $idService;
 
-		$this->load->view('back_test/makeQuestionnaire', $data);
+		$data['services'] = $this->service->getAllServices();
+		// $this->load->view('back_test/makeQuestionnaire', $data);
+		$this->load->view('pages/questionnaire1', $data);
 	}
 
 }
