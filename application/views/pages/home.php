@@ -9,10 +9,10 @@
                 <p>
                   <div class="photo-container annonceImg"></div>
                 </p>
-              <p class="title">. Publier Annonce</p>
+              <p class="title">. Voir les Annonce</p>
               <p class="content-ph">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fugit nostrum tempore saepe laborum aspernatur explicabo? Iste asperiores.
-              </p>
+							Voyez les annonces que vous avez faites ici, des plus anciens au plus recent.
+							</p>
 			  <p>
 				<a href="<?= site_url('front/listAnnonce') ?>"><button>Voir plus</button></a>
 			  </p>
@@ -23,8 +23,7 @@
               </p>
             <p class="title">. Selection de CV</p>
             <p class="content-ph">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aspernatur quas quasi, assumenda
-				, vero fuga saepe dolor totam 
+							Faites une selection des CV qui sont pratiquement eligible pour des postes.
             </p>
 			<p>
 				<a href=""><button>Voir plus</button></a>
@@ -36,11 +35,14 @@
               </p>
             <p class="title">. Selection d'entretients</p>
             <p class="content-ph">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, cum consectetur? Impedit nemo necessitatibus temporibus! Eligendi hic.
-            </p>
-			<p>
-				<a href=""><button>Voir plus</button></a>
-			</p>
+						Selectionner les tests faites pour faire des entretiens chacun a leur services.
+					  </p>
+						<p>
+						<a href=""><button>Voir plus</button></a>
+						</p>
+            </div>
+						<div class="skills-content photo-home">
+
             </div>
         </div>
         </center>

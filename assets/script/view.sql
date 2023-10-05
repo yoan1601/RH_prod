@@ -1,3 +1,18 @@
+-- detail CV
+CREATE OR REPLACE VIEW v_detail_cv AS ( 
+SELECT 
+info.*,
+cv.id_cv,
+cr.descri_critere critere,
+choix.choix_critere choix
+FROM cv 
+LEFT JOIN information_users info ON cv.id_info_user_cv = info.id_information_user
+LEFT JOIN cv_reponses cv_rep ON cv_rep.id_cv_cv_reponse = cv.id_cv 
+LEFT JOIN criteres cr ON cv_rep.id_critere_cv_reponse = cr.id_critere
+LEFT JOIN choix_criteres choix ON cv_rep.id_choix_cv_reponse = choix.id_choix_critere
+where cv.etat_cv > 0
+);
+
 -- realisations
 CREATE OR REPLACE VIEW v_realisations AS (
 select a.*, p.nom_FR as nom_pays_FR, p.nom_EN as nom_pays_EN, u.nom nom_user, u.telephone, u.mail,EXTRACT(YEAR FROM a.date_demarrage) as annee_demarrage

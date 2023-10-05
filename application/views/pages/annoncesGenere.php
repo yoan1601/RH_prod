@@ -3,7 +3,12 @@
 	$this->load->view('templates/navbar');
 ?>
 
+<<<<<<< HEAD
+	<div class="template-annonce">
+	<p class="trans">...</p>
+=======
 	<div id="printable"  class="template-annonce">
+>>>>>>> 5376e20422a8e0793f65fbcaee17b743cb4a058e
 		<p class="title"><center><h2>Avis de recrutement</h2></center></p>
 		
 		<div class="head">
@@ -33,6 +38,7 @@
 				<?php } ?>
 			</div>
 		</div>
+		<p class="trans">...</p>
 	</div>
 
 	<div><a href="javascript:void(0);"><button id="imprimer">exporter en PDF</button></a></div>

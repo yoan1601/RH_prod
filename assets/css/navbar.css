@@ -17,7 +17,7 @@ body{
     justify-content: space-between;
     align-items: center;
     background-color: #00001d; 
-    border-radius: 10px;
+    border-radius: 5px;
     color: rgb(24, 24, 24);
     box-shadow: 0px 0px 4px rgb(233, 200, 200);
 }
