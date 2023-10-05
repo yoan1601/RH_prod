@@ -15,10 +15,17 @@ CREATE  TABLE user_departements (
 	id_dept_user_dept    INT  NOT NULL     
  ) engine=InnoDB;
 
+ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_users FOREIGN KEY ( id_user_user_dept ) REFERENCES users( id_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_departements FOREIGN KEY ( id_dept_user_dept ) REFERENCES departements( id_dept ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
 INSERT INTO user_departements (id_user_user_dept, id_dept_user_dept)
 VALUES
 (1, 1),
 (2, 1),
 (3, 1);
 
- ALTER TABLE services ADD id_dept_service INT NOT NULL DEFAULT 1; 
+ALTER TABLE services ADD id_dept_service INT NOT NULL DEFAULT 1; 
+ALTER TABLE services ADD CONSTRAINT fk_services_departements FOREIGN KEY ( id_dept_service ) REFERENCES departements( id_dept ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
