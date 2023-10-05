@@ -119,3 +119,24 @@ input[type="file"]{
 .congrates p , .congrates h3{
 margin-left: 20%;
 }
+
+.test{
+	background-image: url('../../img/698.jpg');
+}
+
+.info-selected{
+	margin-top: 5%;
+	height: 2em;
+	width: 200px;
+	background-color: rgb(187, 205, 255);
+	border: 1px solid gray;
+	border-radius: 2px;
+	border-left: solid 3px green;
+}
+
+.selected{
+	height: 3em;
+	width: 220px;
+	border: solid 1px gray;
+	border-radius: 10px;
+}
