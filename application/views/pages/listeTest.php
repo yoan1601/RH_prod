@@ -7,7 +7,7 @@
 				<p></p>
 				<p></p>
 				<p class="fin">nun</p>
-				<p><h3 class="card-title">Tests pour Marketing</h3></p>
+				<p><h3 class="card-title">Tests pour <?= $service->nom_service ?></h3></p>
               <div class="list-group">
 				<table>
 					<tr class="title_text">
@@ -16,30 +16,14 @@
 						<td>Lieu</td>
 						<td class="listeAdmis">Action</td>
 					</tr>
+					<?php foreach($tests as $test){ ?>
 					<tr>
-						<td>1</td>
-						<td>12/09/2023 15:10</td>
-						<td>Tana</td>
-						<td class="listeAdmis"><button>Liste des admis</button></td>
+						<td><?= $test->id_test ?></td>
+						<td><?= $test->dateheure_test ?></td>
+						<td><?= $test->lieu_test ?></td>
+						<td class="listeAdmis"><a href="<?= site_url("entretien/listPersonnesTest/".$test->id_test) ?>"><button>Liste des admis</button></td></a>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>12/09/2023 15:10</td>
-						<td>Tana</td>
-						<td class="listeAdmis"><button>Liste des admis</button></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>12/09/2023 15:10</td>
-						<td>Tana</td>
-						<td class="listeAdmis"><button>Liste des admis</button></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>12/09/2023 15:10</td>
-						<td>Tana</td>
-						<td class="listeAdmis"><button>Liste des admis</button></td>
-					</tr>
+					<?php } ?>
 				</table>
               </div>
             </div>
