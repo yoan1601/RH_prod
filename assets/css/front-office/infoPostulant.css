@@ -53,9 +53,55 @@ center button{
 	height: 2.5em;
 	transition: 0.5s;
 }
+
+center button{
+	margin-top: 5%;
+	background-color: rgb(28, 0, 54);
+	color: white;
+	width: 40%;
+	border:none;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: medium;
+	font-family: sans-serif;
+	height: 2.5em;
+	transition: 0.5s;
+}
+
 center button:hover{
 	transition: 0.5s;
 	cursor:pointer;
 	transform:scale(1.1);
 	background-color: rgb(63, 0, 122);	
+}
+
+.form-div{
+	margin-left: 10%;
+}
+
+
+input[type="radio"]{
+	width: 20px;
+}
+
+input[type="file"]{
+	height: 2em;
+	margin-left: 10%;
+	border: none;
+	background-color: rgba(62, 121, 62, 0.89);
+	width: 50%;
+	border-radius: 10px;
+}
+
+.temp form{
+	border-radius: 10px;
+	display: grid;
+	background-color: white;
+	grid-template-columns: repeat(auto-fill,50%);
+}
+
+.photo-content{
+	width: 100%;
+	background-image: url('../../img/7000961.jpg');
+	background-size: cover;
 }
