@@ -89,3 +89,17 @@ table{
 	  color: white;
 	  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
+
+
+  .main-list{
+	margin-top: 2%;
+  }
+
+
+  .listeAdmis{
+	width: 200px;
+  }
+
+  .list{
+	margin-top: 5%;
+  }

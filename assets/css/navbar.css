@@ -223,4 +223,10 @@ text-decoration: none;
 color: white;
 }
 
+ul li img{
+	margin-bottom: 9%;
+	margin-right: 5%;
+	width: 40px;
+	height: 40px;
+}
 
