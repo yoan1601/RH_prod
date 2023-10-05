@@ -25,7 +25,7 @@
   <h2 class="card-title text-center pb-0 fs-4">Se connecter</h2>
   <p>            
 	<video id="background-video" class="brand-title" autoplay loop muted >
-	<source src="<?= base_url('assets/video/DS.mp4') ?>" type="video/mp4">
+	<source src="<?= base_url('assets/video/DS (1).mp4') ?>" type="video/mp4">
 	</video>
   </p>
   <p class="text-center small">Entrer votre email & mots de passe</p>
@@ -50,6 +50,10 @@
 
   <div class="col-12">
 	<button class="btn btn-primary w-100" type="submit">Se connecter</button>
+	<?php
+		if (isset($errorLog)) { ?>
+			<p style="color:red" ><?= $errorLog ?></p>	
+	<?php } ?>
   </div>
   <div class="col-12">
 	<p class="small mb-0">Pas de compte? <a href="<?= site_url('front/inscription') ?>">Creer un compte</a></p>
