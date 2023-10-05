@@ -34,7 +34,7 @@
 
 .critere_div button[type="submit"]{
 	margin-top: -10%;
-	margin-left: 60%;
+	margin-left: 65%;
 	position: fixed;
 }
 
@@ -66,9 +66,14 @@ label{
 	border-left: solid 3px rgb(1, 59, 1);
 	box-shadow: 0px 0px 3px rgba(116, 116, 116, 0.658);
 	margin-top: 3%;
-	margin-left: 10%;
+	margin-left: -2%;
 }
 
 #ajoutOption{
 	margin-top: 5%;
+}
+
+form .enr {
+	background-color: antiquewhite;
+	margin-left:20%;
 }

@@ -40,4 +40,9 @@ class ServiceModel extends CI_Model {
         }
         return $query;
     }
+    public function saveService($nomService, $idDepartement){
+        $query="insert into services values(null, '%s', %s)";
+        $query=sprintf($query, $nomService, $idDepartement);
+        $query=$this->db->query($query);
+    }
 }

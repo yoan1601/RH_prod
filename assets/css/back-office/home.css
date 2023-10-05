@@ -40,19 +40,19 @@ body{
 }
 
 .CV{
-    background-image:url('../img/cv.jpg');
+    background-image:url('../../img/cv.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .entretien{
-    background-image:url('../img/entretien.jpg');
+    background-image:url('../../img/entretien.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .annonceImg{
-    background-image:url('../img/annonce.jpg');
+    background-image:url('../../img/annonce.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
