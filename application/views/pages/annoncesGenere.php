@@ -58,6 +58,7 @@
       </nav>
 
 	<div class="template-annonce">
+	<p class="trans">...</p>
 		<p class="title"><center><h2>Avis de recrutement</h2></center></p>
 		
 		<div class="head">
@@ -87,6 +88,7 @@
 				<?php } ?>
 			</div>
 		</div>
+		<p class="trans">...</p>
 	</div>
 
 </body>
