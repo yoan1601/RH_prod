@@ -31,7 +31,7 @@ $this->load->view('templates/navbar');
 									<td><?= $cv->reception ?></td>
 									<td><?= $cv->duree ?> jrs</td>
 									<td><?= $cv->note ?></td>
-									<td><button>Details</button></a></td>
+									<td><a href="<?= site_url('test/detailCV/'.$cv->id_cv) ?>" style="color:black;">Details</a></td>
 								</tr>
 							<?php } ?>
 						<?php } else {
