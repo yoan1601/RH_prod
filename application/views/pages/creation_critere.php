@@ -13,7 +13,7 @@
             <ul id="criteres">
 
             </ul>
-            <button id="enr" type="submit">Enregistrer et publier l'annonce</button>
+            <button id="soumission" type="submit">Enregistrer et publier l'annonce</button>
         </form>
         <button type="button" id="ajoutOption" onclick="ajoutOption()" style="display: none;">Ajouter option</button>
     </div>
