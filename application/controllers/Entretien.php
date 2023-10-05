@@ -20,6 +20,13 @@ class Entretien extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$tests=$this->entretien->getTestById(1);
+		$questions=$this->entretien->getQuestionsFromTest($tests->id_test);
+		$personnes=$this->entretien->getPersonneTests($tests);
+		$admis=$this->entretien->getPersonnesAdmis($personnes, 40);
+		$admis=$this->entretien->sortPersonnesByNote($admis);
+		var_dump($tests);
+		var_dump($questions);
+		var_dump($admis);
 	}
 }

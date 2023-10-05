@@ -114,7 +114,7 @@ CREATE  TABLE entretiens (
 	id_entretien         INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	dateheure_entretien  DATETIME  NOT NULL DEFAULT (now())    ,
 	lieu_entretien       VARCHAR(35)  NOT NULL     ,
-	id_user_entretien    INT  NOT NULL     ,.
+	id_user_entretien    INT  NOT NULL     ,
 	
 	id_recrutement_entretien INT  NOT NULL     ,
 	etat_entretien       INT  NOT NULL DEFAULT (1)    ,
