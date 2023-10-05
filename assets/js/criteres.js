@@ -21,11 +21,13 @@ function disableSave() {
     let new_input_option = document.createElement("input");
     new_input_option.type = "text";
     new_input_option.name = "option" + nbCriteres + nbOptions;
+    new_input_option.placeholder = "option" + nbOptions;
     new_input_option.setAttribute("required", '');
   
     let new_input_coeff = document.createElement("input");
     new_input_coeff.type = "text";
     new_input_coeff.name = "coeff" + nbCriteres + nbOptions;
+    new_input_coeff.placeholder = "coefficient";
     new_input_coeff.setAttribute("required", '');
   
     let divOptionCoeff = document.createElement("div");
@@ -67,6 +69,7 @@ function disableSave() {
     let new_input_critere = document.createElement("input");
     new_input_critere.type = "text";
     new_input_critere.name = "critere" + nbCriteres;
+    new_input_critere.placeholder = "critere " + nbCriteres;
     new_input_critere.setAttribute("required", '');
   
     let li = document.createElement("li");

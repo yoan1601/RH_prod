@@ -20,7 +20,7 @@
             <li id="annonceur">Annonces	  
 				<div class="Layout annonce">
 					<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="#"><?= $service->nom_service ?></a></p>
+						<p ><a href="<?= site_url('recrutement/listeAnnonce/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
 						<hr>
 					<?php } ?>
 				</div>
