@@ -23,6 +23,12 @@ class Test extends CI_Controller {
 		redirect(site_url('test/listeCv'));
 	}
 
+	public function detailCV($id_cv = 1) {
+		$data['services'] = $this->service->getAllServices();
+		$data['detailCv'] = $this->test->getDetailCV($id_cv);
+		$this->load->view('pages/detailCV',$data);
+	}
+
     public function listeCv($idService = 1) {
         $liste_cv = $this->test->getListeCv($idService);
 
