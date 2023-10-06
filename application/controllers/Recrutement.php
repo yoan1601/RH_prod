@@ -28,6 +28,28 @@ class Recrutement extends CI_Controller {
         $data['services'] = $this->service->getAllServices();
         $this->load->view('pages/home', $data);
 	}
+
+    public function listeAnnonceAll(){
+
+        $recrutements=$this->recrutement->getAllRecrutementsInDept();
+        if($recrutements !== false) {
+            foreach($recrutements as $r){
+                $r->service=$this->service->getServiceById($r->id_service);
+            }
+            $data["recrutements"]=$recrutements;
+        } else {
+            $data["recrutements"]=false;
+        }
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view("pages/listAnnonce", $data);
+        /*$html="<ul>";
+        foreach($recrutements as $r){
+            $html.="<a href='".site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement)."'><li>".$r->dateheure_recrutement.", ".$r->besoins[0]->homme_jour."</li></a>";
+        }
+        $html.="</ul>";
+        echo $html;*/
+    }
+
     public function hommeJour($idService){
         $this->session->set_userdata('idService', $idService);
         $data['services'] = $this->service->getAllServices();

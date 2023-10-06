@@ -17,6 +17,27 @@ class RecrutementModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+    public function getAllRecrutementsInDept(){
+        $user = $this->session->user;
+        $query="select * from v_recrutement_dept where id_dept=%s";
+        $query=sprintf($query, $user->id_dept);
+        $query=$this->db->query($query);
+        $result=$query->result();
+        if(count($result)>0){
+            foreach($result as $row){
+                $row->besoins=$this->getBesoinsByRecrutement($row->id_recrutement);
+                $row->criteres=$this->getCriteresByRecrutement($row->id_recrutement);
+                if($row->criteres!==false){
+                    foreach($row->criteres as $critere){
+                        $critere->choix=$this->getChoixByCritere($critere->id_critere);
+                    }
+                }
+            }
+            return $result;
+        }
+        return false;
+    }
+
     public function saveBesoins($hommeJour){
         $nextIdRecrutement = $this->getLastIdRecrutement();
         $query="insert into besoins values(null, %s, %s, 1)";
@@ -94,8 +115,9 @@ class RecrutementModel extends CI_Model {
         return false;
     }
     public function getRecrutements($idService){
-        $query="select * from recrutements where id_service_recrutement=%s";
-        $query=sprintf($query, $idService);
+        $user = $this->session->user;
+        $query="select * from v_recrutement_dept where id_service_recrutement=%s and id_dept=%s";
+        $query=sprintf($query, $idService, $user->id_dept);
         $query=$this->db->query($query);
         $result=$query->result();
         if(count($result)>0){
