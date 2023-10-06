@@ -23,7 +23,7 @@
         </center>
 		</div>
 
-		<form action="<?= site_url() ?>" class="row g-3 needs-validation" novalidate>
+		<form action="<?= site_url("login/creerCompte") ?>" method="POST" class="row g-3 needs-validation" novalidate>
 
             <div class="col-12">
                 <label for="yourUsername" class="form-label">Email</label>
