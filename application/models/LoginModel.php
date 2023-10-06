@@ -28,4 +28,13 @@ class LoginModel extends CI_Model {
         }
         return false;
     }
+	public function creerCompte(){
+		$nom=$this->input->post("username");
+		$email=$this->input->post("email");
+		$mdp=$this->input->post("mdp");
+		$query="insert into users values(null, '%s', '%s', '%s', null, null)";
+        $query=sprintf($query, $nom, $email, $mdp);
+        $query=$this->db->query($query);
+		redirect("login");
+	}
 }
