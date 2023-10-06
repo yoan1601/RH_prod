@@ -12,7 +12,6 @@
         <div class="navbar-links">
           <ul>
             <li><a class="active" href="<?= site_url('recrutement/index'); ?>">Accueil</a></li>
-            <li id="annonceur">Annonces</li>
 						<li><div class="imgContent"><img src="<?= base_url('assets/img/icons8-doorbell-48.png') ?>" alt="" srcset=""></div></li>
             <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
           </ul>

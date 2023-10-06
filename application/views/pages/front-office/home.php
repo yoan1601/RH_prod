@@ -8,6 +8,7 @@
 		
 			<p><h2>Welcome in Dev Soft</h2></p>
 				<p>
+					<form action="" method="post">
 					<div class="input-container-home">
 						<p>Filtre des annonces
 						<select name="" id="">
@@ -17,6 +18,8 @@
 						</p>
 					</div>
 				</p>
+				<p><button>OK</button></p>
+				</form>
 		</div>
 	</center>
 		
