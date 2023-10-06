@@ -18,14 +18,16 @@ class Login extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function index()
+	public function index($errorLog="")
 	{
         // echo "<form action='".site_url("login/seConnecter")."' method='post'>
         // <input type='email' name='emailUser' value='jean'>
         // <input type='password' name='mdpUser' value='jean'>
         // <button type='submit'>Valider</button>
         // </form>";
-		$this->load->view('pages/login');
+		$errorLog=str_replace("_", " ", $errorLog);
+		$data["errorLog"]=$errorLog;
+		$this->load->view('pages/login', $data);
 	}
     public function seConnecter(){
         $emailUser=$this->input->post("emailUser");
@@ -33,7 +35,8 @@ class Login extends CI_Controller {
 		// var_dump([$emailUser, $mdpUser]);
         $user=$this->login->checkLogin($emailUser, $mdpUser);
         if($user===false){
-            redirect("login");
+			$error="Email_ou_mot_de_passe_errone";
+            redirect("login/".$error);
         }
         $this->session->set_userdata('user', $user);
 
