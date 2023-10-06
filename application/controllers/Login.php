@@ -36,7 +36,7 @@ class Login extends CI_Controller {
         $user=$this->login->checkLogin($emailUser, $mdpUser);
         if($user===false){
 			$error="Email_ou_mot_de_passe_errone";
-            redirect("login/".$error);
+            redirect(site_url("login/index/".$error));
         }
         $this->session->set_userdata('user', $user);
 
