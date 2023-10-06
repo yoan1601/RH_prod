@@ -19,7 +19,7 @@
 			</li>
 			<li id="annonceur">	  
 				<select name="" id="">
-					<option value="">Tests</option>
+					<option value="">Liste CV</option>
 				<?php foreach ($services as $key => $service) { ?>
 						<option value=""><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
 					<?php } ?>
