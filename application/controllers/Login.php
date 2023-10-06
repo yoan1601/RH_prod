@@ -45,4 +45,11 @@ class Login extends CI_Controller {
 			redirect("login");
 		}
     }
+	public function creerCompte(){
+		$nom=$this->input->post("username");
+		$email=$this->input->post("email");
+		$mdp=$this->input->post("mdp");
+		$this->login->creerCompte($nom, $email, $mdp);
+		redirect("login");
+	}
 }
