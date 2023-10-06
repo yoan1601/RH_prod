@@ -1,3 +1,26 @@
+-- recrutement dept
+CREATE OR REPLACE VIEW v_recrutement_dept AS (
+SELECT *
+FROM recrutements recru 
+LEFT JOIN services s ON s.id_service = recru.id_service_recrutement
+LEFT JOIN departements dept ON s.id_dept_service = dept.id_dept
+);
+
+-- user departement
+CREATE OR REPLACE VIEW v_user_dept AS (
+SELECT *
+FROM users u 
+LEFT JOIN user_departements u_dept ON u_dept.id_user_user_dept = u.id_user
+LEFT JOIN departements dept ON u_dept.id_dept_user_dept = dept.id_dept
+);
+
+-- service departement
+CREATE OR REPLACE VIEW v_service_dept AS (
+SELECT *
+FROM services s 
+LEFT JOIN departements dept ON s.id_dept_service = dept.id_dept
+);
+
 -- detail CV
 CREATE OR REPLACE VIEW v_detail_cv AS ( 
 SELECT 

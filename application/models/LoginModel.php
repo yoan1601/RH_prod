@@ -19,7 +19,7 @@ class LoginModel extends CI_Model {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 	public function checkLogin($email, $mdp){
-        $query="select * from users where email_user='%s' and mdp_user='%s'";
+        $query="select * from v_user_dept where email_user='%s' and mdp_user='%s'";
         $query=sprintf($query, $email, $mdp);
         $query=$this->db->query($query);
         $query=$query->result();

@@ -82,8 +82,13 @@ class TestModel extends CI_Model {
     }
 
 	public function getListeCv($idService = 1) {
-        // Utilisez la fonction where() pour spécifier la condition WHERE
-        $this->db->where('id_service ', $idService);
+        if($idService > 0) {
+            // Utilisez la fonction where() pour spécifier la condition WHERE
+            $this->db->where('id_service ', $idService);
+        }
+        
+        $user = $this->session->user;
+        $this->db->where('id_dept ', $user->id_dept);
 
         // Effectuez la requête SELECT sur la table "services"
         $query = $this->db->get('v_liste_cv');

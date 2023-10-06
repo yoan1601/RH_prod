@@ -23,6 +23,25 @@ class Test extends CI_Controller {
 		redirect(site_url('test/listeCv'));
 	}
 
+	public function insertCvSelectionAllInDept() {
+		$idCvSelected = $this->input->post('cv');
+		$idRecrutement = $this->input->post('idRecrutement');
+
+		if($idCvSelected === null) { echo 'Aucun cv n\'a été selectionné';  }
+		else {
+			$idService = $this->input->post('idService');
+			$user = $this->session->user;
+			// inserer les cv selections
+			$this->test->insertCvSelection($idCvSelected, $idRecrutement, $user);
+
+			$data['service'] = $this->service->getServiceById($idService);
+			$data['idRecrutement'] = $idRecrutement;
+			$data['services'] = $this->service->getAllServices();
+			// $this->load->view('back_test/planTest', $data);
+			$this->load->view('pages/planificationTest', $data);
+		}
+	}
+
 	public function detailCV($id_cv = 1) {
 		$data['services'] = $this->service->getAllServices();
 		$data['detailCv'] = $this->test->getDetailCV($id_cv);
@@ -33,13 +52,20 @@ class Test extends CI_Controller {
         $liste_cv = $this->test->getListeCv($idService);
 
 		$data['liste_cv'] = $liste_cv;
-		$data['idService'] = $idService;
-		$data['service'] = $this->service->getServiceById($idService);
 		// var_dump($data);
 		$data['services'] = $this->service->getAllServices();
 		// $this->load->view('back_test/listeCv', $data);
-		$this->load->view('pages/listeCVSelection', $data);
+		if($idService > 0) {
+			$data['idService'] = $idService;
+			$data['service'] = $this->service->getServiceById($idService);
+			$this->load->view('pages/listeCVSelection', $data);
+		}
+		else {
+			$this->load->view('pages/listeCVSelectionAllInDept', $data);
+		}
     }
+
+	
 
 	public function save()
 	{

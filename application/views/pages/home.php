@@ -14,7 +14,7 @@
 							Voyez les annonces que vous avez faites ici, des plus anciens au plus recent.
 							</p>
 			  <p>
-				<a href="<?= site_url('front/listAnnonce') ?>"><button>Voir plus</button></a>
+				<a href="#"><button>Voir plus</button></a>
 			  </p>
             </div>
             <div class="skills-content">
@@ -26,7 +26,7 @@
 							Faites une selection des CV qui sont pratiquement eligible pour des postes.
             </p>
 			<p>
-				<a href=""><button>Voir plus</button></a>
+				<a href="<?= site_url('test/listeCv/0') ?>"><button>Voir plus</button></a>
 			</p>
             </div>
             <div class="skills-content">
