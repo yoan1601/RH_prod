@@ -12,34 +12,34 @@
             <li><a class="active" href="<?= site_url('recrutement/index'); ?>">Accueil</a></li>
             <li id="serveur">Services
 				<div class="Layout service">
-						<p>Listes des Services</p>
-						<hr>
-						<p><a href="<?= site_url('front/creation')?>">Creer</a></p>
+						<!--<p>Listes des Services</p>
+						<hr>-->
+						<p><a href="<?= site_url('service/creerService')?>">Creer</a></p>
 				</div>
 			</li>
-			<li id="annonceur">	  
-				<select name="" id="">
-					<option value="">Liste CV</option>
-				<?php foreach ($services as $key => $service) { ?>
-						<option value=""><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
+			<li id="annonceur">Liste CV	  
+				<div class="Layout annonce">
+					<?php foreach ($services as $key => $service) { ?>
+						<p ><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
+						<hr>
 					<?php } ?>
-				</select>
+				</div>
 			</li>
-            <li id="annonceur">				
-				<select name="" id="">
-					<option value="">Annonce</option>
-				<?php foreach ($services as $key => $service) { ?>
-						<option value=""><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
+            <li id="annonceur">Annonces	  
+				<div class="Layout annonce">
+					<?php foreach ($services as $key => $service) { ?>
+						<p ><a href="<?= site_url('recrutement/listeAnnonce/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
+						<hr>
 					<?php } ?>
-				</select>
+				</div>
 			</li>
-            <li id="recruteur" >				
-				<select name="" id="">
-					<option value="">Recruter</option>
-				<?php foreach ($services as $key => $service) { ?>
-						<option value=""><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
+            <li id="recruteur" >Recruter
+			<div class="Layout recrutement">
+						<?php foreach ($services as $key => $service) { ?>
+						<p ><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
+						<hr>
 					<?php } ?>
-				</select>
+				</div>
 			</li>
             <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
           </ul>

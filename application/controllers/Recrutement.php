@@ -26,6 +26,7 @@ class Recrutement extends CI_Controller {
         // </form>";
         $data = [];
         $data['services'] = $this->service->getAllServices();
+        $data["idDept"]=$this->session->user->id_dept;
         $this->load->view('pages/home', $data);
 	}
 

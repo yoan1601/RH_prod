@@ -17,29 +17,29 @@
 						<p><a href="<?= site_url('front/creation')?>">Creer</a></p>
 				</div>
 			</li>
-			<li id="annonceur">Tests	  
-				<div class="Layout annonce">
-					<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
-						<hr>
+			<li id="annonceur">
+				<select name="" id="">
+					<option value="">Liste CV</option>
+				<?php foreach ($services as $key => $service) { ?>
+						<option value=""><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
 					<?php } ?>
-				</div>
+				</select>
 			</li>
-            <li id="annonceur">Annonces	  
-				<div class="Layout annonce">
-					<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="<?= site_url('recrutement/listeAnnonce/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
-						<hr>
+            <li id="annonceur">				
+				<select name="" id="">
+					<option value="">Annonce</option>
+				<?php foreach ($services as $key => $service) { ?>
+						<option value=""><a href="<?= site_url('recrutement/listeAnnonce/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
 					<?php } ?>
-				</div>
+				</select>
 			</li>
-            <li id="recruteur" >Recruter
-			<div class="Layout recrutement">
-						<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
-						<hr>
+            <li id="recruteur" >				
+				<select name="" id="">
+					<option value="">Recruter</option>
+				<?php foreach ($services as $key => $service) { ?>
+						<option value=""><a href="<?= site_url('recrutement/hommeJour/'.$service->id_service) ?>"><?= $service->nom_service ?></a></option>
 					<?php } ?>
-				</div>
+				</select>
 			</li>
             <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
           </ul>
