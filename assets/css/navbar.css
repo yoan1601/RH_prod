@@ -250,3 +250,12 @@ ul li img{
 	height: 40px;
 }
 
+.annonce , .recrutement , .service{
+	display: none !important;
+}
+
+.annonce.active , .recrutement.active , .service.active{
+	display: block !important;
+	opacity: 1;
+	z-index: 999;
+}
