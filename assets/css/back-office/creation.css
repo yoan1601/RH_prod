@@ -67,3 +67,7 @@ form input[type="submit"]:hover{
 	transform: scale(1.1);
 	transition-timing-function: ease-in-out;
 }
+
+.form-min{
+	margin-top: 10%;
+}

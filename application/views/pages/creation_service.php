@@ -4,8 +4,9 @@
 ?>
 
 	  <center>
-        <form name="min-form" action="" method="post">
+        <form name="min-form" class="form-min" action="" method="post">
             <div class="service-creation-form">
+			<p class="trans">...</p>
                 <h3>Creation de Service</h3>
                 <input class="nomService" type="text" name="serviceName" placeholder="Taper le nom ici" id="">
                 <input class="button" type="submit" value="CREER">
