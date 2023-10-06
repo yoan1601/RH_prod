@@ -17,6 +17,14 @@
 						<p><a href="<?= site_url('service/creerService')?>">Creer</a></p>
 				</div>
 			</li>
+			<li id="annonceur">Liste CV	  
+				<div class="Layout annonce">
+					<?php foreach ($services as $key => $service) { ?>
+						<p ><a href="<?= site_url('test/listeCv/'.$service->id_service) ?>"><?= $service->nom_service ?></a></p>
+						<hr>
+					<?php } ?>
+				</div>
+			</li>
             <li id="annonceur">Annonces	  
 				<div class="Layout annonce">
 					<?php foreach ($services as $key => $service) { ?>
