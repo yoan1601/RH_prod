@@ -57,8 +57,9 @@ class Front extends CI_Controller {
 	}
 
 	public function linker(){
-		$data = [];
-        $data['services'] = $this->service->getAllServices();
-		$this->load->view('pages/detailCV',$data);
+		/*$data = [];
+        $data['services'] = $this->service->getAllServices();*/
+		//$this->load->view('pages/detailCV',$data);
+		redirect("service/creerService");
 	}
 }

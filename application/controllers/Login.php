@@ -42,7 +42,7 @@ class Login extends CI_Controller {
 			redirect(site_url('recrutement/index'));
 		} else {
 			// tokony front office
-			redirect("login");
+			redirect("front/home");
 		}
     }
 	public function creerCompte(){
