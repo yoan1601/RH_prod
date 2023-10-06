@@ -17,18 +17,10 @@
 				<a href="#"><button>Voir plus</button></a>
 			  </p>
             </div>
-            <div class="skills-content">
-              <p>
-                <div class="photo-container CV"></div>
-              </p>
-            <p class="title">. Selection de CV</p>
-            <p class="content-ph">
-							Faites une selection des CV qui sont pratiquement eligible pour des postes.
-            </p>
-			<p>
-				<a href="<?= site_url('test/listeCv/0') ?>"><button>Voir plus</button></a>
-			</p>
-            </div>
+						<div class="skills-content photo-home">
+
+						</div>
+
             <div class="skills-content">
               <p>
                 <div class="photo-container entretien"></div>
@@ -40,9 +32,6 @@
 						<p>
 						<a href=""><button>Voir plus</button></a>
 						</p>
-            </div>
-						<div class="skills-content photo-home">
-
             </div>
         </div>
         </center>

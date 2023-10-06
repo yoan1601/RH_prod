@@ -3,14 +3,10 @@
 	$this->load->view('templates/navbar');
 ?>
 
-<<<<<<< HEAD
-	<div class="template-annonce">
+
+	<div id="printable" class="template-annonce">
 	<p class="trans">...</p>
-=======
-	<div id="printable"  class="template-annonce">
->>>>>>> 5376e20422a8e0793f65fbcaee17b743cb4a058e
 		<p class="title"><center><h2>Avis de recrutement</h2></center></p>
-		
 		<div class="head">
 			<div class="description">
 				<p><span>Societe:</span><?= $nomSociete ?></p>
@@ -18,14 +14,14 @@
 				<p><span>Service:</span><?= $service->nom_service ?></p>
 			</div>
 			<div class="cl">
-				<img src="<?= base_url('assets/img/DS.jpg') ?>" alt="">
+				<img src="<?= base_url('assets/img/DS (1).jpg') ?>" alt="">
 			</div>
 		</div>
 
 		<div class="main-container">
 
 			<div class="person-props">
-				<p>...</p>
+				<p class="trans">...</p>
 				<p class="info">Nous vous informons que nous lancons un avie de recrutement d'employer ayant ces qualites 
 					,plus precisement ces criteres.</p>
 				<?php for($i=1;isset($criteresOptions["critere".$i]);$i++){ ?>
@@ -41,7 +37,7 @@
 		<p class="trans">...</p>
 	</div>
 
-	<div><a href="javascript:void(0);"><button id="imprimer">exporter en PDF</button></a></div>
+	<div ><a href="javascript:void(0);"><button id="imprimer">exporter en PDF</button></a></div>
 
 	<script>
         // Fonction pour déclencher l'impression de la partie spécifique

@@ -1,3 +1,13 @@
+@media print {
+	body * {
+		display: none;
+	}
+
+	#printable, #printable * {
+		display: block;
+	}
+}
+
 .template-annonce{
 	background-image: url('../../img/rm222-mind-24.jpg');
 	background-size: cover;
@@ -31,6 +41,7 @@ body{
 .description ,.cl{
 	width: 50%;
 }
+
 
 img{
 	margin-left:70%;
@@ -116,4 +127,34 @@ ul li{
     font-weight: normal;
     font-style: normal;
 
+}
+
+#imprimer{
+	position:absolute;
+	top: 80%;
+	left: 80%;
+	background-color: rgb(28, 0, 54);
+	color: white;
+	width: 15%;
+	border:none;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: medium;
+	font-family: sans-serif;
+	height: 2.5em;
+	transition: 0.5s;
+}
+
+#imprimer:hover{
+	transition: 0.5s;
+	cursor:pointer;
+	transform:scale(1.1);
+	background-color: rgb(63, 0, 122);	
+}
+
+.template-annonce h2{
+	font-family: 'tektur';
+	color: blueviolet;
+	font-size: 34px;
+	font-weight: lighter;
 }

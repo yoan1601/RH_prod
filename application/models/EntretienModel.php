@@ -25,6 +25,13 @@ class EntretienModel extends CI_Model {
         $query=$query->result();
         return $query;
 	}
+	public function getAllTestsByDepartement($idDepartement){
+		$query="select * from v_test_services where id_dept_service=%s";
+		$query=sprintf($query, $idDepartement);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+	}
 	public function getTestById($idTest){
 		$query="select * from v_test_services where id_test=%s";
 		$query=sprintf($query, $idTest);

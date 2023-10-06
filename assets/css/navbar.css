@@ -33,6 +33,7 @@ body{
     height: 100%;
     width: 50%;
     display: flex;
+	margin-right: 50px;
     justify-content: space-around;
 }
 
@@ -46,13 +47,31 @@ body{
     list-style: none;
 }
 
+.navbar-links select {
+	border:none;
+	font-family:'tektur';
+	background: none;
+	width: 80px;
+	color: white;
+
+}
+
+.navbar-links select option {
+	border:none;
+	font-family:'tektur';
+	background: none;
+	width: 60px;
+	background-color: #000000;
+	color: white;
+}
+
 .navbar-links li {
 	font-family: 'tekturregular';
     display: block;
     text-decoration: none;
     color: #ffffff;
     margin: .5rem;
-    padding: 1rem;
+    padding: 1em;
     transform: translateY(0px);
     transition-timing-function: ease-in-out;
     transition: .5s;
@@ -183,6 +202,7 @@ ul li a{
     margin-top: -4px;
     /* height: 2em;  */
     min-width: 160px;
+	margin-right:100px;
     font-size: medium;
     font-weight:bolder;
     background:none;

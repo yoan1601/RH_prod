@@ -29,7 +29,7 @@ class LoginModel extends CI_Model {
         return false;
     }
 	public function creerCompte($nom, $email, $mdp){
-		$query="insert into users values(null, '%s', '%s', '%s', null, null)";
+		$query="insert into users values(null, '%s', '%s', '%s', 0, 1)";
         $query=sprintf($query, $nom, $email, $mdp);
         $query=$this->db->query($query);
 	}
