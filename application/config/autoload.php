@@ -137,5 +137,6 @@ $autoload['model'] = array(
     'RecrutementModel' => 'recrutement',
     'ServiceModel' => 'service',
     'TestModel' => 'test',
-    'EntretienModel' => 'entretien'
+    'EntretienModel' => 'entretien',
+    'DepartementModel' => 'departement'
 );

@@ -19,6 +19,17 @@ class TestModel extends CI_Model {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 
+    public function getDetailCV($id_cv) {
+        // Utilisez la fonction where() pour spécifier la condition WHERE
+        $this->db->where('id_cv ', $id_cv);
+
+        // Effectuez la requête SELECT sur la table "services"
+        $query = $this->db->get('v_detail_cv');
+
+        // Retournez les résultats de la requête
+        return $query->result();
+    }
+
     public function insertQuestionnaire($questionsReponses, $idTest) {
         // $id_test_vao_tafiditra = $this->db->insert_id();
 
@@ -71,8 +82,13 @@ class TestModel extends CI_Model {
     }
 
 	public function getListeCv($idService = 1) {
-        // Utilisez la fonction where() pour spécifier la condition WHERE
-        $this->db->where('id_service ', $idService);
+        if($idService > 0) {
+            // Utilisez la fonction where() pour spécifier la condition WHERE
+            $this->db->where('id_service ', $idService);
+        }
+        
+        $user = $this->session->user;
+        $this->db->where('id_dept ', $user->id_dept);
 
         // Effectuez la requête SELECT sur la table "services"
         $query = $this->db->get('v_liste_cv');

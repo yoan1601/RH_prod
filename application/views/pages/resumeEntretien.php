@@ -7,10 +7,10 @@
 	<div class="description-entretien">
 	<p class="fin">nun</p>
 		<p><center><h3>Resume d'entretien</h3></center></p>
-		<p>Date et heure de l'entretien: 12/09/2023</p>
-		<p>Lieu de l'entretien: Tana </p>
-		<p>Duree de l'enrtetien pour une personne: 5 minutes </p>
-		<p>Nombre de candidats: 5  </p>
+		<p>Date et heure de l'entretien: <?= $dateHeure ?></p>
+		<p>Lieu de l'entretien: <?= $lieu ?> </p>
+		<p>Duree de l'enrtetien pour une personne: <?= $duree ?> minutes </p>
+		<p>Nombre de candidats: <?= $nbCandidats ?>  </p>
 	</div>
 	<div class="table-container">
 	<table>
@@ -18,42 +18,12 @@
 			<td>Candidats</td>
 			<td>Heure d'entretien</td>
 		</tr>
+		<?php foreach($candidats as $c){ ?>
 		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
+			<td><?= $c->nom_info ?></td>
+			<td><?= $c->heure ?></td>
 		</tr>
-		<tr>
-			<td>Rakotoson Nirison fleon rabe</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
-		<tr>
-			<td>Rakotoson Niry</td>
-			<td>15:00</td>
-		</tr>
+		<?php } ?>
 	</table>
 	<p class="fin">nun</p>
 	</div>

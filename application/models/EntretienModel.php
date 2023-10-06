@@ -18,14 +18,22 @@ class EntretienModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function getAllTests($idService){
-		$query="select * from tests";
+	public function getAllTestsByServices($idService){
+		$query="select * from v_test_services where id_service=%s";
+		$query=sprintf($query, $idService);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+	}
+	public function getAllTestsByDepartement($idDepartement){
+		$query="select * from v_test_services where id_dept_service=%s";
+		$query=sprintf($query, $idDepartement);
         $query=$this->db->query($query);
         $query=$query->result();
         return $query;
 	}
 	public function getTestById($idTest){
-		$query="select * from tests where id_test=%s";
+		$query="select * from v_test_services where id_test=%s";
 		$query=sprintf($query, $idTest);
         $query=$this->db->query($query);
         $query=$query->result();
@@ -63,6 +71,22 @@ class EntretienModel extends CI_Model {
 		}
         return $query;
 	}
+	public function getPersonneFromListId($idpersonnes, $idTest){
+		$test=$this->getTestById($idTest);
+		$personnes=array();
+        foreach($idpersonnes as $id){
+            $query="select * from information_users where id_information_user=%s";
+			$query=sprintf($query, $id);
+			$query=$this->db->query($query);
+			$query=$query->result();
+			if(count($query)>0){
+				$query[0]->reponsesChoisies=$this->getReponsesChoisiesByTest($query[0]->id_information_user, $test->id_test);
+				$query[0]->note=$this->getNoteForPersonneByTest($query[0], $test->questions);
+			}
+			array_push($personnes, $query[0]);
+        }
+		return $personnes;
+    }
 	public function getReponsesChoisiesByTest($idPersonne, $idTest){
 		$query="select * from v_reponse_choisi_tests where id_test_questionnaire=%s and id_info_user_questionnaire_reponse_choisi=%s";
 		$query=sprintf($query, $idTest, $idPersonne);
@@ -126,9 +150,25 @@ class EntretienModel extends CI_Model {
 		$query=sprintf($query, $idTest, $idInfoUser);
         $query=$this->db->query($query);
 	}
+	public function saveManySelectionTest($idTest, $idUsers){
+		foreach($idUsers as $iduser){
+			$this->saveSelectionTest($idTest, $iduser);
+		}
+	}
 	public function saveEntretien($dateHeure, $lieu, $idUser, $idRecrutement, $duree){
-		$query="insert into entretien values(null, '%s', '%s', %s, %s, 1, %s)";
+		$query="insert into entretiens values(null, '%s', '%s', %s, %s, 1, %s)";
 		$query=sprintf($query, $dateHeure, $lieu, $idUser, $idRecrutement, $duree);
         $query=$this->db->query($query);
+	}
+	public function getHoraireEntretien($personnes, $debut, $duree){
+		$liste=$personnes;
+		$debutEntretien=$debut;
+		foreach($liste as $p){
+			$debutEntretien=strtotime($debutEntretien." + ".$duree." minute");
+			$p->heure=$debutEntretien;
+			$p->heure=date('H:i:s', $p->heure);
+			$debutEntretien=date('Y-m-d H:i:s', $debutEntretien);
+		}
+		return $liste;
 	}
 }

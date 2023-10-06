@@ -29,3 +29,9 @@ create or replace view v_entretien_services as
     select *
     from entretiens
         join recrutements on entretiens.id_recrutement_entretien=recrutements.id_recrutement;
+
+create or replace view v_test_services as
+    select *
+    from tests
+        join recrutements on tests.id_recrutement_test=recrutements.id_recrutement
+        join services on recrutements.id_service_recrutement=services.id_service;

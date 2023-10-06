@@ -9,10 +9,9 @@ $this->load->view('templates/navbar');
 			<p></p>
 			<p></p>
 			<p>
-			<h3 class="card-title"><?= $service->nom_service ?></h3>
+			<h3 class="card-title"></h3>
 			</p>
-			<form class="w-100" action="<?= site_url('test/insertCvSelection') ?>" method="post">
-				<input type="hidden" name="idService" value="<?= $idService ?>">
+			<form class="w-100" action="<?= site_url('test/insertCvSelectionAllInDept') ?>" method="post">
 				<div class="list-group">
 					<table>
 						<tr class="title_text">
@@ -27,6 +26,7 @@ $this->load->view('templates/navbar');
 							<?php foreach ($liste_cv as $cv) { ?>
 								<tr>
 									<td><input type="checkbox" name="cv[]" value="<?= $cv->id_cv ?>"> <input type="hidden" name="idRecrutement" value="<?= $cv->id_recrutement ?>"></td>
+									<input type="hidden" name="idService<?= $cv->id_cv ?>" value="<?= $idService ?>">
 									<td><?= $cv->nom ?> <?= $cv->prenom ?></td>
 									<td><?= $cv->reception ?></td>
 									<td><?= $cv->duree ?> jrs</td>

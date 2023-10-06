@@ -1,3 +1,41 @@
+-- recrutement dept
+CREATE OR REPLACE VIEW v_recrutement_dept AS (
+SELECT *
+FROM recrutements recru 
+LEFT JOIN services s ON s.id_service = recru.id_service_recrutement
+LEFT JOIN departements dept ON s.id_dept_service = dept.id_dept
+);
+
+-- user departement
+CREATE OR REPLACE VIEW v_user_dept AS (
+SELECT *
+FROM users u 
+LEFT JOIN user_departements u_dept ON u_dept.id_user_user_dept = u.id_user
+LEFT JOIN departements dept ON u_dept.id_dept_user_dept = dept.id_dept
+);
+
+-- service departement
+CREATE OR REPLACE VIEW v_service_dept AS (
+SELECT *
+FROM services s 
+LEFT JOIN departements dept ON s.id_dept_service = dept.id_dept
+);
+
+-- detail CV
+CREATE OR REPLACE VIEW v_detail_cv AS ( 
+SELECT 
+info.*,
+cv.id_cv,
+cr.descri_critere critere,
+choix.choix_critere choix
+FROM cv 
+LEFT JOIN information_users info ON cv.id_info_user_cv = info.id_information_user
+LEFT JOIN cv_reponses cv_rep ON cv_rep.id_cv_cv_reponse = cv.id_cv 
+LEFT JOIN criteres cr ON cv_rep.id_critere_cv_reponse = cr.id_critere
+LEFT JOIN choix_criteres choix ON cv_rep.id_choix_cv_reponse = choix.id_choix_critere
+where cv.etat_cv > 0
+);
+
 -- realisations
 CREATE OR REPLACE VIEW v_realisations AS (
 select a.*, p.nom_FR as nom_pays_FR, p.nom_EN as nom_pays_EN, u.nom nom_user, u.telephone, u.mail,EXTRACT(YEAR FROM a.date_demarrage) as annee_demarrage
