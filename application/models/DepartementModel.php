@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginModel extends CI_Model {
+class DepartementModel extends CI_Model {
 
 	/**
 	 * Index Page for this controller.
@@ -18,19 +18,14 @@ class LoginModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function checkLogin($email, $mdp){
-        $query="select * from v_user_dept where email_user='%s' and mdp_user='%s'";
-        $query=sprintf($query, $email, $mdp);
+    public function getDepartementById($idDepartement){
+        $query="select * from departements where id_dept=%s";
+		$query=sprintf($query, $idDepartement);
         $query=$this->db->query($query);
         $query=$query->result();
         if(count($query)>0){
             return $query[0];
         }
-        return false;
+        return $query;
     }
-	public function creerCompte($nom, $email, $mdp){
-		$query="insert into users values(null, '%s', '%s', '%s', 0, 1)";
-        $query=sprintf($query, $nom, $email, $mdp);
-        $query=$this->db->query($query);
-	}
 }

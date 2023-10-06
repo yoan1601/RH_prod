@@ -18,12 +18,12 @@ class Entretien extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function listTests($idService)
+	public function listTests($idDepartement)
 	{
-		$tests=$this->entretien->getAllTestsByServices($idService);
-		$service=$this->service->getServiceById($idService);
+		$tests=$this->entretien->getAllTestsByDepartement($idDepartement);
+		$departement=$this->departement->getDepartementById($idDepartement);
 		$data["tests"]=$tests;
-		$data["service"]=$service;
+		$data["departement"]=$departement;
 		$this->load->view("pages/listeTest", $data);
 	}
 	public function listPersonnesTest($idTest){
