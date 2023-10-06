@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded',function () {
+/*document.addEventListener('DOMContentLoaded',function () {
 	const annonceur= document.getElementById('annonceur');
 	const annonces= document.querySelector('.annonce');
 	annonceur.addEventListener('click', function(e){
 		e.preventDefault();
 		annonces.classList.toggle('active');
 	});
+});*/
+const annonceur= document.getElementById('annonceur');
+const annonces = document.querySelector('.annonce');
+annonceur.addEventListener('click', () => {
+	annonces.classList.toggle('active');
 });
 
 const recruteur= document.getElementById('recruteur');
@@ -18,4 +23,11 @@ const services = document.querySelector('.service');
 
 serveur.addEventListener('click', () => {
 	services.classList.toggle('active');
+});
+
+const cveur= document.getElementById('cveur');
+const liste = document.querySelector('.listeCv');
+
+cveur.addEventListener('click', () => {
+	liste.classList.toggle('active');
 });

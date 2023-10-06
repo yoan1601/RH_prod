@@ -17,6 +17,6 @@ LEFT JOIN choix_criteres choix ON choix.id_choix_critere = cvr.id_choix_cv_repon
 LEFT JOIN recrutements r ON r.id_recrutement = cv.id_recrutement_cv
 LEFT JOIN services s ON s.id_service = r.id_service_recrutement 
 LEFT JOIN departements dept ON s.id_dept_service = dept.id_dept
-GROUP BY info.id_information_user
+GROUP BY info.id_information_user, cv.id_cv
 ORDER BY note DESC
 );

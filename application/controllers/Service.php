@@ -20,11 +20,14 @@ class Service extends CI_Controller {
 	 */
     public function creerService($message=""){
         $message=str_replace("_", " ", $message);
+		$data = [];
+        $data['services'] = $this->service->getAllServices();
+        $data["idDept"]=$this->session->user->id_dept;
         $data["message"]=$message;
         $this->load->view("pages/creation_service", $data);
     }
     public function saveService(){
-        $nomService=$this->input->post("nomservice");
+        $nomService=$this->input->post("serviceName");
         $idDepartement=$this->input->post("iddepartement");
         $this->service->saveService($nomService, $idDepartement);
         redirect("service/creerService/Service_insere_avec_succes");
