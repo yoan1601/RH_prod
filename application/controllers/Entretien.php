@@ -24,6 +24,7 @@ class Entretien extends CI_Controller {
 		$departement=$this->departement->getDepartementById($idDepartement);
 		$data["tests"]=$tests;
 		$data["departement"]=$departement;
+		$data['services'] = $this->service->getAllServices();
 		$this->load->view("pages/listeTest", $data);
 	}
 	public function listPersonnesTest($idTest){
@@ -34,6 +35,7 @@ class Entretien extends CI_Controller {
 		$data["personnes"]=$personnes;
 		$data["service"]=$service;
 		$data["test"]=$test;
+		$data['services'] = $this->service->getAllServices();
 		$this->load->view("pages/ListeAdmis", $data);
 	}
 	public function planEntretien(){
@@ -46,6 +48,7 @@ class Entretien extends CI_Controller {
 		$data["service"]=$service;
 		$data["idrecrutement"]=$this->input->post("idrecrutement");
 		$data["idTest"]=$this->input->post("idtest");
+		$data['services'] = $this->service->getAllServices();
 		$this->load->view("pages/planificationEntretien", $data);
 	}
 	public function saveEntretien(){
@@ -67,6 +70,7 @@ class Entretien extends CI_Controller {
 		$data["duree"]=$duree;
 		$data["nbCandidats"]=$nbCandidats;
 		$data["candidats"]=$candidats;
+		$data['services'] = $this->service->getAllServices();
 		$this->load->view("pages/resumeEntretien", $data);
 	}
 }
