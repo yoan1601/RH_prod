@@ -21,6 +21,6 @@
         <p>Durree du contrat:<input type="number" name="" id=""></p>
         <p class="trans">nunn</p>
     </div>
-    <p><center><button>Valider</button></center></p>
+    <p><center><button class="contrat">Valider</button></center></p>
 </body>
 </html>

@@ -51,7 +51,7 @@
               </div>
             </div>
         </div>
-        <p><center><button>Valider</button></center></p>
+        <p><center><button class="contrat">Valider</button></center></p>
 
 </body>
 </html>

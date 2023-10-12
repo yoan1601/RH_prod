@@ -27,7 +27,7 @@ form .service-creation-form{
 	background-color: rgb(243, 243, 243);
     width: 80%;
 	box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
-    height: 160px;
+    height: auto;
 }
 
 

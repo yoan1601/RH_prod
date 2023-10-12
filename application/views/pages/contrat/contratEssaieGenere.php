@@ -22,6 +22,6 @@
         <p>Durree du contrat: 90 jours</p>
         <p class="trans">nunn</p>
     </div>
-    <p><center><button>Exporter PDF</button></center></p>
+    <p><center><button class="contrat">Exporter PDF</button></center></p>
 </body>
 </html>

@@ -15,6 +15,7 @@
 .container-contrat input{
     height: 2em;
     border: solid 1px gray;
+    margin-left: 10%;
     border-left: solid 3px blueviolet;
 }
 
@@ -92,4 +93,18 @@ margin-left: 5%;
 
 .container-contratResume p , .container-contratResume h4{
     margin-left: 10%;
+}
+
+select {
+    height: 3em;
+    border-radius: 5px;
+    width: 30%;
+    background-color: none;
+    border: none;
+    border-bottom:solid 2px rgb(13, 163, 81);
+}
+
+option{
+    
+    background-color: none;
 }
