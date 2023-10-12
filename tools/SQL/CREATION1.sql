@@ -1,92 +1,41 @@
--- create database rh_prod
--- code wifi 37637055
-
-CREATE  TABLE entretiens ( 
-	id_entretien         INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	dateheure_entretien  DATETIME  NOT NULL DEFAULT (CURRENT_TIMESTAMP)    ,
-	lieu_entretien       VARCHAR(35)  NOT NULL     ,
-	id_user_entretien    INT  NOT NULL     ,
-	id_recrutement_entretien INT  NOT NULL     ,
-	etat_entretien       INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-CREATE  TABLE questionnaire_reponses ( 
-	id_questionnaire_reponse INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_questionnaire_questionnaire_reponse INT  NOT NULL     ,
-	questionnaire_reponse TEXT  NOT NULL     ,
-	est_vrai             INT  NOT NULL     
- ) engine=InnoDB;
-
-CREATE  TABLE tests ( 
-	id_test              INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	dateheure_test       DATETIME  NOT NULL DEFAULT (CURRENT_TIMESTAMP)    ,
-	id_user_test         INT  NOT NULL     ,
-	lieu_test            VARCHAR(35)  NOT NULL     ,
-	id_recrutement_test  INT  NOT NULL     ,
-	etat_test            INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-
-CREATE  TABLE criteres ( 
-	id_critere           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_recrutement_critere INT  NOT NULL     ,
-	descri_critere       VARCHAR(35)  NOT NULL     ,
-	etat_critere         INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-CREATE  TABLE cv ( 
-	id_cv                INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_user_cv           INT  NOT NULL     ,
-	dateheure_remplissage DATETIME  NOT NULL DEFAULT (CURRENT_TIMESTAMP)    ,
-	id_recrutement_cv    INT  NOT NULL     ,
-	etat_cv              INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-CREATE  TABLE cv_reponses ( 
-	id_cv_reponse        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_cv_cv_reponse     INT  NOT NULL     ,
-	id_critere_cv_reponse INT  NOT NULL     ,
-	id_choix_cv_reponse  INT  NOT NULL     
- ) engine=InnoDB;
-
-CREATE  TABLE recrutements ( 
-	id_recrutement       INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	id_service_recrutement INT  NOT NULL     ,
-	dateheure_recrutement DATETIME  NOT NULL DEFAULT (CURRENT_TIMESTAMP)    ,
-	etat_recrutement     INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-CREATE  TABLE users ( 
-	id_user              INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	nom_user             VARCHAR(35)  NOT NULL     ,
-	email_user           VARCHAR(35)  NOT NULL     ,
-	mdp_user             VARCHAR(35)  NOT NULL     ,
-	est_admin            INT  NOT NULL DEFAULT (0)    ,
-	etat_user            INT  NOT NULL DEFAULT (1)    
- ) engine=InnoDB;
-
-alter table cv_reponses add foreign key(id_choix_cv_reponse) references choix_criteres(id_choix_critere);
-
-
-alter table cv_selections add foreign key(id_user_cv_selection) references users(id_user);
-
-
-alter table cv_selections add foreign key(id_cv_selected) references cv(id_cv);
-
-alter table cv_selections add foreign key(id_recrutement_cv_selection) references recrutements(id_recrutement);
-
-alter table tests add foreign key(id_user_test) references users(id_user);
-
-alter table tests add foreign key(id_recrutement_test) references recrutements(id_recrutement);
-
-alter table questionnaires add foreign key(id_test_questionnaire) references tests(id_test);
-
-alter table questionnaire_reponses add foreign key(id_questionnaire_questionnaire_reponse) references questionnaires(id_questionnaire);
-
-alter table questionnaire_reponse_choisis add foreign key(id_user_questionnaire_reponse_choisi) references users(id_user);
-
-alter table questionnaire_reponse_choisis add foreign key(id_choix_reponse) references questionnaire_reponses(id_questionnaire_reponse);
-
-alter table entretiens add foreign key(id_user_entretien) references users(id_user);
-
-alter table entretiens add foreign key(id_recrutement_entretien) references recrutements(id_recrutement);
+create table categories(
+	id_categorie int primary key auto_increment,
+	nom_categorie varchar(35) not null,
+	niveau int not null
+)engine=InnoDB;
+create table note_entretiens(
+	id_note_entretien int primary key auto_increment,
+	id_info_note_entretien int,
+	note_entretien decimal not null,
+	id_entretien_note_entretien int,
+	foreign key(id_info_note_entretien)
+		references information_users(id_information_user),
+	foreign key(id_entretien_note_entretien)
+		references entretiens(id_entretien)
+)engine=InnoDB;
+create table contrat_essai(
+	id_contrat_essai int primary key auto_increment,
+	id_info_contrat_essai int,
+	date_contrat_essai date not null,
+	id_recrutement_contrat_essai int,
+	salaire_brut_essai decimal not null,
+	salaire_net_essai decimal not null,
+	duree_contrat_essai decimal not null,
+	foreign key(id_info_contrat_essai)
+		references information_users(id_information_user),
+	foreign key(id_recrutement_contrat_essai)
+		references recrutements(id_recrutement)
+)engine=InnoDB;
+create table type_contrats(
+	id_type_contrat int primary key auto_increment,
+	code_type_contrat varchar(35) not null,
+	nom_type_contrat varchar(35) not null
+)engine=InnoDB;
+create table avantages(
+	id_avantage int primary key auto_increment,
+	id_contrat_travail_avantage int,
+	nom_avantage varchar(255) not null,
+	prix_avantage decimal,
+	foreign key(id_contrat_travail_avantage)
+		references contrat_travail(id_contrat_travail)
+)engine=InnoDB;
