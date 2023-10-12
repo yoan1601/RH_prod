@@ -57,12 +57,12 @@
 }
 
 .photo-choix1 {
-    background-image: url('./cdi.jpg');
+    background-image: url('../../img/cdi.jpg');
     background-size: cover;
 }
 
 .photo-choix2 {
-    background-image: url('./cdd.jpg');
+    background-image: url('../../img/cdd.jpg');
     background-size: cover;
 }
 
