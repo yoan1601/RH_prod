@@ -37,5 +37,5 @@ create table avantages(
 	nom_avantage varchar(255) not null,
 	prix_avantage decimal,
 	foreign key(id_contrat_travail_avantage)
-		references contrat_travail(id_contrat_travail)
+		references contrat_travails(id_contrat_travail)
 )engine=InnoDB;
