@@ -15,26 +15,13 @@
 						<td>Mission recrutement</td>
 						<td class="listeAdmis">Action</td>
 					</tr>
+					<?php foreach($entretiens as $e){ ?>
 					<tr>
-						<td>12/09/2023 15:10</td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">Choix d'embauche</button></td>
+						<td><?= $e->dateheure_entretien ?></td>
+                        <td><?= $e->mission ?></td>
+						<td class="listeAdmis"><a href="<?= site_url("entretien/detailEntretien/".$e->id_entretien) ?>"><button>Detail</button></a><a href=""><button class="embauche">Choix d'embauche</button></a></td>
 					</tr>
-					<tr>
-						<td>12/09/2023 15:10</td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">Choix d'embauche</button></td>
-					</tr>
-					<tr>
-						<td>12/09/2023 15:10</td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">Choix d'embauche</button></td>
-					</tr>
-					<tr>
-						<td>12/09/2023 15:10</td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">Choix d'embauche</button></td>
-					</tr>
+					<?php } ?>
 				</table>
               </div>
             </div>

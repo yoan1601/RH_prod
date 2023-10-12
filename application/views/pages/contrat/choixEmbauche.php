@@ -35,7 +35,7 @@ $this->load->view('templates/navbar');
     </div>
 </div>
 <p>
-    <center><button type="submit">Valider</button></center>
+    <center><button class="contrat" type="submit">Valider</button></center>
 </p>
 </form>
 </body>

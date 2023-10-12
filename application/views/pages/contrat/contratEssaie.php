@@ -34,7 +34,7 @@ $this->load->view('templates/navbar');
         <p class="trans">nunn</p>
     </div>
     <p>
-        <center><button type="submit">Valider</button></center>
+        <center><button class="contrat" type="submit">Valider</button></center>
     </p>
 </form>
 </body>
