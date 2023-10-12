@@ -119,3 +119,21 @@ table{
   .list{
 	margin-top: 5%;
   }
+
+ center button{
+	transition: 0.3s;
+    font-family: 'titillium_weblight';	
+	height: 2rem;
+	width: 20%;
+	background-color: rgb(119, 105, 185);
+	border-radius: 10px;
+	color: white;
+	border: none;
+ }
+
+ center button:hover{
+	background-color: rgb(74, 65, 117);
+	transform: scale(1.1);
+	transition: 0.3s;
+    font-family: 'titillium_weblight';	
+ }
