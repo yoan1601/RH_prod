@@ -9,7 +9,14 @@
 				<p class="trans">...</p>
                 <h3>Besoin en homme jour</h3>
                 <input type="number" class="hommeJour" name="hommeJour" placeholder="Taper le nombre ici" id="">
+                <p><input type="text-area" class="hommeJour" name="mission" placeholder="Mission" id=""></p>
+                <p><select name="" id="">
+                    <option value="">Finance</option>
+                </select>
+                    <button class="contrat">Creer un nouveau poste</button>
+                </p>
                 <input class="button" type="submit" value="Valider">
+                <p class="trans">..</p>
             </div>
         </form>
       </center>

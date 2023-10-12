@@ -20,6 +20,6 @@
         </div>
     </div>
     <p class="trans">nun</p>
-    <center><button>Valider</button></center>
+    <center><button class="contrat">Valider</button></center>
 </body>
 </html>
