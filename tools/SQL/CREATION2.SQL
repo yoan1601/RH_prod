@@ -24,8 +24,11 @@ CREATE  TABLE hierarchies (
 CREATE  TABLE postes ( 
 	id_poste             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nom_poste            VARCHAR(100)  NOT NULL     ,
-	id_categorie_poste   INT  NOT NULL     
+	id_categorie_poste   INT  NOT NULL     ,
+	id_service_poste     INT  NOT NULL DEFAULT (1)    
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ ALTER TABLE postes ADD CONSTRAINT fk_postes_services FOREIGN KEY ( id_service_poste ) REFERENCES services( id_service ) ON DELETE NO ACTION ON UPDATE NO ACTION
 
 CREATE  TABLE recrutements ( 
 	id_recrutement       INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,

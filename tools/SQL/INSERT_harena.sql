@@ -1,3 +1,18 @@
+--  depart 7 ny id_recrutement_entretien
+INSERT INTO entretiens
+	(dateheure_entretien, lieu_entretien, id_user_entretien, id_recrutement_entretien, etat_entretien, duree_entretien) VALUES ( '2023-10-20 08:00:00', 'Antsahavola', 1, 7, 1, 15 );
+
+--  depart 4 ny info_user
+INSERT INTO note_entretiens
+	(id_info_note_entretien, note_entretien, id_entretien_note_entretien) VALUES 
+    ( 4, 15, 1 ),
+    ( 5, 11, 1 ),
+    ( 6, 12, 1 );
+
+INSERT INTO entretien_selections
+	( id_entretien_entretien_selection, id_info_entretien_selection) VALUES ( 1, 5 );
+--------------------------------------------------
+
 INSERT INTO information_users 
 (id_user_information_user, nom_info, prenom_info, sexe_info, date_naissance_info, contact_info, addresse_info, etat_info)
 VALUES
