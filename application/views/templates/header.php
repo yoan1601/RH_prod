@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<?= base_url('assets\css\back-office\questionnaire1.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets\css\back-office\resumeEntretien.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets\css\contrat\ListeEntretien.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('assets\css\contrat\contratEssaie.css') ?>">
 	<script src="<?=base_url('assets/js/navbar.js') ?>" defer></script>
 	<title>Definition de besion</title>
 </head>
