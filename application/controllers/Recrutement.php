@@ -24,7 +24,6 @@ class Recrutement extends CI_Controller {
         // <input type='number' name='hommeJour' value='100' min='0'>
         // <button type='submit'>Valider</button>
         // </form>";
-        $data = [];
         $data['services'] = $this->service->getAllServices();
         $data["idDept"]=$this->session->user->id_dept;
         $this->load->view('pages/home', $data);
@@ -54,6 +53,7 @@ class Recrutement extends CI_Controller {
     public function hommeJour($idService){
         $this->session->set_userdata('idService', $idService);
         $data['services'] = $this->service->getAllServices();
+        $data['postes']=$this->poste->getPostesByService($idService);
         $this->load->view('pages/definitionBesoin', $data);
 		// redirect(site_url('critere'));
     }
