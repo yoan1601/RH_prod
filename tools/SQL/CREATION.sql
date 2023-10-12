@@ -3,14 +3,14 @@ CREATE SCHEMA rh_prod;
 CREATE  TABLE departements ( 
 	id_dept              INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nom_dept             VARCHAR(35)  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE services ( 
 	id_service           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	nom_service          VARCHAR(35)  NOT NULL     ,
 	etat_service         INT  NOT NULL DEFAULT ('1')    ,
 	id_dept_service      INT  NOT NULL DEFAULT ('1')    
- ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_services_departements ON services ( id_dept_service );
 
@@ -21,7 +21,7 @@ CREATE  TABLE users (
 	mdp_user             VARCHAR(35)  NOT NULL     ,
 	est_admin            INT  NOT NULL DEFAULT (0)    ,
 	etat_user            INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE information_users ( 
 	id_information_user  INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -33,7 +33,7 @@ CREATE  TABLE information_users (
 	contact_info         VARCHAR(35)  NOT NULL     ,
 	addresse_info        VARCHAR(35)  NOT NULL     ,
 	etat_info            INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_information_users_users ON information_users ( id_user_information_user );
 
@@ -42,7 +42,7 @@ CREATE  TABLE recrutements (
 	id_service_recrutement INT  NOT NULL     ,
 	dateheure_recrutement DATETIME  NOT NULL DEFAULT (now())    ,
 	etat_recrutement     INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_recrutements_services ON recrutements ( id_service_recrutement );
 
@@ -53,7 +53,7 @@ CREATE  TABLE tests (
 	lieu_test            VARCHAR(35)  NOT NULL     ,
 	id_recrutement_test  INT  NOT NULL     ,
 	etat_test            INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_test ON tests ( id_user_test );
 
@@ -63,7 +63,7 @@ CREATE  TABLE user_departements (
 	id_user_departement  INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_user_user_dept    INT  NOT NULL     ,
 	id_dept_user_dept    INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_user_departements_users ON user_departements ( id_user_user_dept );
 
@@ -74,7 +74,7 @@ CREATE  TABLE besoins (
 	id_recrutement_besoin INT  NOT NULL     ,
 	homme_jour           DECIMAL(10,0)  NOT NULL     ,
 	etat_besoin          INT  NOT NULL DEFAULT ('1')    
- ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_besoins_recrutements ON besoins ( id_recrutement_besoin );
 
@@ -84,7 +84,7 @@ CREATE  TABLE criteres (
 	descri_critere       VARCHAR(35)  NOT NULL     ,
 	etat_critere         INT  NOT NULL DEFAULT (1)    ,
 	fichier_critere      TEXT       
- ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_criteres_recrutements ON criteres ( id_recrutement_critere );
 
@@ -94,7 +94,7 @@ CREATE  TABLE cv (
 	dateheure_remplissage DATETIME  NOT NULL DEFAULT (now())    ,
 	id_recrutement_cv    INT  NOT NULL     ,
 	etat_cv              INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
 
@@ -105,7 +105,7 @@ CREATE  TABLE cv_selections (
 	id_user_cv_selection INT  NOT NULL     ,
 	id_cv_selected       INT  NOT NULL     ,
 	id_recrutement_cv_selection INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_cv_selection ON cv_selections ( id_user_cv_selection );
 
@@ -133,7 +133,7 @@ CREATE  TABLE questionnaires (
 	question             TEXT  NOT NULL     ,
 	coefficient_question DECIMAL(10,0)  NOT NULL     ,
 	etat_questionnaire   INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_test_questionnaire ON questionnaires ( id_test_questionnaire );
 
@@ -152,7 +152,7 @@ CREATE  TABLE choix_criteres (
 	choix_critere        VARCHAR(35)  NOT NULL     ,
 	coefficient_critere  DECIMAL(10,0)  NOT NULL     ,
 	id_critere_choix     INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_choix_criteres_criteres ON choix_criteres ( id_critere_choix );
 
@@ -161,7 +161,7 @@ CREATE  TABLE cv_reponses (
 	id_cv_cv_reponse     INT  NOT NULL     ,
 	id_critere_cv_reponse INT  NOT NULL     ,
 	id_choix_cv_reponse  INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_reponses_cv ON cv_reponses ( id_cv_cv_reponse );
 
@@ -174,7 +174,7 @@ CREATE  TABLE questionnaire_reponses (
 	id_questionnaire_questionnaire_reponse INT  NOT NULL     ,
 	questionnaire_reponse TEXT  NOT NULL     ,
 	est_vrai             INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_questionnaire_questionnaire_reponse ON questionnaire_reponses ( id_questionnaire_questionnaire_reponse );
 
