@@ -23,6 +23,6 @@ class PosteModel extends CI_Model {
         $query=sprintf($query, $idService);
         $query=$this->db->query($query);
         $query=$query->result();
-        return false;
+        return $query;
     }
 }
