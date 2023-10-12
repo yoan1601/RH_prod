@@ -3,25 +3,44 @@
 	$this->load->view('templates/navbar');
 ?>
 
-    <div class="container-contrat">
+    <div id="printable" class="container-contrat">
         <p class="trans">nunn</p>
-        <p><center><h2>Contrat d'essaie</h2></center></p>
-        <p><label for="">Fais le 12/09/2023 Numero matricule:1234 </label></p>
-        <p><h4>Informations personnelles de l'employee</h4></p>
-        <p>Nom:Rakoto</p>
-        <p>Prenom:Be</p>
-        <p>Genre:Homme</p>
-        <p>Contact:+261 38 901 90</p>
-        <p>Adresse:Lot NeinNeinNein</p>
+        <p>
+            <center>
+                <h2>Contrat d'essaie</h2>
+            </center>
+        </p>
+        <p><label for="">Fais le <?= $dateActuelle ?></label></p>
+        <p>
+        <h4>Informations personnelles de l'employee</h4>
+        </p>
+        <p>Nom : <?= $info_user->nom_info ?></p>
+        <p>Prenom : <?= $info_user->prenom_info ?></p>
+        <p>Genre : <?= $info_user->sexe_info ?></p>
+        <p>Contact : <?= $info_user->contact_info ?></p>
+        <p>Adresse : <?= $info_user->addresse_info ?></p>
         <hr>
-        <p><h4>Informations sur la fonction</h4></p>
-        <p>Poste:</p>
-        <p>Mission:</p>
-        <p>Salaire brute:100000Ar</p>
-        <p>Salaire net:100000Ar</p>
-        <p>Durree du contrat: 90 jours</p>
+        <p>
+        <h4>Informations sur la fonction</h4>
+        </p>
+        <p>Poste : <?= $recrutement->nom_poste ?></p>
+        <p>Mission : <?= $recrutement->mission ?> </p>
+        <p>Salaire brute : <?= $salaire_brut ?> Ar</p>
+        <p>Salaire net : <?= $salaire_net ?> Ar</p>
+        <p>Durree du contrat : <?= $duree_contrat ?> jour(s)</p>
         <p class="trans">nunn</p>
     </div>
-    <p><center><button>Exporter PDF</button></center></p>
+    <p><center><button id="imprimer">Exporter PDF</button></center></p>
+
+    <script>
+        // Fonction pour déclencher l'impression de la partie spécifique
+        function imprimerPartie() {
+            window.print();
+        }
+
+        // Écouteur d'événement pour le bouton
+        var boutonImprimer = document.getElementById('imprimer');
+        boutonImprimer.addEventListener('click', imprimerPartie);
+    </script>
 </body>
 </html>

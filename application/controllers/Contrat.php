@@ -36,7 +36,7 @@ class Contrat extends CI_Controller {
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
 
         // var_dump($data);
-		$this->load->view('pages/contrat/contratEssaie',$data);
+		$this->load->view('pages/contrat/contratEssaieGenere',$data);
     }
 
     public function contracter($idInfo, $idRecrutement) {
