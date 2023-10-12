@@ -1,3 +1,44 @@
+CREATE  TABLE contrat_travails ( 
+	id_contrat_travail   INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	date_debut_contrat_travail DATE   DEFAULT (CURRENT_DATE)    ,
+	id_employe_contrat_travail INT  NOT NULL     ,
+	id_recrutement_contrat_travail INT  NOT NULL     ,
+	duree_contrat_travail DECIMAL(10,2)       ,
+	affiliation_cnaps    INT  NOT NULL     ,
+	affiliation_organisme_sanitaire INT  NOT NULL     
+ ) engine=InnoDB;
+
+CREATE  TABLE employes ( 
+	id_employe           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	matricule_employe    VARCHAR(50)  NOT NULL     ,
+	id_info_employe      INT  NOT NULL     ,
+	id_type_contrat_employe INT  NOT NULL     ,
+	etat_employe         INT   DEFAULT (1)    
+ ) engine=InnoDB;
+
+CREATE  TABLE entretien_selections ( 
+	id_entretien_selection INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_entretien_entretien_selection INT  NOT NULL     ,
+	id_info_entretien_selection INT  NOT NULL     
+ ) engine=InnoDB;
+
+CREATE  TABLE postes ( 
+	id_poste             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	nom_poste            VARCHAR(100)  NOT NULL     ,
+	id_categorie_poste   INT  NOT NULL     
+ ) engine=InnoDB;
+
+CREATE  TABLE hierarchies ( 
+	id_hierarchie        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_employe_hierarchie INT  NOT NULL     ,
+	id_employe_collaborateur INT  NOT NULL     ,
+	position_hierarchie  INT  NOT NULL     
+) engine=InnoDB;
+
+
+
+-- ===================================================================================
+
 create table services(
     id_service int auto_increment primary key,
     nom_service varchar(35) not null,
