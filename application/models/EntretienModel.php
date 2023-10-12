@@ -139,12 +139,23 @@ class EntretienModel extends CI_Model {
 		return $admis;
 	}
 	public function getEntretiensByService($idService){
-		$query="select * from v_entretien_service where id_service_recrutement=%s";
+		$query="select * from v_entretien_services where id_service_recrutement=%s";
 		$query=sprintf($query, $idService);
         $query=$this->db->query($query);
         $query=$query->result();
         return $query;
 	}
+	public function getDetailsEntretien($idEntretien){
+		$query="select * from v_entretien_services where id_entretien=%s";
+		$query=sprintf($query, $idEntretien);
+        $query=$this->db->query($query);
+        $query=$query->result();
+		if(count($query)>0){
+			$query=$query[0];
+		}
+        return $query;
+	}
+	public function getPersonnesEntretiens
 	public function saveSelectionTest($idTest, $idInfoUser){
 		$query="insert into test_selections values(null, %s, %s)";
 		$query=sprintf($query, $idTest, $idInfoUser);
