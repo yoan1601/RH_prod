@@ -7,11 +7,10 @@ body{
 }
 
 .skill-container{
-    display: grid;
+    display: flex;
     max-width: 1300px;
     width: 80%;
     margin-top: 3%;
-    grid-template-columns:repeat(auto-fill,300px);
     justify-content: center;
 	justify-content: space-between;
 }
@@ -58,8 +57,8 @@ body{
 }
 
 
-.title{
-    font-family: 'tektur';
+.title-avant{
+    font-family:'tektur';
     color: #f9b17a;
     text-decoration:overline;
 }
@@ -126,4 +125,9 @@ p button:hover{
 
 .cv-container p , .cv-container h4{
 	margin-left: 20%;
+}
+
+
+.linker{
+    color: #2d3250;
 }

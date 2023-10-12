@@ -26,7 +26,7 @@ $this->load->view('templates/navbar');
 							<?php foreach ($liste_cv as $cv) { ?>
 								<tr>
 									<td><input type="checkbox" name="cv[]" value="<?= $cv->id_cv ?>"> <input type="hidden" name="idRecrutement" value="<?= $cv->id_recrutement ?>"></td>
-									<input type="hidden" name="idService<?= $cv->id_cv ?>" value="<?= $idService ?>">
+									<input type="hidden" name="idService<?= $cv->id_cv ?>" value="<?= $cv->id_service ?>">
 									<td><?= $cv->nom ?> <?= $cv->prenom ?></td>
 									<td><?= $cv->reception ?></td>
 									<td><?= $cv->duree ?> jrs</td>
