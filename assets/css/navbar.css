@@ -250,11 +250,11 @@ ul li img{
 	height: 40px;
 }
 
-.annonce , .recrutement , .service{
+.annonce , .recrutement , .service, .listeCv{
 	display: none !important;
 }
 
-.annonce.active , .recrutement.active , .service.active{
+.annonce.active , .recrutement.active , .service.active, .listeCv.active{
 	display: block !important;
 	opacity: 1;
 	z-index: 999;

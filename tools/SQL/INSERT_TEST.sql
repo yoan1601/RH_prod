@@ -26,3 +26,11 @@ insert into questionnaire_reponse_choisis values(null, 2, 1);
 insert into test_selections values(null, 1, 1);
 
 insert into entretiens values(null, (select now()), 'Tana', 2, 1, 1, 600);
+--=================================================================================
+insert into cv values(null, 2, (select now()), 1, 1);
+
+insert into cv_reponses values(null, 2, 24, 2);
+
+insert into cv_reponses values(null, 2, 25, 3);
+--=================================================================================
+update departements set nom_dept='Administratif' where id_dept=1;
