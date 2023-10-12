@@ -1,12 +1,4 @@
-CREATE  TABLE contrat_travails ( 
-	id_contrat_travail   INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	date_debut_contrat_travail DATE   DEFAULT (CURRENT_DATE)    ,
-	id_employe_contrat_travail INT  NOT NULL     ,
-	id_recrutement_contrat_travail INT  NOT NULL     ,
-	duree_contrat_travail DECIMAL(10,2)       ,
-	affiliation_cnaps    INT  NOT NULL     ,
-	affiliation_organisme_sanitaire INT  NOT NULL     
- ) engine=InnoDB;
+CREATE SCHEMA rh_prod;
 
 CREATE  TABLE employes ( 
 	id_employe           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -14,28 +6,59 @@ CREATE  TABLE employes (
 	id_info_employe      INT  NOT NULL     ,
 	id_type_contrat_employe INT  NOT NULL     ,
 	etat_employe         INT   DEFAULT (1)    
- ) engine=InnoDB;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE entretien_selections ( 
 	id_entretien_selection INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_entretien_entretien_selection INT  NOT NULL     ,
 	id_info_entretien_selection INT  NOT NULL     
- ) engine=InnoDB;
-
-CREATE  TABLE postes ( 
-	id_poste             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
-	nom_poste            VARCHAR(100)  NOT NULL     ,
-	id_categorie_poste   INT  NOT NULL     
- ) engine=InnoDB;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE hierarchies ( 
 	id_hierarchie        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_employe_hierarchie INT  NOT NULL     ,
 	id_employe_collaborateur INT  NOT NULL     ,
 	position_hierarchie  INT  NOT NULL     
-) engine=InnoDB;
+ ) engine=InnoDB;
 
+CREATE  TABLE postes ( 
+	id_poste             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	nom_poste            VARCHAR(100)  NOT NULL     ,
+	id_categorie_poste   INT  NOT NULL     
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE  TABLE recrutements ( 
+	id_recrutement       INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_service_recrutement INT  NOT NULL     ,
+	dateheure_recrutement DATETIME  NOT NULL DEFAULT (now())    ,
+	etat_recrutement     INT  NOT NULL DEFAULT (1)    ,
+	mission              TEXT       ,
+	id_poste_recrutement INT  NOT NULL     
+ ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--  ALTER TABLE recrutements ADD CONSTRAINT fk_recrutements_postes FOREIGN KEY ( id_poste_recrutement ) REFERENCES postes( id_poste ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ ALTER TABLE recrutements ADD id_poste_recrutement INT NOT NULL;
+ ALTER TABLE recrutements ADD mission TEXT ;
+
+CREATE INDEX fk_recrutements_services ON recrutements ( id_service_recrutement );
+
+CREATE  TABLE contrat_travails ( 
+	id_contrat_travail   INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	date_debut_contrat_travail DATE   DEFAULT (curdate())    ,
+	id_employe_contrat_travail INT  NOT NULL     ,
+	id_recrutement_contrat_travail INT  NOT NULL     ,
+	duree_contrat_travail DECIMAL(10,2)       ,
+	affiliation_cnaps    INT  NOT NULL     ,
+	affiliation_organisme_sanitaire INT  NOT NULL     
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE contrat_travails ADD CONSTRAINT fk_contrat_travails_employes FOREIGN KEY ( id_employe_contrat_travail ) REFERENCES employes( id_employe ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE contrat_travails ADD CONSTRAINT fk_contrat_travails_recrutements FOREIGN KEY ( id_recrutement_contrat_travail ) REFERENCES recrutements( id_recrutement ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE hierarchies ADD CONSTRAINT fk_hierarchies_employes FOREIGN KEY ( id_employe_hierarchie ) REFERENCES employes( id_employe ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE hierarchies ADD CONSTRAINT fk_hierarchies_employes_0 FOREIGN KEY ( id_employe_collaborateur ) REFERENCES employes( id_employe ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ===================================================================================
 
