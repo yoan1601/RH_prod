@@ -28,4 +28,4 @@
 	<p class="fin">nun</p>
 	</div>
 </div>
-<button class="absolutive-btnR">Exporter PDF</button>
+<button class="contrat">Exporter PDF</button>

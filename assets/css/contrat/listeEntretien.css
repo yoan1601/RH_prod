@@ -120,7 +120,7 @@ table{
 	margin-top: 5%;
   }
 
- center button{
+ center button.contrat{
 	transition: 0.3s;
     font-family: 'titillium_weblight';	
 	height: 2rem;
@@ -131,7 +131,7 @@ table{
 	border: none;
  }
 
- center button:hover{
+ center button.contrat:hover{
 	background-color: rgb(74, 65, 117);
 	transform: scale(1.1);
 	transition: 0.3s;

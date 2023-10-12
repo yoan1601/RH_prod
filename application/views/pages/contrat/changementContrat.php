@@ -23,6 +23,6 @@
         <p>Affiliation Organisme sanitaire:<input type="radio" name="" id="">OUI<input type="radio" name="" id="">NON</p>
         <p class="trans">nunn</p>
     </div>
-    <center><button>Etablir les avantages</button></center>
+    <center><button class="contrat">Etablir les avantages</button></center>
 </body>
 </html>

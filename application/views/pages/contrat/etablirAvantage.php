@@ -12,7 +12,7 @@
         <p>Ajout avantage <button class="embaucher" >+</button></p>
             <p class="trans">nun</p>
     </div>
-    <center><button type="submit">Resume changement du contrat</button></center>
+    <center><button class="contrat" type="submit">Resume changement du contrat</button></center>
     </form>
 </body>
 </html>

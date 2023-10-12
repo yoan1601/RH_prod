@@ -38,6 +38,6 @@
 
     </div>
         <p class="trans">nunn</p>
-    <center><button>Genere le fiche de poste</button></center>
+    <center><button class="contrat">Genere le fiche de poste</button></center>
 </body>
 </html>

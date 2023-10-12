@@ -94,3 +94,17 @@ margin-left: 5%;
 .container-contratResume p , .container-contratResume h4{
     margin-left: 10%;
 }
+
+select {
+    height: 3em;
+    border-radius: 5px;
+    width: 30%;
+    background-color: none;
+    border: none;
+    border-bottom:solid 2px rgb(13, 163, 81);
+}
+
+option{
+    
+    background-color: none;
+}

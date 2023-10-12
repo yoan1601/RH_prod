@@ -31,6 +31,6 @@
 
     </div>
     <p class="trans">nun</p>
-    <center><button>Enregistrer et creer la ficeh de poste</button></center>
+    <center><button class="contrat">Enregistrer et creer la ficeh de poste</button></center>
 </body>
 </html>

@@ -37,6 +37,6 @@
 
     </div>
     <p class="trans">nun</p>
-    <center><button>Exporter PDF</button></center>
+    <center><button class="contrat">Exporter PDF</button></center>
 </body>
 </html>
