@@ -30,7 +30,7 @@
         <p>Durree du contrat : <?= $duree_contrat ?> jour(s)</p>
         <p class="trans">nunn</p>
     </div>
-    <p><center><button id="imprimer">Exporter PDF</button></center></p>
+    <p><center><button class="contrat" id="imprimer">Exporter PDF</button></center></p>
 
     <script>
         // Fonction pour déclencher l'impression de la partie spécifique
