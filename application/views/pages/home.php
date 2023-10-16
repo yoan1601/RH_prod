@@ -37,13 +37,20 @@
               <p>
                 <div class="photo-container entretien"></div>
               </p>
-              <p class="title-avant">. Selection d'entretients</p>
+              <p class="title-avant">. Futurs employes</p>
               <p class="content-ph">
-                Selectionner les tests faites pour faire des entretiens chacun a leur services.
+                Contracter avec les employes selectionnes par le jury d'entretien.
               </p>
+              <form action="<?= site_url("contrat/listeFuturEmployes_eriq") ?>" method="get">
+              <p><select name="service" id="">
+                <?php foreach($services as $service){ ?>
+                <option value="<?= $service->id_service ?>"><?= $service->nom_service ?></option>
+                <?php } ?>
+              </select></p>
               <p>
-                <a href="<?= site_url("entretien/listTests/".$idDept) ?>"><button>Voir plus</button></a>
+                <button type="submit">Voir plus</button></a>
               </p>
+              </form>
             </div>
         </div>
         </center>
