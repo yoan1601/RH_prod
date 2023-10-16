@@ -1,3 +1,14 @@
+-- recrutements, poste, info_user
+CREATE OR REPLACE VIEW v_recrutement_poste_info AS (
+SELECT 
+*
+FROM v_recrutement_poste vrp 
+LEFT JOIN cv ON cv.id_recrutement_cv = vrp.id_recrutement
+LEFT JOIN information_users info ON info.id_information_user = cv.id_info_user_cv
+LEFT JOIN categories categ ON categ.id_categorie = vrp.id_categorie_poste
+WHERE cv.id_cv IS NOT NULL
+);
+
 -- recrutements , postes
 CREATE OR REPLACE VIEW v_recrutement_poste AS (
 SELECT
