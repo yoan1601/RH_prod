@@ -18,14 +18,11 @@ class PosteModel extends CI_Model {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function checkLogin($email, $mdp){
-        $query="select * from postes";
-        $query=sprintf($query, $email, $mdp);
+	public function getPostesByService($idService){
+        $query="select * from postes where id_service_poste=%s";
+        $query=sprintf($query, $idService);
         $query=$this->db->query($query);
         $query=$query->result();
-        if(count($query)>0){
-            return $query[0];
-        }
-        return false;
+        return $query;
     }
 }

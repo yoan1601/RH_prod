@@ -12,7 +12,7 @@ $this->load->view('templates/navbar');
         <p></p>
         <p class="fin">nun</p>
         <p>
-        <h3 class="card-title"><?= $entretien_recrutement_service->nom_service ?> <?= $entretien_recrutement_service->mission ?></h3>
+        <h3 class="card-title"><?= $entretien_recrutement_service->nom_service ?> : <?= $entretien_recrutement_service->mission ?></h3>
         </p>
         <form action="<?= site_url('contrat/saveChoixEmbauche') ?>" method="post">
             <div class="list-group">

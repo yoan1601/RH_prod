@@ -78,4 +78,36 @@ class ContratModel extends CI_Model {
 
         return $query->row();
     }
+
+    public function saveContratEssai($idInfoUser, $dateContrat, $idRecrutement, $salaireBrut, $salaireNet, $dureeContrat){
+        $query="insert into contrat_essai values(null, %s, '%s', %s, %s, %s, %s)";
+        $query=sprintf($query, $idInfoUser, $dateContrat, $idRecrutement, $salaireBrut, $salaireNet, $dureeContrat);
+        $this->db->query($query);
+        return $this->saveEmploye($idInfoUser);
+    }
+
+    public function saveEmploye($idInfoUser){
+        $query="insert into employes values(null, null, %s, 1, 1)";
+        $query=sprintf($query, $idInfoUser);
+        $this->db->query($query);
+        return $this->saveMatricule($this->getLastIdEmploye($idInfoUser));
+    }
+
+    public function getLastIdEmploye($infoUser){
+        $query="select max(id_employe) as last_id from employes where id_info_employe=%s";
+        $query=sprintf($query, $idInfoUser);
+        $query=$this->db->query($query);
+        if(count($query)>0){
+            return $query[0]->last_id;
+        }
+        return $query;
+    }
+
+    public function saveMatricule($lastIdEmploye){
+        $matricule="EMP".$lastIdEmploye;
+        $query="update employes set matricule='%s' where id_employe=%s";
+        $query=sprintf($query, $matricule);
+        $this->db->query($query);
+        return $matricule;
+    }
 }

@@ -41,14 +41,6 @@
 					<?php } ?>
 				</div>
 			</li>
-			<li id="entreteneur" >Entretiens
-			<div class="Layout entretien">
-						<?php foreach ($services as $key => $service) { ?>
-						<p ><a href="<?= site_url('entretien/listeEntretien/'.$service->id_service)?>"><?= $service->nom_service ?></a></p>
-						<hr>
-					<?php } ?>
-				</div>
-			</li>
             <li><a href="<?= site_url('deconnection') ?>"><button>Deconnection</button></a></li>
           </ul>
         </div>
