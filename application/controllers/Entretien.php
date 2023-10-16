@@ -76,8 +76,6 @@ class Entretien extends CI_Controller {
 	public function listeEntretien($idService){
 		$entretiens=$this->entretien->getEntretiensByService($idService);
 		$data['entretiens']=$entretiens;
-		$data['nbCandidats']=count($entretiens->personnes);
-		$data['candidats']=$entretiens->personnes;
 		$data['services'] = $this->service->getAllServices();
 		$this->load->view('pages/contrat/ListeEntretien', $data);
 	}

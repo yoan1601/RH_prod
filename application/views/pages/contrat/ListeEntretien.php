@@ -19,7 +19,7 @@
 					<tr>
 						<td><?= $e->dateheure_entretien ?></td>
                         <td><?= $e->mission ?></td>
-						<td class="listeAdmis"><a href="<?= site_url("entretien/detailEntretien/".$e->id_entretien) ?>"><button>Detail</button></a><a href=""><button class="embauche">Choix d'embauche</button></a></td>
+						<td class="listeAdmis"><a href="<?= site_url("entretien/detailEntretien/".$e->id_entretien) ?>"><button>Detail</button></a><a href="<?= site_url("contrat/choixEmbauche/".$e->id_entretien) ?>"><button class="embauche">Choix d'embauche</button></a></td>
 					</tr>
 					<?php } ?>
 				</table>
