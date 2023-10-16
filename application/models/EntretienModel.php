@@ -155,6 +155,7 @@ class EntretienModel extends CI_Model {
 			$query->personnes=$this->getPersonnesByEntretien($idEntretien);
 			$query->personnes=$this->sortPersonnesByNote($query->personnes);
 			$query->personnes=$this->getHoraireEntretien($query->personnes, $query->dateheure_entretien, $query->duree_entretien);
+			$query->nbCandidats=count($query->personnes);
 		}
         return $query;
 	}

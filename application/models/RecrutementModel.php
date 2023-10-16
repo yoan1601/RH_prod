@@ -69,9 +69,9 @@ class RecrutementModel extends CI_Model {
    
     }
     
-     public function saveRecrutement($date, $idService){
-        $query="insert into recrutements values(null, %s, '%s', 1)";
-        $query=sprintf($query, $idService, $date);
+    public function saveRecrutement($date, $idService, $idPoste, $mission){
+        $query="insert into recrutements values(null, %s, '%s', 1, %s, '%s')";
+        $query=sprintf($query, $idService, $date, $idPoste, $mission);
         $this->db->query($query);
     }
     public function getLastIdRecrutement(){
