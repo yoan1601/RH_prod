@@ -20,14 +20,18 @@ recruteur.addEventListener('click', () => {
 
 const serveur= document.getElementById('serveur');
 const services = document.querySelector('.service');
-
 serveur.addEventListener('click', () => {
 	services.classList.toggle('active');
 });
 
 const cveur= document.getElementById('cveur');
 const liste = document.querySelector('.listeCv');
-
 cveur.addEventListener('click', () => {
 	liste.classList.toggle('active');
+});
+
+const entreteneur= document.getElementById('entreteneur');
+const entretiens = document.querySelector('.entretien');
+entreteneur.addEventListener('click', () => {
+	entretiens.classList.toggle('active');
 });

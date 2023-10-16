@@ -65,7 +65,7 @@ CREATE  TABLE users (
 	mdp_user             VARCHAR(35)  NOT NULL     ,
 	est_admin            INT  NOT NULL DEFAULT (0)    ,
 	etat_user            INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE information_users ( 
 	id_information_user  INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -77,7 +77,7 @@ CREATE  TABLE information_users (
 	contact_info         VARCHAR(35)  NOT NULL     ,
 	addresse_info        VARCHAR(35)  NOT NULL     ,
 	etat_info            INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_information_users_users ON information_users ( id_user_information_user );
 
@@ -88,7 +88,7 @@ CREATE  TABLE recrutements (
 	etat_recrutement     INT  NOT NULL DEFAULT (1)    ,
 	id_poste_recrutement INT  NOT NULL     ,
 	mission              TEXT       
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_recrutements_services ON recrutements ( id_service_recrutement );
 
@@ -99,7 +99,7 @@ CREATE  TABLE tests (
 	lieu_test            VARCHAR(35)  NOT NULL     ,
 	id_recrutement_test  INT  NOT NULL     ,
 	etat_test            INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_test ON tests ( id_user_test );
 
@@ -120,7 +120,7 @@ CREATE  TABLE besoins (
 	id_recrutement_besoin INT  NOT NULL     ,
 	homme_jour           DECIMAL(10,0)  NOT NULL     ,
 	etat_besoin          INT  NOT NULL DEFAULT (_cp850'1')    
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_besoins_recrutements ON besoins ( id_recrutement_besoin );
 
@@ -158,7 +158,7 @@ CREATE  TABLE criteres (
 	descri_critere       VARCHAR(35)  NOT NULL     ,
 	etat_critere         INT  NOT NULL DEFAULT (1)    ,
 	fichier_critere      TEXT       
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_criteres_recrutements ON criteres ( id_recrutement_critere );
 
@@ -168,7 +168,7 @@ CREATE  TABLE cv (
 	dateheure_remplissage DATETIME  NOT NULL DEFAULT (now())    ,
 	id_recrutement_cv    INT  NOT NULL     ,
 	etat_cv              INT  NOT NULL DEFAULT (1)    
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
 
@@ -179,7 +179,7 @@ CREATE  TABLE cv_selections (
 	id_user_cv_selection INT  NOT NULL     ,
 	id_cv_selected       INT  NOT NULL     ,
 	id_recrutement_cv_selection INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_cv_selection ON cv_selections ( id_user_cv_selection );
 
@@ -195,7 +195,7 @@ CREATE  TABLE entretiens (
 	id_recrutement_entretien INT  NOT NULL     ,
 	etat_entretien       INT  NOT NULL DEFAULT (1)    ,
 	duree_entretien      DECIMAL(10,2)  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_user_entretien ON entretiens ( id_user_entretien );
 
@@ -218,7 +218,7 @@ CREATE  TABLE questionnaires (
 	question             TEXT  NOT NULL     ,
 	coefficient_question DECIMAL(10,0)  NOT NULL     ,
 	etat_questionnaire   INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_test_questionnaire ON questionnaires ( id_test_questionnaire );
 
@@ -226,7 +226,7 @@ CREATE  TABLE test_selections (
 	id_test_selection    INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_test_test_selection INT  NOT NULL     ,
 	id_info_user_test_selection INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_test_selections_tests ON test_selections ( id_test_test_selection );
 
@@ -246,7 +246,7 @@ CREATE  TABLE choix_criteres (
 	choix_critere        VARCHAR(35)  NOT NULL     ,
 	coefficient_critere  DECIMAL(10,0)  NOT NULL     ,
 	id_critere_choix     INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_choix_criteres_criteres ON choix_criteres ( id_critere_choix );
 
@@ -255,7 +255,7 @@ CREATE  TABLE cv_reponses (
 	id_cv_cv_reponse     INT  NOT NULL     ,
 	id_critere_cv_reponse INT  NOT NULL     ,
 	id_choix_cv_reponse  INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_reponses_cv ON cv_reponses ( id_cv_cv_reponse );
 
@@ -268,7 +268,7 @@ CREATE  TABLE questionnaire_reponses (
 	id_questionnaire_questionnaire_reponse INT  NOT NULL     ,
 	questionnaire_reponse TEXT  NOT NULL     ,
 	est_vrai             INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_questionnaire_questionnaire_reponse ON questionnaire_reponses ( id_questionnaire_questionnaire_reponse );
 
@@ -276,7 +276,7 @@ CREATE  TABLE questionnaire_reponse_choisis (
 	id_questionnaire_reponse_choisi INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_info_user_questionnaire_reponse_choisi INT  NOT NULL     ,
 	id_choix_reponse     INT  NOT NULL     
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_choix_reponse ON questionnaire_reponse_choisis ( id_choix_reponse );
 
@@ -352,11 +352,15 @@ ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_departements F
 
 ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_users FOREIGN KEY ( id_user_user_dept ) REFERENCES users( id_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+CREATE VIEW v_choix_embauche AS select `s`.`id_service` AS `id_service`,`s`.`nom_service` AS `nom_service`,`s`.`etat_service` AS `etat_service`,`s`.`id_dept_service` AS `id_dept_service`,`info`.`id_information_user` AS `id_information_user`,`info`.`id_user_information_user` AS `id_user_information_user`,`info`.`nom_info` AS `nom_info`,`info`.`prenom_info` AS `prenom_info`,`info`.`sexe_info` AS `sexe_info`,`info`.`date_naissance_info` AS `date_naissance_info`,`info`.`contact_info` AS `contact_info`,`info`.`addresse_info` AS `addresse_info`,`info`.`etat_info` AS `etat_info`,`note_ent`.`id_entretien_note_entretien` AS `id_entretien`,`note_ent`.`note_entretien` AS `note_entretien`,`ent_select`.`id_info_entretien_selection` AS `id_info_entretien_selection`,`ent_select`.`id_entretien_entretien_selection` AS `id_entretien_entretien_selection` from (((((`rh_prod`.`information_users` `info` left join `rh_prod`.`note_entretiens` `note_ent` on((`note_ent`.`id_info_note_entretien` = `info`.`id_information_user`))) left join `rh_prod`.`entretien_selections` `ent_select` on(((`ent_select`.`id_info_entretien_selection` = `info`.`id_information_user`) and (`ent_select`.`id_entretien_entretien_selection` = `note_ent`.`id_entretien_note_entretien`)))) left join `rh_prod`.`entretiens` `entre` on((`entre`.`id_entretien` = `note_ent`.`id_entretien_note_entretien`))) left join `rh_prod`.`recrutements` `recru` on((`recru`.`id_recrutement` = `entre`.`id_recrutement_entretien`))) left join `rh_prod`.`services` `s` on((`s`.`id_service` = `recru`.`id_service_recrutement`)));
+
 CREATE VIEW v_detail_cv AS select `info`.`id_information_user` AS `id_information_user`,`info`.`id_user_information_user` AS `id_user_information_user`,`info`.`nom_info` AS `nom_info`,`info`.`prenom_info` AS `prenom_info`,`info`.`sexe_info` AS `sexe_info`,`info`.`date_naissance_info` AS `date_naissance_info`,`info`.`contact_info` AS `contact_info`,`info`.`addresse_info` AS `addresse_info`,`info`.`etat_info` AS `etat_info`,`rh_prod`.`cv`.`id_cv` AS `id_cv`,`cr`.`descri_critere` AS `critere`,`choix`.`choix_critere` AS `choix` from ((((`rh_prod`.`cv` left join `rh_prod`.`information_users` `info` on((`rh_prod`.`cv`.`id_info_user_cv` = `info`.`id_information_user`))) left join `rh_prod`.`cv_reponses` `cv_rep` on((`cv_rep`.`id_cv_cv_reponse` = `rh_prod`.`cv`.`id_cv`))) left join `rh_prod`.`criteres` `cr` on((`cv_rep`.`id_critere_cv_reponse` = `cr`.`id_critere`))) left join `rh_prod`.`choix_criteres` `choix` on((`cv_rep`.`id_choix_cv_reponse` = `choix`.`id_choix_critere`))) where (`rh_prod`.`cv`.`etat_cv` > 0);
+
+CREATE VIEW v_entretien_recrutement_service AS select `recru`.`id_recrutement` AS `id_recrutement`,`recru`.`id_service_recrutement` AS `id_service_recrutement`,`recru`.`dateheure_recrutement` AS `dateheure_recrutement`,`recru`.`etat_recrutement` AS `etat_recrutement`,`recru`.`id_poste_recrutement` AS `id_poste_recrutement`,`recru`.`mission` AS `mission`,`entre`.`id_entretien` AS `id_entretien`,`entre`.`dateheure_entretien` AS `dateheure_entretien`,`entre`.`lieu_entretien` AS `lieu_entretien`,`entre`.`id_user_entretien` AS `id_user_entretien`,`entre`.`id_recrutement_entretien` AS `id_recrutement_entretien`,`entre`.`etat_entretien` AS `etat_entretien`,`entre`.`duree_entretien` AS `duree_entretien`,`s`.`id_service` AS `id_service`,`s`.`nom_service` AS `nom_service`,`s`.`etat_service` AS `etat_service`,`s`.`id_dept_service` AS `id_dept_service` from ((`rh_prod`.`recrutements` `recru` left join `rh_prod`.`entretiens` `entre` on((`entre`.`id_recrutement_entretien` = `recru`.`id_recrutement`))) left join `rh_prod`.`services` `s` on((`s`.`id_service` = `recru`.`id_service_recrutement`))) where (`entre`.`id_entretien` is not null);
 
 CREATE VIEW v_entretien_services AS select `rh_prod`.`entretiens`.`id_entretien` AS `id_entretien`,`rh_prod`.`entretiens`.`dateheure_entretien` AS `dateheure_entretien`,`rh_prod`.`entretiens`.`lieu_entretien` AS `lieu_entretien`,`rh_prod`.`entretiens`.`id_user_entretien` AS `id_user_entretien`,`rh_prod`.`entretiens`.`id_recrutement_entretien` AS `id_recrutement_entretien`,`rh_prod`.`entretiens`.`etat_entretien` AS `etat_entretien`,`rh_prod`.`entretiens`.`duree_entretien` AS `duree_entretien`,`rh_prod`.`recrutements`.`id_recrutement` AS `id_recrutement`,`rh_prod`.`recrutements`.`id_service_recrutement` AS `id_service_recrutement`,`rh_prod`.`recrutements`.`dateheure_recrutement` AS `dateheure_recrutement`,`rh_prod`.`recrutements`.`etat_recrutement` AS `etat_recrutement`,`rh_prod`.`recrutements`.`id_poste_recrutement` AS `id_poste_recrutement`,`rh_prod`.`recrutements`.`mission` AS `mission` from (`rh_prod`.`entretiens` join `rh_prod`.`recrutements` on((`rh_prod`.`entretiens`.`id_recrutement_entretien` = `rh_prod`.`recrutements`.`id_recrutement`)));
 
-CREATE VIEW v_liste_cv AS select `s`.`id_service` AS `id_service`,`dept`.`id_dept` AS `id_dept`,`dept`.`nom_dept` AS `nom_dept`,`rh_prod`.`cv`.`id_cv` AS `id_cv`,`info`.`id_information_user` AS `id_information_user`,`info`.`nom_info` AS `nom`,`info`.`prenom_info` AS `prenom`,`rh_prod`.`cv`.`dateheure_remplissage` AS `reception`,(to_days(now()) - to_days(`rh_prod`.`cv`.`dateheure_remplissage`)) AS `duree`,sum(`choix`.`coefficient_critere`) AS `note`,`r`.`id_recrutement` AS `id_recrutement` from ((((((`rh_prod`.`cv` left join `rh_prod`.`information_users` `info` on((`info`.`id_information_user` = `rh_prod`.`cv`.`id_info_user_cv`))) left join `rh_prod`.`cv_reponses` `cvr` on((`cvr`.`id_cv_cv_reponse` = `rh_prod`.`cv`.`id_cv`))) left join `rh_prod`.`choix_criteres` `choix` on((`choix`.`id_choix_critere` = `cvr`.`id_choix_cv_reponse`))) left join `rh_prod`.`recrutements` `r` on((`r`.`id_recrutement` = `rh_prod`.`cv`.`id_recrutement_cv`))) left join `rh_prod`.`services` `s` on((`s`.`id_service` = `r`.`id_service_recrutement`))) left join `rh_prod`.`departements` `dept` on((`s`.`id_dept_service` = `dept`.`id_dept`))) group by `info`.`id_information_user` order by `note` desc;
+CREATE VIEW v_liste_cv AS select `s`.`id_service` AS `id_service`,`dept`.`id_dept` AS `id_dept`,`dept`.`nom_dept` AS `nom_dept`,`rh_prod`.`cv`.`id_cv` AS `id_cv`,`info`.`id_information_user` AS `id_information_user`,`info`.`nom_info` AS `nom`,`info`.`prenom_info` AS `prenom`,`rh_prod`.`cv`.`dateheure_remplissage` AS `reception`,(to_days(now()) - to_days(`rh_prod`.`cv`.`dateheure_remplissage`)) AS `duree`,sum(`choix`.`coefficient_critere`) AS `note`,`r`.`id_recrutement` AS `id_recrutement` from ((((((`rh_prod`.`cv` left join `rh_prod`.`information_users` `info` on((`info`.`id_information_user` = `rh_prod`.`cv`.`id_info_user_cv`))) left join `rh_prod`.`cv_reponses` `cvr` on((`cvr`.`id_cv_cv_reponse` = `rh_prod`.`cv`.`id_cv`))) left join `rh_prod`.`choix_criteres` `choix` on((`choix`.`id_choix_critere` = `cvr`.`id_choix_cv_reponse`))) left join `rh_prod`.`recrutements` `r` on((`r`.`id_recrutement` = `rh_prod`.`cv`.`id_recrutement_cv`))) left join `rh_prod`.`services` `s` on((`s`.`id_service` = `r`.`id_service_recrutement`))) left join `rh_prod`.`departements` `dept` on((`s`.`id_dept_service` = `dept`.`id_dept`))) group by `info`.`id_information_user`,`rh_prod`.`cv`.`id_cv` order by `note` desc;
 
 CREATE VIEW v_personne_entretiens AS select `rh_prod`.`v_test_entretiens`.`id_entretien` AS `id_entretien`,`rh_prod`.`v_test_entretiens`.`dateheure_entretien` AS `dateheure_entretien`,`rh_prod`.`v_test_entretiens`.`lieu_entretien` AS `lieu_entretien`,`rh_prod`.`v_test_entretiens`.`id_user_entretien` AS `id_user_entretien`,`rh_prod`.`v_test_entretiens`.`id_recrutement_entretien` AS `id_recrutement_entretien`,`rh_prod`.`v_test_entretiens`.`etat_entretien` AS `etat_entretien`,`rh_prod`.`v_test_entretiens`.`duree_entretien` AS `duree_entretien`,`rh_prod`.`v_test_entretiens`.`id_test` AS `id_test`,`rh_prod`.`v_test_entretiens`.`dateheure_test` AS `dateheure_test`,`rh_prod`.`v_test_entretiens`.`id_user_test` AS `id_user_test`,`rh_prod`.`v_test_entretiens`.`lieu_test` AS `lieu_test`,`rh_prod`.`v_test_entretiens`.`id_recrutement_test` AS `id_recrutement_test`,`rh_prod`.`v_test_entretiens`.`etat_test` AS `etat_test`,`rh_prod`.`test_selections`.`id_test_selection` AS `id_test_selection`,`rh_prod`.`test_selections`.`id_test_test_selection` AS `id_test_test_selection`,`rh_prod`.`test_selections`.`id_info_user_test_selection` AS `id_info_user_test_selection`,`rh_prod`.`information_users`.`id_information_user` AS `id_information_user`,`rh_prod`.`information_users`.`id_user_information_user` AS `id_user_information_user`,`rh_prod`.`information_users`.`nom_info` AS `nom_info`,`rh_prod`.`information_users`.`prenom_info` AS `prenom_info`,`rh_prod`.`information_users`.`sexe_info` AS `sexe_info`,`rh_prod`.`information_users`.`date_naissance_info` AS `date_naissance_info`,`rh_prod`.`information_users`.`contact_info` AS `contact_info`,`rh_prod`.`information_users`.`addresse_info` AS `addresse_info`,`rh_prod`.`information_users`.`etat_info` AS `etat_info` from ((`rh_prod`.`v_test_entretiens` join `rh_prod`.`test_selections` on((`rh_prod`.`v_test_entretiens`.`id_test` = `rh_prod`.`test_selections`.`id_test_test_selection`))) join `rh_prod`.`information_users` on((`rh_prod`.`test_selections`.`id_info_user_test_selection` = `rh_prod`.`information_users`.`id_information_user`)));
 
@@ -369,6 +373,8 @@ CREATE VIEW v_questionnaire_reponse_services AS select `rh_prod`.`vq`.`id_test` 
 CREATE VIEW v_questionnaire_reponse_vrai_services AS select `rh_prod`.`v_questionnaire_reponse_services`.`id_test` AS `id_test`,`rh_prod`.`v_questionnaire_reponse_services`.`dateheure_test` AS `dateheure_test`,`rh_prod`.`v_questionnaire_reponse_services`.`id_user_test` AS `id_user_test`,`rh_prod`.`v_questionnaire_reponse_services`.`lieu_test` AS `lieu_test`,`rh_prod`.`v_questionnaire_reponse_services`.`id_recrutement_test` AS `id_recrutement_test`,`rh_prod`.`v_questionnaire_reponse_services`.`etat_test` AS `etat_test`,`rh_prod`.`v_questionnaire_reponse_services`.`id_recrutement` AS `id_recrutement`,`rh_prod`.`v_questionnaire_reponse_services`.`id_service_recrutement` AS `id_service_recrutement`,`rh_prod`.`v_questionnaire_reponse_services`.`dateheure_recrutement` AS `dateheure_recrutement`,`rh_prod`.`v_questionnaire_reponse_services`.`etat_recrutement` AS `etat_recrutement`,`rh_prod`.`v_questionnaire_reponse_services`.`id_poste_recrutement` AS `id_poste_recrutement`,`rh_prod`.`v_questionnaire_reponse_services`.`mission` AS `mission`,`rh_prod`.`v_questionnaire_reponse_services`.`id_service` AS `id_service`,`rh_prod`.`v_questionnaire_reponse_services`.`nom_service` AS `nom_service`,`rh_prod`.`v_questionnaire_reponse_services`.`etat_service` AS `etat_service`,`rh_prod`.`v_questionnaire_reponse_services`.`id_dept_service` AS `id_dept_service`,`rh_prod`.`v_questionnaire_reponse_services`.`id_questionnaire` AS `id_questionnaire`,`rh_prod`.`v_questionnaire_reponse_services`.`id_test_questionnaire` AS `id_test_questionnaire`,`rh_prod`.`v_questionnaire_reponse_services`.`question` AS `question`,`rh_prod`.`v_questionnaire_reponse_services`.`coefficient_question` AS `coefficient_question`,`rh_prod`.`v_questionnaire_reponse_services`.`etat_questionnaire` AS `etat_questionnaire`,`rh_prod`.`v_questionnaire_reponse_services`.`id_questionnaire_reponse` AS `id_questionnaire_reponse`,`rh_prod`.`v_questionnaire_reponse_services`.`id_questionnaire_questionnaire_reponse` AS `id_questionnaire_questionnaire_reponse`,`rh_prod`.`v_questionnaire_reponse_services`.`questionnaire_reponse` AS `questionnaire_reponse`,`rh_prod`.`v_questionnaire_reponse_services`.`est_vrai` AS `est_vrai` from `rh_prod`.`v_questionnaire_reponse_services` where (`rh_prod`.`v_questionnaire_reponse_services`.`est_vrai` = 1);
 
 CREATE VIEW v_recrutement_dept AS select `recru`.`id_recrutement` AS `id_recrutement`,`recru`.`id_service_recrutement` AS `id_service_recrutement`,`recru`.`dateheure_recrutement` AS `dateheure_recrutement`,`recru`.`etat_recrutement` AS `etat_recrutement`,`s`.`id_service` AS `id_service`,`s`.`nom_service` AS `nom_service`,`s`.`etat_service` AS `etat_service`,`s`.`id_dept_service` AS `id_dept_service`,`dept`.`id_dept` AS `id_dept`,`dept`.`nom_dept` AS `nom_dept` from ((`rh_prod`.`recrutements` `recru` left join `rh_prod`.`services` `s` on((`s`.`id_service` = `recru`.`id_service_recrutement`))) left join `rh_prod`.`departements` `dept` on((`s`.`id_dept_service` = `dept`.`id_dept`)));
+
+CREATE VIEW v_recrutement_poste AS select `recru`.`id_recrutement` AS `id_recrutement`,`recru`.`id_service_recrutement` AS `id_service_recrutement`,`recru`.`dateheure_recrutement` AS `dateheure_recrutement`,`recru`.`etat_recrutement` AS `etat_recrutement`,`recru`.`id_poste_recrutement` AS `id_poste_recrutement`,`recru`.`mission` AS `mission`,`rh_prod`.`postes`.`id_poste` AS `id_poste`,`rh_prod`.`postes`.`nom_poste` AS `nom_poste`,`rh_prod`.`postes`.`id_categorie_poste` AS `id_categorie_poste`,`rh_prod`.`postes`.`id_service_poste` AS `id_service_poste` from (`rh_prod`.`recrutements` `recru` left join `rh_prod`.`postes` on((`rh_prod`.`postes`.`id_poste` = `recru`.`id_poste_recrutement`)));
 
 CREATE VIEW v_reponse_choisi_tests AS select `rc`.`id_questionnaire_reponse_choisi` AS `id_questionnaire_reponse_choisi`,`rc`.`id_info_user_questionnaire_reponse_choisi` AS `id_info_user_questionnaire_reponse_choisi`,`rc`.`id_choix_reponse` AS `id_choix_reponse`,`rh_prod`.`vrs`.`id_test` AS `id_test`,`rh_prod`.`vrs`.`dateheure_test` AS `dateheure_test`,`rh_prod`.`vrs`.`id_user_test` AS `id_user_test`,`rh_prod`.`vrs`.`lieu_test` AS `lieu_test`,`rh_prod`.`vrs`.`id_recrutement_test` AS `id_recrutement_test`,`rh_prod`.`vrs`.`etat_test` AS `etat_test`,`rh_prod`.`vrs`.`id_recrutement` AS `id_recrutement`,`rh_prod`.`vrs`.`id_service_recrutement` AS `id_service_recrutement`,`rh_prod`.`vrs`.`dateheure_recrutement` AS `dateheure_recrutement`,`rh_prod`.`vrs`.`etat_recrutement` AS `etat_recrutement`,`rh_prod`.`vrs`.`id_poste_recrutement` AS `id_poste_recrutement`,`rh_prod`.`vrs`.`mission` AS `mission`,`rh_prod`.`vrs`.`id_service` AS `id_service`,`rh_prod`.`vrs`.`nom_service` AS `nom_service`,`rh_prod`.`vrs`.`etat_service` AS `etat_service`,`rh_prod`.`vrs`.`id_dept_service` AS `id_dept_service`,`rh_prod`.`vrs`.`id_questionnaire` AS `id_questionnaire`,`rh_prod`.`vrs`.`id_test_questionnaire` AS `id_test_questionnaire`,`rh_prod`.`vrs`.`question` AS `question`,`rh_prod`.`vrs`.`coefficient_question` AS `coefficient_question`,`rh_prod`.`vrs`.`etat_questionnaire` AS `etat_questionnaire`,`rh_prod`.`vrs`.`id_questionnaire_reponse` AS `id_questionnaire_reponse`,`rh_prod`.`vrs`.`id_questionnaire_questionnaire_reponse` AS `id_questionnaire_questionnaire_reponse`,`rh_prod`.`vrs`.`questionnaire_reponse` AS `questionnaire_reponse`,`rh_prod`.`vrs`.`est_vrai` AS `est_vrai` from (`rh_prod`.`questionnaire_reponse_choisis` `rc` join `rh_prod`.`v_questionnaire_reponse_services` `vrs` on((`rc`.`id_choix_reponse` = `rh_prod`.`vrs`.`id_questionnaire_reponse`)));
 
