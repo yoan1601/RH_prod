@@ -36,7 +36,11 @@ class Contrat extends CI_Controller {
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
         $matricule=$this->contrat->saveContratEssai($idInfo, $data['dateActuelle'], $idRecrutement, $data['salaire_brut'], $data['salaire_net'], $data['duree_contrat']);
         $data['matricule']=$matricule;
-        if($data['info_user']->sexe)
+        if($data['info_user']->sexe_info=='1'){
+            $data['genre']="Homme";
+        }else{
+            $data['genre']="Femme";
+        }
         // var_dump($data);
 		$this->load->view('pages/contrat/contratEssaieGenere',$data);
     }
@@ -46,20 +50,15 @@ class Contrat extends CI_Controller {
         $data['recrutement'] = $this->contrat->getRecrutementById($idRecrutement);
         $data['services'] = $this->service->getAllServices();
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
-
+        if($data['info_user']->sexe_info=='1'){
+            $data['genre']="Homme";
+        }else{
+            $data['genre']="Femme";
+        }
         // var_dump($data);
 		$this->load->view('pages/contrat/contratEssaie',$data);
     }
-
-    public function listeFuturEmployes($idService = 3) {
-        $data['entretien_recrutement_service'] = $this->contrat->getEntretienRecrutementServiceByIdService($idService);
-        $data['futurEmployes'] = $this->contrat->getFuturEmployes($idService);
-        $data['services'] = $this->service->getAllServices();
-
-        // var_dump($data);
-        $this->load->view('pages/contrat/listeFutureEmp', $data);
-    }
-    public function listeFuturEmployes_eriq() {
+    public function listeFuturEmployes() {
         $idService=$this->input->get("service");
         $data['entretien_recrutement_service'] = $this->contrat->getEntretienRecrutementServiceByIdService($idService);
         $data['futurEmployes'] = $this->contrat->getFuturEmployes($idService);

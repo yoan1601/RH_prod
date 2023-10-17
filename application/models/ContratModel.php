@@ -87,7 +87,7 @@ class ContratModel extends CI_Model {
     }
 
     public function saveEmploye($idInfoUser){
-        $query="insert into employes values(null, null, %s, 1, 1)";
+        $query="insert into employes values(null, 'null', %s, 1, 1)";
         $query=sprintf($query, $idInfoUser);
         $this->db->query($query);
         return $this->saveMatricule($this->getLastIdEmploye($idInfoUser));
@@ -95,8 +95,9 @@ class ContratModel extends CI_Model {
 
     public function getLastIdEmploye($infoUser){
         $query="select max(id_employe) as last_id from employes where id_info_employe=%s";
-        $query=sprintf($query, $idInfoUser);
+        $query=sprintf($query, $infoUser);
         $query=$this->db->query($query);
+        $query=$query->result();
         if(count($query)>0){
             return $query[0]->last_id;
         }
@@ -105,8 +106,8 @@ class ContratModel extends CI_Model {
 
     public function saveMatricule($lastIdEmploye){
         $matricule="EMP".$lastIdEmploye;
-        $query="update employes set matricule='%s' where id_employe=%s";
-        $query=sprintf($query, $matricule);
+        $query="update employes set matricule_employe='%s' where id_employe=%s";
+        $query=sprintf($query, $matricule, $lastIdEmploye);
         $this->db->query($query);
         return $matricule;
     }

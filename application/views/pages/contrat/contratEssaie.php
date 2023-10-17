@@ -16,7 +16,7 @@ $this->load->view('templates/navbar');
         </p>
         <p>Nom : <?= $info_user->nom_info ?></p>
         <p>Prenom : <?= $info_user->prenom_info ?></p>
-        <p>Genre : <?= $info_user->sexe_info ?></p>
+        <p>Genre : <?= $genre ?></p>
         <p>Contact : <?= $info_user->contact_info ?></p>
         <p>Adresse : <?= $info_user->addresse_info ?></p>
         <hr>
