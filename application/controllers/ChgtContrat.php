@@ -3,25 +3,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ChgtContrat extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/userguide3/general/urls.html
-	 */
-	// public function index()
-	// {
-	// 	redirect('contrat/choixEmbauche');
-	// }
+    public function genererFichePoste() {
+        $superieurs = $this->input->post('superieurs');
+        $inferieurs = $this->input->post('inferieurs');
+
+        $data = $this->session->data_chgt_contrat;
+
+        $idContratTravail = $this->chgtContrat->insertContratTravail($data);
+        // inserer contrat travail
+        if($idContratTravail > 0) {
+            // update id_type_contrat dans employe
+            $idEmploye = $data['info_user_recrutement_poste']->id_employe;
+            $new_type_contrat = $data['type_contrat'] == 'CDI' ? 100 : 10;
+            if($this->chgtContrat->updateTypeContratEmploye($idEmploye, $new_type_contrat) != false) {
+                // insert hierarchie + atao ao anaty data le hierarchie
+                foreach ($superieurs as $key => $idEmpSuperieur) {
+                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+                }
+                foreach ($inferieurs as $key => $idEmpSubalterne) {
+                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+                }
+                // insert avantage
+                foreach ($data['avantages']['nom'] as $key => $nom_avantage) {
+                    $prix_avantage = $data['avantages']['prix'][$key];
+                    $this->chgtContrat->insertAvantage($idContratTravail ,$nom_avantage, $prix_avantage);
+                }
+
+                $data['superieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, 1);
+                $data['inferieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, -1);
+                $this->load->view('pages/contrat/fichePoste', $data);
+            } 
+        }
+        else {
+            redirect('recrutement/index');
+        }
+
+    }
+
+	public function toFichePoste() {
+        $data = $this->session->data_chgt_contrat;
+
+        $niveau_poste = $data['info_user_recrutement_poste']->niveau;
+
+        $data['superieurs'] = $this->chgtContrat->getSuperieurHierarchiques($niveau_poste);
+        $data['subalternes'] = $this->chgtContrat->getSubalternes($niveau_poste);
+
+        // var_dump($data);
+        $this->load->view('pages/contrat/fichePoste', $data);
+    }
 
     public function toResumeContrat() {
         $dateActuelle = date('Y-m-d H:i:s');
@@ -70,6 +99,7 @@ class ChgtContrat extends CI_Controller {
 
         $data['avantages'] = $avantages;
 
+        $this->session->set_userdata("data_chgt_contrat", $data);
 
         $this->load->view('pages/contrat/changementContratResume', $data);
     }

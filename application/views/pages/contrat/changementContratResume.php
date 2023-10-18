@@ -2,6 +2,7 @@
 	$this->load->view('templates/header');
 	$this->load->view('templates/navbar');
 ?>
+<form action="<?= site_url('chgtContrat/toFichePoste') ?>" method="post">
     <p><center><h2>Changement de contrat</h2></center></p>
     <p><center><h3><?= $matricule ?> type de contrat <?= $type_contrat ?></h3></center></p>
     <div class="container-contratResume">
@@ -31,6 +32,7 @@
 
     </div>
     <p class="trans">nun</p>
-    <center><button class="contrat">Enregistrer et creer la fiche de poste</button></center>
+    <center><button type="submit" class="contrat">Enregistrer et creer la fiche de poste</button></center>
+    </form>
 </body>
 </html>
