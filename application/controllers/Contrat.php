@@ -22,7 +22,13 @@ class Contrat extends CI_Controller {
 	{
 		redirect('contrat/choixEmbauche');
 	}
-
+    public function listeContratEssai(){
+        $idService=$this->input->get("service");
+        $contrats=$this->contrat->listeContratEssai($idService);
+        $data['contrats']=$contrats;
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view("pages/contrat/listeContratEssaie", $data);
+    }
     public function resumeContratEssai() {
         $idInfo = $this->input->post('idInfo');
         $idRecrutement = $this->input->post('idRecrutement');

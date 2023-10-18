@@ -53,4 +53,5 @@ create or replace view v_contrat_essai_info_employes as
         join information_users on contrat_essai.id_info_contrat_essai=information_users.id_information_user
         join employes on contrat_essai.id_info_contrat_essai=employes.id_info_employe
         join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat
-    where type_contrats.code_type_contrat=1;
+        join recrutements on contrat_essai.id_recrutement_contrat_essai=recrutements.id_recrutement
+    where type_contrats.code_type_contrat='1';

@@ -27,3 +27,7 @@ insert into questionnaire_reponse_choisis values(null, 2, 3);
 -- ID, ID INFO USER, NOTE, ID ENTRETIEN
 insert into note_entretiens values(null, 1, 12, 1);
 insert into note_entretiens values(null, 2, 17, 1);
+
+insert into type_contrats values(null, '1', 'Essai'),
+                                (null, '10', 'CDD'),
+                                (null, '100', 'CDI');

@@ -52,7 +52,6 @@
               </p>
               </form>
             </div>
-
             <div class="skills-content">
               <p>
                 <div class="photo-container entretien"></div>
@@ -61,7 +60,7 @@
               <p class="content-ph">
                 Voir les contrats d'essai en cours
               </p>
-              <form action="<?= site_url("contrat/listeFuturEmployes") ?>" method="get">
+              <form action="<?= site_url("contrat/listeContratEssai") ?>" method="get">
               <p><select name="service" id="">
                 <?php foreach($services as $service){ ?>
                 <option value="<?= $service->id_service ?>"><?= $service->nom_service ?></option>

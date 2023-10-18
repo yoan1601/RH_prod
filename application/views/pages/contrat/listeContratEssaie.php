@@ -17,35 +17,15 @@
                         <td>Jours restants</td>
 						<td class="listeAdmis">Actions</td>
 					</tr>
+					<?php foreach($contrats as $c){ ?>
 					<tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
+                        <td><?= $c->matricule_employe ?></td>
+                        <td><?= $c->nom_info." ".$c->prenom_info ?></td>
+						<td><?= $c->fin_contrat_essai ?></td>
+                        <td><?= $c->jours_restant ?> jours</td>
 						<td class="listeAdmis"><button>Detail</button><button class="embauche">changement de contrat</button></td>
 					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">changement de contrat</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">changement de contrat</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Detail</button><button class="embauche">changement de contrat</button></td>
-					</tr>
-	
+					<?php } ?>
 				</table>
               </div>
             </div>

@@ -111,4 +111,16 @@ class ContratModel extends CI_Model {
         $this->db->query($query);
         return $matricule;
     }
+    public function listeContratEssai($idService){
+        $query="select * from v_contrat_essai_info_employes where id_service_recrutement=%s";
+        $query=sprintf($query, $idService);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        $currentDate=new DateTime();
+        foreach($query as $row){
+            $row->fin_contrat_essai=date("Y-M-d", strtotime($currentDate->format("Y-m-d")." + ".$row->duree_contrat_essai." day"));
+            $row->jours_restant=date_diff($currentDate, date_create($row->fin_contrat_essai))->days;
+        }
+        return $query;
+    }
 }
