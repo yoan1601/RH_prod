@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ChgtContrat extends CI_Controller {
-
+    public function choixContrat($idContratEssai){
+        $data["idContratEssai"]=$idContratEssai;
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view("pages/contrat/choixContrat", $data);
+    }
     public function genererFichePoste() {
         $superieurs = $this->input->post('superieurs');
         $inferieurs = $this->input->post('inferieurs');
