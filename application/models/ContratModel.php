@@ -39,7 +39,8 @@ class ContratModel extends CI_Model {
     public function getFuturEmployes($idService) {
 
         $this->db->where('id_service ', $idService);
-        $this->db->where('id_entretien_entretien_selection !=', null);
+        $this->db->where('id_entretien_entretien_selection is not null');
+        $this->db->where('id_service != ', null);
 
         $query = $this->db->get('v_choix_embauche');
 
@@ -124,7 +125,7 @@ class ContratModel extends CI_Model {
         return $query;
     }
     public function getContratEssaiById($idContratEssai){
-        $query="select * from v_contrat_essai_info_employes where id_contrat_essai=%s";
+        $query="select * from v_essai_info_employe_poste where id_contrat_essai=%s";
         $query=sprintf($query, $idContratEssai);
         $query=$this->db->query($query);
         $query=$query->row();

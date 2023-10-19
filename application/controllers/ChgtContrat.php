@@ -2,7 +2,44 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ChgtContrat extends CI_Controller {
-
+    public function choixContrat($idContratEssai){
+        $data["idContratEssai"]=$idContratEssai;
+        $data["types_contrat"]=$this->chgtContrat->getTypeContrats();
+        $data['services'] = $this->service->getAllServices();
+        $this->load->view("pages/contrat/choixContrat", $data);
+    }
+    public function changementContrat(){
+        $type_contrat=$this->input->post("type_contrat");
+        $attrTypeContrat=explode(":", $type_contrat);
+        $contratEssai=$this->contrat->getContratEssaiById($this->input->post("idContratEssai"));
+        $dateActuelle=(new DateTime())->format("d/m/Y");
+        $dureeHTML="none";
+        if($attrTypeContrat[0]==10){
+            $dureeHTML="block";
+        }
+        $this->load->helper("genre");
+        $data["genre"]=getGenreName($contratEssai->sexe_info);
+        $data["contratEssai"]=$contratEssai;
+        $data["dateActuelle"]=$dateActuelle;
+        $data["dureeHTML"]=$dureeHTML;
+        $data["typeContrat"]=$attrTypeContrat[1];
+        $this->load->view("pages/contrat/changementContrat", $data);
+    }
+    public function etablirAvantages(){
+        $dateContratTravail=date("Y-m-d", strtotime($this->input->post("dateActuelle")));
+        $idEmploye=$this->input->post("idEmploye");
+        $idRecrutement=$this->input->post("idRecrutement");
+        $duree=$this->input->post("dureeContratChange");
+        $cnaps=$this->input->post("cnaps");
+        $ostie=$this->input->post("ostie");
+        $salaireBrut=$this->input->post("salaire_brut");
+        $idContratTravail=$this->chgtContrat->saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
+        $data["idContratTravail"]=$idContratTravail;
+        $this->load->view("pages/contrat/etablirAvantage", $data);
+    }
+    public function saveAvantages(){
+        
+    }
     public function genererFichePoste() {
         $superieurs = $this->input->post('superieurs');
         $inferieurs = $this->input->post('inferieurs');
@@ -14,15 +51,20 @@ class ChgtContrat extends CI_Controller {
         if($idContratTravail > 0) {
             // update id_type_contrat dans employe
             $idEmploye = $data['info_user_recrutement_poste']->id_employe;
-            $new_type_contrat = $data['type_contrat'] == 'CDI' ? 100 : 10;
+            $new_type_contrat = $data['type_contrat'] == 'CDI' ? 3 : 2;
             if($this->chgtContrat->updateTypeContratEmploye($idEmploye, $new_type_contrat) != false) {
                 // insert hierarchie + atao ao anaty data le hierarchie
-                foreach ($superieurs as $key => $idEmpSuperieur) {
-                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+                if(empty($superieurs) == false) {
+                    foreach ($superieurs as $key => $idEmpSuperieur) {
+                        $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+                    }
                 }
-                foreach ($inferieurs as $key => $idEmpSubalterne) {
-                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+                if(empty($inferieurs) == false) {
+                    foreach ($inferieurs as $key => $idEmpSubalterne) {
+                        $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+                    }
                 }
+                
                 // insert avantage
                 foreach ($data['avantages']['nom'] as $key => $nom_avantage) {
                     $prix_avantage = $data['avantages']['prix'][$key];
@@ -31,7 +73,7 @@ class ChgtContrat extends CI_Controller {
 
                 $data['superieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, 1);
                 $data['inferieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, -1);
-                $this->load->view('pages/contrat/fichePoste', $data);
+                $this->load->view('pages/contrat/ficheGenere', $data);
             } 
         }
         else {

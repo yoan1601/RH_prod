@@ -7,7 +7,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('id_contrat_travail ', $idContratTravail);
         $this->db->where('position_hierarchie ', $position);
 
-        $query = $this->db->get('hierarchies');
+        $query = $this->db->get('v_hierarchie_info_user_poste');
         return $query->result();
     }
 
@@ -62,7 +62,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
 
-        $query = $this->db->get('v_recrutement_poste_info');
+        $query = $this->db->get('v_recrutement_poste_info_employe');
 
         return $query->result();
     }
@@ -71,7 +71,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('niveau > ', $niveau);
         $this->db->where('etat_info > ', 0);
 
-        $query = $this->db->get('v_recrutement_poste_info');
+        $query = $this->db->get('v_recrutement_poste_info_employe');
 
         return $query->result();
     }
@@ -86,6 +86,24 @@ class ChgtContratModel extends CI_Model {
         if(count($query)>0){
             return $query[0];
         }
+        return $query;
+    }
+    public function getTypeContrats(){
+        $query="select * from type_contrats where code_type_contrat<>1";
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+    }
+    public function saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut){
+        $query="insert into contrat_travails values (null, '%s', %s, %s, %s, %s, %s, %s)";
+        $query=sprintf($query, $dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
+        $this->db->query($query);
+        return $this->getLastIdContratTravail();
+    }
+    public function getLastIdContratTravail(){
+        $query="select max(id_contrat_travail) as last_id from contrat_travails";
+        $query=$this->db->query($query);
+        $query=$query->row();
         return $query;
     }
 }

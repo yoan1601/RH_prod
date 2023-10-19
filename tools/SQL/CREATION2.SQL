@@ -54,8 +54,10 @@ CREATE  TABLE contrat_travails (
 	id_recrutement_contrat_travail INT  NOT NULL     ,
 	duree_contrat_travail DECIMAL(10,2)       ,
 	affiliation_cnaps    INT  NOT NULL     ,
-	affiliation_organisme_sanitaire INT  NOT NULL     
+	affiliation_organisme_sanitaire INT  NOT NULL     ,
+	salaire_brut         DECIMAL(10,2)       
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 ALTER TABLE contrat_travails ADD CONSTRAINT fk_contrat_travails_employes FOREIGN KEY ( id_employe_contrat_travail ) REFERENCES employes( id_employe ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
