@@ -1,5 +1,3 @@
-CREATE SCHEMA rh_prod;
-
 CREATE  TABLE employes ( 
 	id_employe           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	matricule_employe    VARCHAR(50)  NOT NULL     ,
@@ -18,8 +16,12 @@ CREATE  TABLE hierarchies (
 	id_hierarchie        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_employe_hierarchie INT  NOT NULL     ,
 	id_employe_collaborateur INT  NOT NULL     ,
-	position_hierarchie  INT  NOT NULL     
- ) engine=InnoDB;
+	position_hierarchie  INT  NOT NULL     ,
+	id_contrat_travail   INT       
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+hierarchies ADD CONSTRAINT fk_hierarchies_contrat_travails FOREIGN KEY ( id_contrat_travail ) REFERENCES rh_prod.contrat_travails( id_contrat_travail ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 CREATE  TABLE postes ( 
 	id_poste             INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,

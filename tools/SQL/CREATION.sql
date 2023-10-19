@@ -169,7 +169,7 @@ CREATE  TABLE cv (
 	id_recrutement_cv    INT  NOT NULL     ,
 	etat_cv              INT  NOT NULL DEFAULT (1)    ,
 	id_poste_cv          INT       
- ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
 
