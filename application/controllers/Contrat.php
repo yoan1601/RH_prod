@@ -50,6 +50,25 @@ class Contrat extends CI_Controller {
         // var_dump($data);
 		$this->load->view('pages/contrat/contratEssaieGenere',$data);
     }
+    public function detailContratEssai($idContratEssai){
+        $contrat=$this->contrat->getContratEssaiById($idContratEssai);
+        $data['dateActuelle'] = $contrat->date_contrat_essai;
+        $data['salaire_brut'] = $contrat->salaire_brut_essai;
+        $data['salaire_net'] = $contrat->salaire_net_essai;
+        $data['duree_contrat'] = $contrat->duree_contrat_essai;
+        $data['info_user'] = $this->contrat->getInfoById($contrat->id_info_contrat_essai);
+        $data['recrutement'] = $this->contrat->getRecrutementById($contrat->id_recrutement_contrat_essai);
+        $data['services'] = $this->service->getAllServices();
+        $matricule=$contrat->matricule_employe;
+        $data['matricule']=$matricule;
+        if($data['info_user']->sexe_info=='1'){
+            $data['genre']="Homme";
+        }else{
+            $data['genre']="Femme";
+        }
+        // var_dump($data);
+		$this->load->view('pages/contrat/contratEssaieGenere',$data);
+    }
 
     public function contracter($idInfo, $idRecrutement) {
         $data['info_user'] = $this->contrat->getInfoById($idInfo);
