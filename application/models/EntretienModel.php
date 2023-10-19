@@ -139,11 +139,37 @@ class EntretienModel extends CI_Model {
 		return $admis;
 	}
 	public function getEntretiensByService($idService){
-		$query="select * from v_entretien_service where id_service_recrutement=%s";
+		$query="select * from v_entretien_services where id_service_recrutement=%s";
 		$query=sprintf($query, $idService);
         $query=$this->db->query($query);
         $query=$query->result();
         return $query;
+	}
+	public function getDetailsEntretien($idEntretien){
+		$query="select * from v_test_entretiens where id_entretien=%s";
+		$query=sprintf($query, $idEntretien);
+        $query=$this->db->query($query);
+        $query=$query->result();
+		if(count($query)>0){
+			$query=$query[0];
+			$query->personnes=$this->getPersonnesByEntretien($idEntretien);
+			$query->personnes=$this->sortPersonnesByNote($query->personnes);
+			$query->personnes=$this->getHoraireEntretien($query->personnes, $query->dateheure_entretien, $query->duree_entretien);
+			$query->nbCandidats=count($query->personnes);
+		}
+        return $query;
+	}
+	public function getPersonnesByEntretien($idEntretien){
+		$query="select * from v_personne_entretiens where id_entretien=%s";
+		$query=sprintf($query, $idEntretien);
+        $query=$this->db->query($query);
+        $query=$query->result();
+		foreach($query as $row){
+			$row->reponsesChoisies=$this->getReponsesChoisiesByTest($row->id_information_user, $row->id_test);
+			$test=$this->getTestById($row->id_test);
+			$row->note=$this->getNoteForPersonneByTest($row, $test->questions);
+		}
+		return $query;
 	}
 	public function saveSelectionTest($idTest, $idInfoUser){
 		$query="insert into test_selections values(null, %s, %s)";
@@ -163,10 +189,14 @@ class EntretienModel extends CI_Model {
 	public function getHoraireEntretien($personnes, $debut, $duree){
 		$liste=$personnes;
 		$debutEntretien=$debut;
-		foreach($liste as $p){
+		$debutEntretien=strtotime($debutEntretien);
+		$liste[0]->heure=$debutEntretien;
+		$liste[0]->heure=date('H:i:s', $liste[0]->heure);
+		$debutEntretien=date('Y-m-d H:i:s', $debutEntretien);
+		for($i=1;$i<count($liste);$i++){
 			$debutEntretien=strtotime($debutEntretien." + ".$duree." minute");
-			$p->heure=$debutEntretien;
-			$p->heure=date('H:i:s', $p->heure);
+			$liste[$i]->heure=$debutEntretien;
+			$liste[$i]->heure=date('H:i:s', $liste[$i]->heure);
 			$debutEntretien=date('Y-m-d H:i:s', $debutEntretien);
 		}
 		return $liste;

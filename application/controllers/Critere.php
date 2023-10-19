@@ -21,7 +21,11 @@ class Critere extends CI_Controller {
 	public function index()
 	{
 		$hommeJour=$this->input->post("hommeJour");
+		$mission=$this->input->post("mission");
+		$poste=$this->input->post("poste");
         $this->session->set_userdata("hommeJour", $hommeJour);
+		$this->session->set_userdata("mission", $mission);
+		$this->session->set_userdata("poste", $poste);
 		$data['services'] = $this->service->getAllServices();
 		$this->load->view('pages/creation_critere', $data);
 	}
@@ -38,10 +42,6 @@ class Critere extends CI_Controller {
                 $criteresOptions['coeff'.$i.$k] = $this->input->post('coeff'.$i.$k);
             }
         }
-
-		// var_dump('$nbCriteres '.$nbCriteres);
-		// var_dump($criteresOptions);
-
         $this->session->set_userdata('criteresOptions', $criteresOptions);
 
         redirect('recrutement/enregistreRecrutement');

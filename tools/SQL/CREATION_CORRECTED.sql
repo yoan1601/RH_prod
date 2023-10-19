@@ -17,13 +17,13 @@ CREATE  TABLE employes (
 	id_info_employe      INT  NOT NULL     ,
 	id_type_contrat_employe INT  NOT NULL     ,
 	etat_employe         INT   DEFAULT (1)    
- ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE entretien_selections ( 
 	id_entretien_selection INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_entretien_entretien_selection INT  NOT NULL     ,
 	id_info_entretien_selection INT  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE hierarchies ( 
 	id_hierarchie        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -56,7 +56,7 @@ CREATE  TABLE type_contrats (
 	id_type_contrat      INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	code_type_contrat    VARCHAR(35)  NOT NULL     ,
 	nom_type_contrat     VARCHAR(35)  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE  TABLE users ( 
 	id_user              INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -132,7 +132,7 @@ CREATE  TABLE contrat_essai (
 	salaire_brut_essai   DECIMAL(10,0)  NOT NULL     ,
 	salaire_net_essai    DECIMAL(10,0)  NOT NULL     ,
 	duree_contrat_essai  DECIMAL(10,0)  NOT NULL     
- ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_info_contrat_essai ON contrat_essai ( id_info_contrat_essai );
 
@@ -167,15 +167,12 @@ CREATE  TABLE cv (
 	id_info_user_cv      INT  NOT NULL     ,
 	dateheure_remplissage DATETIME  NOT NULL DEFAULT (now())    ,
 	id_recrutement_cv    INT  NOT NULL     ,
-	etat_cv              INT  NOT NULL DEFAULT (1)    ,
-	id_poste_cv          INT       
- ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+	etat_cv              INT  NOT NULL DEFAULT (1)    
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX fk_cv_recrutements ON cv ( id_recrutement_cv );
 
 CREATE INDEX fk_cv_information_users ON cv ( id_info_user_cv );
-
-CREATE INDEX id_poste_cv ON cv ( id_poste_cv );
 
 CREATE  TABLE cv_selections ( 
 	id_cv_selection      INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
@@ -209,7 +206,7 @@ CREATE  TABLE note_entretiens (
 	id_info_note_entretien INT       ,
 	note_entretien       DECIMAL(10,0)  NOT NULL     ,
 	id_entretien_note_entretien INT       
- ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE INDEX id_info_note_entretien ON note_entretiens ( id_info_note_entretien );
 
@@ -301,8 +298,6 @@ ALTER TABLE contrat_travails ADD CONSTRAINT fk_contrat_travails_recrutements FOR
 
 ALTER TABLE criteres ADD CONSTRAINT fk_criteres_recrutements FOREIGN KEY ( id_recrutement_critere ) REFERENCES recrutements( id_recrutement ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE cv ADD CONSTRAINT cv_ibfk_1 FOREIGN KEY ( id_poste_cv ) REFERENCES postes( id_poste ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 ALTER TABLE cv ADD CONSTRAINT fk_cv_information_users FOREIGN KEY ( id_info_user_cv ) REFERENCES information_users( id_information_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE cv ADD CONSTRAINT fk_cv_recrutements FOREIGN KEY ( id_recrutement_cv ) REFERENCES recrutements( id_recrutement ) ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -358,8 +353,6 @@ ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_departements F
 ALTER TABLE user_departements ADD CONSTRAINT fk_user_departements_users FOREIGN KEY ( id_user_user_dept ) REFERENCES users( id_user ) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 CREATE VIEW v_choix_embauche AS select `s`.`id_service` AS `id_service`,`s`.`nom_service` AS `nom_service`,`s`.`etat_service` AS `etat_service`,`s`.`id_dept_service` AS `id_dept_service`,`info`.`id_information_user` AS `id_information_user`,`info`.`id_user_information_user` AS `id_user_information_user`,`info`.`nom_info` AS `nom_info`,`info`.`prenom_info` AS `prenom_info`,`info`.`sexe_info` AS `sexe_info`,`info`.`date_naissance_info` AS `date_naissance_info`,`info`.`contact_info` AS `contact_info`,`info`.`addresse_info` AS `addresse_info`,`info`.`etat_info` AS `etat_info`,`note_ent`.`id_entretien_note_entretien` AS `id_entretien`,`note_ent`.`note_entretien` AS `note_entretien`,`ent_select`.`id_info_entretien_selection` AS `id_info_entretien_selection`,`ent_select`.`id_entretien_entretien_selection` AS `id_entretien_entretien_selection` from (((((`rh_prod`.`information_users` `info` left join `rh_prod`.`note_entretiens` `note_ent` on((`note_ent`.`id_info_note_entretien` = `info`.`id_information_user`))) left join `rh_prod`.`entretien_selections` `ent_select` on(((`ent_select`.`id_info_entretien_selection` = `info`.`id_information_user`) and (`ent_select`.`id_entretien_entretien_selection` = `note_ent`.`id_entretien_note_entretien`)))) left join `rh_prod`.`entretiens` `entre` on((`entre`.`id_entretien` = `note_ent`.`id_entretien_note_entretien`))) left join `rh_prod`.`recrutements` `recru` on((`recru`.`id_recrutement` = `entre`.`id_recrutement_entretien`))) left join `rh_prod`.`services` `s` on((`s`.`id_service` = `recru`.`id_service_recrutement`)));
-
-CREATE VIEW v_contrat_essai_info_employes AS select `rh_prod`.`contrat_essai`.`id_contrat_essai` AS `id_contrat_essai`,`rh_prod`.`contrat_essai`.`id_info_contrat_essai` AS `id_info_contrat_essai`,`rh_prod`.`contrat_essai`.`date_contrat_essai` AS `date_contrat_essai`,`rh_prod`.`contrat_essai`.`id_recrutement_contrat_essai` AS `id_recrutement_contrat_essai`,`rh_prod`.`contrat_essai`.`salaire_brut_essai` AS `salaire_brut_essai`,`rh_prod`.`contrat_essai`.`salaire_net_essai` AS `salaire_net_essai`,`rh_prod`.`contrat_essai`.`duree_contrat_essai` AS `duree_contrat_essai`,`rh_prod`.`information_users`.`id_information_user` AS `id_information_user`,`rh_prod`.`information_users`.`id_user_information_user` AS `id_user_information_user`,`rh_prod`.`information_users`.`nom_info` AS `nom_info`,`rh_prod`.`information_users`.`prenom_info` AS `prenom_info`,`rh_prod`.`information_users`.`sexe_info` AS `sexe_info`,`rh_prod`.`information_users`.`date_naissance_info` AS `date_naissance_info`,`rh_prod`.`information_users`.`contact_info` AS `contact_info`,`rh_prod`.`information_users`.`addresse_info` AS `addresse_info`,`rh_prod`.`information_users`.`etat_info` AS `etat_info`,`rh_prod`.`employes`.`id_employe` AS `id_employe`,`rh_prod`.`employes`.`matricule_employe` AS `matricule_employe`,`rh_prod`.`employes`.`id_info_employe` AS `id_info_employe`,`rh_prod`.`employes`.`id_type_contrat_employe` AS `id_type_contrat_employe`,`rh_prod`.`employes`.`etat_employe` AS `etat_employe`,`rh_prod`.`type_contrats`.`id_type_contrat` AS `id_type_contrat`,`rh_prod`.`type_contrats`.`code_type_contrat` AS `code_type_contrat`,`rh_prod`.`type_contrats`.`nom_type_contrat` AS `nom_type_contrat`,`rh_prod`.`recrutements`.`id_recrutement` AS `id_recrutement`,`rh_prod`.`recrutements`.`id_service_recrutement` AS `id_service_recrutement`,`rh_prod`.`recrutements`.`dateheure_recrutement` AS `dateheure_recrutement`,`rh_prod`.`recrutements`.`etat_recrutement` AS `etat_recrutement`,`rh_prod`.`recrutements`.`id_poste_recrutement` AS `id_poste_recrutement`,`rh_prod`.`recrutements`.`mission` AS `mission` from ((((`rh_prod`.`contrat_essai` join `rh_prod`.`information_users` on((`rh_prod`.`contrat_essai`.`id_info_contrat_essai` = `rh_prod`.`information_users`.`id_information_user`))) join `rh_prod`.`employes` on((`rh_prod`.`contrat_essai`.`id_info_contrat_essai` = `rh_prod`.`employes`.`id_info_employe`))) join `rh_prod`.`type_contrats` on((`rh_prod`.`employes`.`id_type_contrat_employe` = `rh_prod`.`type_contrats`.`id_type_contrat`))) join `rh_prod`.`recrutements` on((`rh_prod`.`contrat_essai`.`id_recrutement_contrat_essai` = `rh_prod`.`recrutements`.`id_recrutement`))) where (`rh_prod`.`type_contrats`.`code_type_contrat` = '1');
 
 CREATE VIEW v_detail_cv AS select `info`.`id_information_user` AS `id_information_user`,`info`.`id_user_information_user` AS `id_user_information_user`,`info`.`nom_info` AS `nom_info`,`info`.`prenom_info` AS `prenom_info`,`info`.`sexe_info` AS `sexe_info`,`info`.`date_naissance_info` AS `date_naissance_info`,`info`.`contact_info` AS `contact_info`,`info`.`addresse_info` AS `addresse_info`,`info`.`etat_info` AS `etat_info`,`rh_prod`.`cv`.`id_cv` AS `id_cv`,`cr`.`descri_critere` AS `critere`,`choix`.`choix_critere` AS `choix` from ((((`rh_prod`.`cv` left join `rh_prod`.`information_users` `info` on((`rh_prod`.`cv`.`id_info_user_cv` = `info`.`id_information_user`))) left join `rh_prod`.`cv_reponses` `cv_rep` on((`cv_rep`.`id_cv_cv_reponse` = `rh_prod`.`cv`.`id_cv`))) left join `rh_prod`.`criteres` `cr` on((`cv_rep`.`id_critere_cv_reponse` = `cr`.`id_critere`))) left join `rh_prod`.`choix_criteres` `choix` on((`cv_rep`.`id_choix_cv_reponse` = `choix`.`id_choix_critere`))) where (`rh_prod`.`cv`.`etat_cv` > 0);
 

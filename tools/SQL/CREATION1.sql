@@ -39,3 +39,4 @@ create table avantages(
 	foreign key(id_contrat_travail_avantage)
 		references contrat_travails(id_contrat_travail)
 )engine=InnoDB;
+alter table postes add foreign key(id_categorie_poste) references categories(id_categorie);
