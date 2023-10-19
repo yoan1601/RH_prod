@@ -94,4 +94,16 @@ class ChgtContratModel extends CI_Model {
         $query=$query->result();
         return $query;
     }
+    public function saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut){
+        $query="insert into contrat_travails values (null, '%s', %s, %s, %s, %s, %s, %s)";
+        $query=sprintf($query, $dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
+        $this->db->query($query);
+        return $this->getLastIdContratTravail();
+    }
+    public function getLastIdContratTravail(){
+        $query="select max(id_contrat_travail) as last_id from contrat_travails";
+        $query=$this->db->query($query);
+        $query=$query->row();
+        return $query;
+    }
 }
