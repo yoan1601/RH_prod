@@ -82,7 +82,7 @@ body{
     color: #52ffbd;
     transform: translateY(-1px);
     transition-timing-function: ease-in-out;
-    transition: .5s;
+    transition: .5s;cursor: pointer;
 }
 
 .toggle-button {
