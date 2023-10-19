@@ -2,42 +2,44 @@
 	$this->load->view('templates/header');
 	$this->load->view('templates/navbar');
 ?>
+<form action="<?= site_url('chgtContrat/genererFichePoste') ?>" method="post">
     <p><center><h2>Fiche de poste</h2></center></p>
     <div class="container-contratResume">
     <div class="firstPart">
-    <p><center><h3>Numero matricule</h3></center></p>
+    <p><center><h3><?= $matricule ?></h3></center></p>
         <p><h4>Informations personnelles de l'employee</h4></p>
-        <p>Nom:Rakoto</p>
-        <p>Prenom:Be</p>
-        <p>Genre:Homme</p>
-        <p>Contact:+261 38 901 90</p>
-        <p>Adresse:Lot NeinNeinNein</p>
+        <p>Nom : <?= $info_user_recrutement_poste->nom_info ?></p>
+        <p>Prenom : <?= $info_user_recrutement_poste->prenom_info ?></p>
+        <p>Genre : <?= $info_user_recrutement_poste->sexe_info ?></p>
+        <p>Contact : <?= $info_user_recrutement_poste->contact_info ?></p>
+        <p>Adresse : <?= $info_user_recrutement_poste->addresse_info ?></p>
         <p><h4>Informations sur la fonction</h4></p>
-        <p>Poste:</p>
-        <p>Mission:</p>
-        <p>Categorie:</p>
-        <p>Date de changement du contrat: 90</p>
-        <p>Affiliation CNAPS:OUI</p>
-        <p>Affiliation Organisme sanitaire:OUI</p>
+        <p>Poste : <?= $info_user_recrutement_poste->nom_poste ?></p>
+        <p>Mission : <?= $info_user_recrutement_poste->mission ?></p>
+        <p>Categorie : <?= $info_user_recrutement_poste->nom_categorie ?></p>
+        <p>Date de changement du contrat :  <?= $dateActuelle ?></p>
+        <p>Affiliation CNAPS : <?= $cnaps ?></p>
+        <p>Affiliation Organisme sanitaire : <?= $sanitaire ?></p>
     </div>
     <div class="secondPart">
         <p><h4>Listes des avantages</h4></p>
-        <p>Iphone 15 pro max</p>
-        <p>Lamborghini Urus V10</p>
-        <p>Villa au bord de la plage</p>
+        <?php foreach ($avantages['nom'] as $key => $avantage) { ?>
+        <p><?= $avantage ?></p>
+        <?php } ?>
         <p><h4>Superieur hierarchique</h4></p>
-        <p><input type="checkbox" name="" id=""> IT manager</p>
-        <p><input type="checkbox" name="" id=""> IT manager</p>
-        <p><input type="checkbox" name="" id=""> IT manager</p>
+        <?php foreach ($superieurs as $key => $sup) { ?>
+        <p><input type="checkbox" name="superieurs[]" id="" value="<?= $sup->id_employe ?>"><?= $sup->nom_poste ?> - <?= $sup->nom_info ?> <?= $sup->prenom_info ?></p>
+        <?php } ?>
         <p><h4>Subordonnes </h4></p>
-        <p><input type="checkbox" name="" id=""> IT dev</p>
-        <p><input type="checkbox" name="" id=""> IT test</p>
-        <p><input type="checkbox" name="" id=""> IT QA</p>
+        <?php foreach ($subalternes as $key => $inf) { ?>
+        <p><input type="checkbox" name="inferieurs[]" id="" value="<?= $inf->id_employe ?>"><?= $inf->nom_poste ?> - <?= $inf->nom_info ?> <?= $inf->prenom_info ?></p>
+        <?php } ?>
         <p class="trans">nunn</p>
     </div>
 
     </div>
         <p class="trans">nunn</p>
-    <center><button class="contrat">Genere le fiche de poste</button></center>
+    <center><button type="submit" class="contrat">Genere le fiche de poste</button></center>
+    </form>
 </body>
 </html>

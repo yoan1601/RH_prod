@@ -20,11 +20,6 @@ class Recrutement extends CI_Controller {
 	 */
 	public function index()
 	{
-        // echo "<form action='".site_url("recrutement/hommeJour")."' method='post'>
-        // <input type='number' name='hommeJour' value='100' min='0'>
-        // <button type='submit'>Valider</button>
-        // </form>";
-        $data = [];
         $data['services'] = $this->service->getAllServices();
         $data["idDept"]=$this->session->user->id_dept;
         $this->load->view('pages/home', $data);
@@ -43,24 +38,21 @@ class Recrutement extends CI_Controller {
         }
         $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/listAnnonce", $data);
-        /*$html="<ul>";
-        foreach($recrutements as $r){
-            $html.="<a href='".site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement)."'><li>".$r->dateheure_recrutement.", ".$r->besoins[0]->homme_jour."</li></a>";
-        }
-        $html.="</ul>";
-        echo $html;*/
     }
 
     public function hommeJour($idService){
         $this->session->set_userdata('idService', $idService);
         $data['services'] = $this->service->getAllServices();
+        $data['postes']=$this->poste->getPostesByService($idService);
         $this->load->view('pages/definitionBesoin', $data);
 		// redirect(site_url('critere'));
     }
     public function enregistreRecrutement(){
         $idService=$this->session->idService;
+        $poste=$this->session->poste;
+        $mission=$this->session->mission;
         $currentDateTime = new DateTime();
-        $this->recrutement->saveRecrutement($currentDateTime->format("Y-m-d H:i:s"), $idService);
+        $this->recrutement->saveRecrutement($currentDateTime->format("Y-m-d H:i:s"), $idService, $poste, $mission);
         $this->recrutement->saveBesoins($this->session->hommeJour);
 		$criteresOptions = $this->session->criteresOptions;
 		$this->recrutement->saveCritere($criteresOptions);
@@ -72,7 +64,6 @@ class Recrutement extends CI_Controller {
         $service=$this->service->getServiceById($this->session->idService);
         $dateAnnonce=$this->session->dateAnnonce;
         $criteresOptions=$this->session->criteresOptions;
-        // var_dump($criteresOptions);
 		$criteres=array();
         for($i=1;isset($criteresOptions["critere".$i]);$i++){
             array_push($criteres, $criteresOptions["critere".$i]);
@@ -101,12 +92,6 @@ class Recrutement extends CI_Controller {
         }
         $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/listAnnonce", $data);
-        /*$html="<ul>";
-        foreach($recrutements as $r){
-            $html.="<a href='".site_url('recrutement/genererAnnonceFromListe?idRecrutement='.$r->id_recrutement)."'><li>".$r->dateheure_recrutement.", ".$r->besoins[0]->homme_jour."</li></a>";
-        }
-        $html.="</ul>";
-        echo $html;*/
     }
     public function genererAnnonceFromListe(){
         $idRecrutement=$this->input->get("idRecrutement");

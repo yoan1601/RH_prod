@@ -35,3 +35,23 @@ create or replace view v_test_services as
     from tests
         join recrutements on tests.id_recrutement_test=recrutements.id_recrutement
         join services on recrutements.id_service_recrutement=services.id_service;
+
+create or replace view v_test_entretiens as
+    select *
+    from entretiens
+        join tests on entretiens.id_recrutement_entretien=tests.id_recrutement_test;
+
+create or replace view v_personne_entretiens as
+    select *
+    from v_test_entretiens
+        join test_selections on v_test_entretiens.id_test=test_selections.id_test_test_selection
+        join information_users on test_selections.id_info_user_test_selection=information_users.id_information_user;
+
+create or replace view v_contrat_essai_info_employes as
+    select *
+    from contrat_essai
+        join information_users on contrat_essai.id_info_contrat_essai=information_users.id_information_user
+        join employes on contrat_essai.id_info_contrat_essai=employes.id_info_employe
+        join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat
+        join recrutements on contrat_essai.id_recrutement_contrat_essai=recrutements.id_recrutement
+    where type_contrats.code_type_contrat='1';
