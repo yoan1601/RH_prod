@@ -55,3 +55,9 @@ create or replace view v_contrat_essai_info_employes as
         join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat
         join recrutements on contrat_essai.id_recrutement_contrat_essai=recrutements.id_recrutement
     where type_contrats.code_type_contrat='1';
+
+create or replace view v_essai_info_employe_poste as
+    select *
+    from v_contrat_essai_info_employes as v
+        join postes on v.id_poste_recrutement=postes.id_poste
+        join categories on postes.id_categorie_poste=categories.id_categorie;
