@@ -23,7 +23,7 @@
                         <td><?= $c->nom_info." ".$c->prenom_info ?></td>
 						<td><?= $c->fin_contrat_essai ?></td>
                         <td><?= $c->jours_restant ?> jours</td>
-						<td class="listeAdmis"><a href="<?= site_url("contrat/detailContratEssai/".$c->id_contrat_essai) ?>"><button>Detail</button></a><button class="embauche">changement de contrat</button></td>
+						<td class="listeAdmis"><a href="<?= site_url("contrat/detailContratEssai/".$c->id_contrat_essai) ?>"><button>Detail</button></a><a href="<?= site_url("chgtContrat/choixContrat/".$c->id_contrat_essai) ?>"><button class="embauche">changement de contrat</button></a></td>
 					</tr>
 					<?php } ?>
 				</table>

@@ -10,7 +10,7 @@
     <div class="container-type">
         <div class="CD">
             <div class="photo-choix1"></div>
-            <center><h2><input type="radio" name="" id=""> CDI</h2>
+            <center><h2><input type="radio" name="type_contrat" value="" id=""> CDI</h2>
             <p>Contrat a duree indeterminee</p></center>
         </div>
         <div class="CD">
