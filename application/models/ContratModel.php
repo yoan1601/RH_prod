@@ -87,7 +87,7 @@ class ContratModel extends CI_Model {
     }
 
     public function saveEmploye($idInfoUser){
-        $query="insert into employes values(null, null, %s, 1, 1)";
+        $query="insert into employes values(null, 'null', %s, 1, 1)";
         $query=sprintf($query, $idInfoUser);
         $this->db->query($query);
         return $this->saveMatricule($this->getLastIdEmploye($idInfoUser));
@@ -95,8 +95,9 @@ class ContratModel extends CI_Model {
 
     public function getLastIdEmploye($infoUser){
         $query="select max(id_employe) as last_id from employes where id_info_employe=%s";
-        $query=sprintf($query, $idInfoUser);
+        $query=sprintf($query, $infoUser);
         $query=$this->db->query($query);
+        $query=$query->result();
         if(count($query)>0){
             return $query[0]->last_id;
         }
@@ -105,9 +106,31 @@ class ContratModel extends CI_Model {
 
     public function saveMatricule($lastIdEmploye){
         $matricule="EMP".$lastIdEmploye;
-        $query="update employes set matricule='%s' where id_employe=%s";
-        $query=sprintf($query, $matricule);
+        $query="update employes set matricule_employe='%s' where id_employe=%s";
+        $query=sprintf($query, $matricule, $lastIdEmploye);
         $this->db->query($query);
         return $matricule;
+    }
+    public function listeContratEssai($idService){
+        $query="select * from v_contrat_essai_info_employes where id_service_recrutement=%s";
+        $query=sprintf($query, $idService);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        $currentDate=new DateTime();
+        foreach($query as $row){
+            $row->fin_contrat_essai=date("Y-M-d", strtotime($currentDate->format("Y-m-d")." + ".$row->duree_contrat_essai." day"));
+            $row->jours_restant=date_diff($currentDate, date_create($row->fin_contrat_essai))->days;
+        }
+        return $query;
+    }
+    public function getContratEssaiById($idContratEssai){
+        $query="select * from v_contrat_essai_info_employes where id_contrat_essai=%s";
+        $query=sprintf($query, $idContratEssai);
+        $query=$this->db->query($query);
+        $query=$query->row();
+        $currentDate=new DateTime();
+        $query->fin_contrat_essai=date("Y-M-d", strtotime($currentDate->format("Y-m-d")." + ".$query->duree_contrat_essai." day"));
+        $query->jours_restant=date_diff($currentDate, date_create($query->fin_contrat_essai))->days;
+        return $query;
     }
 }

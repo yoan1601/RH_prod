@@ -12,11 +12,11 @@
         </p>
         <p><label for="">Fais le <?= $dateActuelle ?></label></p>
         <p>
-        <h4>Informations personnelles de l'employee</h4>
+        <h4>Informations personnelles de l'employee <?= $matricule ?></h4>
         </p>
         <p>Nom : <?= $info_user->nom_info ?></p>
         <p>Prenom : <?= $info_user->prenom_info ?></p>
-        <p>Genre : <?= $info_user->sexe_info ?></p>
+        <p>Genre : <?= $genre ?></p>
         <p>Contact : <?= $info_user->contact_info ?></p>
         <p>Adresse : <?= $info_user->addresse_info ?></p>
         <hr>
