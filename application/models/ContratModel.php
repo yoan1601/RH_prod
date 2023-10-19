@@ -125,7 +125,7 @@ class ContratModel extends CI_Model {
         return $query;
     }
     public function getContratEssaiById($idContratEssai){
-        $query="select * from v_contrat_essai_info_employes where id_contrat_essai=%s";
+        $query="select * from v_essai_info_employe_poste where id_contrat_essai=%s";
         $query=sprintf($query, $idContratEssai);
         $query=$this->db->query($query);
         $query=$query->row();
