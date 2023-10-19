@@ -26,6 +26,18 @@ class ChgtContrat extends CI_Controller {
         $this->load->view("pages/contrat/changementContrat", $data);
     }
     public function etablirAvantages(){
+        $dateContratTravail=date("Y-m-d", strtotime($this->input->post("dateActuelle")));
+        $idEmploye=$this->input->post("idEmploye");
+        $idRecrutement=$this->input->post("idRecrutement");
+        $duree=$this->input->post("dureeContratChange");
+        $cnaps=$this->input->post("cnaps");
+        $ostie=$this->input->post("ostie");
+        $salaireBrut=$this->input->post("salaire_brut");
+        $idContratTravail=$this->chgtContrat->saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
+        $data["idContratTravail"]=$idContratTravail;
+        $this->load->view("pages/contrat/etablirAvantage", $data);
+    }
+    public function saveAvantages(){
         
     }
     public function genererFichePoste() {
