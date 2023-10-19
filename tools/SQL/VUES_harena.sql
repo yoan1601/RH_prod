@@ -1,3 +1,28 @@
+-- contrat_travails, employes, recrutements, services, postes, categories
+CREATE OR REPLACE VIEW v_contrat_travail_employe_recrutement_service_poste_categorie AS
+SELECT 
+*
+FROM contrat_travails ct 
+LEFT JOIN employes emp ON emp.id_employe = ct.id_employe_contrat_travail
+LEFT JOIN recrutements recru ON recru.id_recrutement = ct.id_recrutement_contrat_travail
+LEFT JOIN services s ON s.id_service = recru.id_service_recrutement
+LEFT JOIN postes p ON p.id_service_poste = s.id_service
+LEFT JOIN categories categ ON categ.id_categorie = p.id_categorie_poste
+LEFT JOIN information_users info ON info.id_information_user = emp.id_info_employe 
+GROUP BY emp.id_employe
+;
+
+-- recrutements, poste, info_user
+CREATE OR REPLACE VIEW v_recrutement_poste_info AS (
+SELECT 
+*
+FROM v_recrutement_poste vrp 
+LEFT JOIN cv ON cv.id_poste_cv = vrp.id_poste
+LEFT JOIN information_users info ON info.id_information_user = cv.id_info_user_cv
+LEFT JOIN categories categ ON categ.id_categorie = vrp.id_categorie_poste
+WHERE cv.id_cv IS NOT NULL
+);
+
 -- recrutements , postes
 CREATE OR REPLACE VIEW v_recrutement_poste AS (
 SELECT
