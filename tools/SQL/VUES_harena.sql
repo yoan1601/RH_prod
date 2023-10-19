@@ -56,6 +56,7 @@ LEFT JOIN entretien_selections ent_select ON ent_select.id_info_entretien_select
 LEFT JOIN entretiens entre ON entre.id_entretien = note_ent.id_entretien_note_entretien
 LEFT JOIN recrutements recru ON recru.id_recrutement = entre.id_recrutement_entretien
 LEFT JOIN services s ON s.id_service = recru.id_service_recrutement
+WHERE s.id_service is not null and ent_select.id_entretien_entretien_selection is not null
 );
 
 CREATE OR REPLACE VIEW v_liste_cv AS (
