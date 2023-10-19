@@ -34,3 +34,14 @@ insert into cv_reponses values(null, 2, 24, 2);
 insert into cv_reponses values(null, 2, 25, 3);
 --=================================================================================
 update departements set nom_dept='Administratif' where id_dept=1;
+
+INSERT INTO employes
+	( id_employe, matricule_employe, id_info_employe, id_type_contrat_employe, etat_employe) VALUES 
+    ( DEFAULT, 'EMP100', 1, 2, 1 ),
+    ( DEFAULT, 'EMP101', 2, 3, 1 );
+
+INSERT INTO contrat_travails
+	( id_contrat_travail, date_debut_contrat_travail, id_employe_contrat_travail, id_recrutement_contrat_travail, duree_contrat_travail, affiliation_cnaps, affiliation_organisme_sanitaire
+) VALUES 
+( DEFAULT, DEFAULT, 7, 1, 365, 1, 1 ),
+( DEFAULT, DEFAULT, 8, 1, NULL, 1, 0 );
