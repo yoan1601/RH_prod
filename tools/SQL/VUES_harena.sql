@@ -1,3 +1,12 @@
+-- recrutements, poste, info_user, employe
+CREATE OR REPLACE VIEW v_recrutement_poste_info_employe AS (
+SELECT 
+*
+FROM v_recrutement_poste_info vrpinfo 
+LEFT JOIN employes emp ON emp.id_info_employe = vrpinfo.id_information_user
+);
+
+
 -- contrat_travails, employes, recrutements, services, postes, categories
 CREATE OR REPLACE VIEW v_contrat_travail_employe_recrutement_service_poste_categorie AS
 SELECT 

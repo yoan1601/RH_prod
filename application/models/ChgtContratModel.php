@@ -62,7 +62,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
 
-        $query = $this->db->get('v_recrutement_poste_info');
+        $query = $this->db->get('v_recrutement_poste_info_employe');
 
         return $query->result();
     }
@@ -71,7 +71,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('niveau > ', $niveau);
         $this->db->where('etat_info > ', 0);
 
-        $query = $this->db->get('v_recrutement_poste_info');
+        $query = $this->db->get('v_recrutement_poste_info_employe');
 
         return $query->result();
     }
