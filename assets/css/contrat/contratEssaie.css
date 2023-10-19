@@ -222,3 +222,21 @@ option{
 .validation img:hover{
 cursor: pointer;
 }
+
+.list-paie{
+    width: 70%;
+    margin: auto;
+    margin-top: 5%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
+
+}
+
+.h td{
+    border-left: solid 1px ;
+}
+
+.vola td{
+    justify-content: space-between;
+}
