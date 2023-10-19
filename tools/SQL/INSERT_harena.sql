@@ -1,3 +1,7 @@
+INSERT INTO hierarchies
+	( id_hierarchie, id_employe_hierarchie, id_employe_collaborateur, position_hierarchie, id_contrat_travail) VALUES 
+    ( DEFAULT, 1, 2, 1, 1);
+
 INSERT INTO cv (id_info_user_cv, id_recrutement_cv, etat_cv)
 VALUES
 (6, 13, 1);
