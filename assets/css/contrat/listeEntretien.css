@@ -156,3 +156,7 @@ table{
 	transition: 0.3s;
     font-family: 'titillium_weblight';	
  }
+
+ .listeAdmis button{
+	margin-top: 5%;
+ }

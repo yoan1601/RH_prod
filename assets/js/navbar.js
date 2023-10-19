@@ -31,3 +31,15 @@ const liste = document.querySelector('.listeCv');
 cveur.addEventListener('click', () => {
 	liste.classList.toggle('active');
 });
+
+const demande1= document.getElementById('popupDemande');
+const popup = document.querySelector('.popupModule');
+demande1.addEventListener('click', () => {
+	popup.classList.toggle('active');
+});
+
+const quitbutton = document.querySelector('.quit');
+
+quitbutton.addEventListener('click', () => {
+	popup.classList.remove('active');
+});
