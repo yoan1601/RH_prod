@@ -2,7 +2,7 @@
 	$this->load->view('templates/header');
 	$this->load->view('templates/navbar');
 ?>
-    <form action="" method="post">
+    <form action="<?= site_url("contrat/etablirAvantages") ?>" method="post">
     <div class="container-contrat">
         <p class="trans">nunn</p>
         <p><center><h2>Changement de contrat</h2></center></p>

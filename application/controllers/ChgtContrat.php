@@ -25,6 +25,9 @@ class ChgtContrat extends CI_Controller {
         $data["typeContrat"]=$attrTypeContrat[1];
         $this->load->view("pages/contrat/changementContrat", $data);
     }
+    public function etablirAvantages(){
+        
+    }
     public function genererFichePoste() {
         $superieurs = $this->input->post('superieurs');
         $inferieurs = $this->input->post('inferieurs');
