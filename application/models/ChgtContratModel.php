@@ -7,7 +7,7 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('id_contrat_travail ', $idContratTravail);
         $this->db->where('position_hierarchie ', $position);
 
-        $query = $this->db->get('hierarchies');
+        $query = $this->db->get('v_hierarchie_info_user_poste');
         return $query->result();
     }
 

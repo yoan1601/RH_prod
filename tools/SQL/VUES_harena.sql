@@ -1,3 +1,37 @@
+-- hierarchie, info_user, employe, contrat_travail, recrutement, service, poste
+CREATE OR REPLACE VIEW v_hierarchie_info_user_poste AS (
+SELECT 
+vhinfo.*,
+s.*,
+p.*
+FROM v_hierarchie_info_user vhinfo 
+LEFT JOIN contrat_travails ct ON ct.id_employe_contrat_travail = vhinfo.id_employe_collaborateur
+LEFT JOIN recrutements recru ON recru.id_recrutement = ct.id_recrutement_contrat_travail
+LEFT JOIN services s ON s.id_service = recru.id_service_recrutement
+LEFT JOIN postes p ON p.id_service_poste = s.id_service
+GROUP BY vhinfo.id_employe
+);
+
+-- hierarchiem, info_user
+-- CREATE OR REPLACE VIEW v_hierarchie_info_user AS (
+-- SELECT 
+-- vhiu0.*,
+-- info_user.nom_info nom_collaborateur,
+-- info_user.prenom_info prenom_collaborateur
+-- FROM v_hierarchie_info_user0 vhiu0
+-- LEFT JOIN employes emp ON emp.id_employe = vhiu0.id_employe_collaborateur
+-- LEFT JOIN information_users info_user ON info_user.id_information_user = emp.id_info_employe
+-- );
+
+CREATE OR REPLACE VIEW v_hierarchie_info_user AS (
+SELECT 
+*
+FROM hierarchies h 
+LEFT JOIN employes emp ON emp.id_employe = h.id_employe_collaborateur
+LEFT JOIN information_users info_user ON info_user.id_information_user = emp.id_info_employe
+);
+
+
 -- recrutements, poste, info_user, employe
 CREATE OR REPLACE VIEW v_recrutement_poste_info_employe AS (
 SELECT 

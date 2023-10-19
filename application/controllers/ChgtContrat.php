@@ -36,15 +36,20 @@ class ChgtContrat extends CI_Controller {
         if($idContratTravail > 0) {
             // update id_type_contrat dans employe
             $idEmploye = $data['info_user_recrutement_poste']->id_employe;
-            $new_type_contrat = $data['type_contrat'] == 'CDI' ? 100 : 10;
+            $new_type_contrat = $data['type_contrat'] == 'CDI' ? 3 : 2;
             if($this->chgtContrat->updateTypeContratEmploye($idEmploye, $new_type_contrat) != false) {
                 // insert hierarchie + atao ao anaty data le hierarchie
-                foreach ($superieurs as $key => $idEmpSuperieur) {
-                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+                if(empty($superieurs) == false) {
+                    foreach ($superieurs as $key => $idEmpSuperieur) {
+                        $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+                    }
                 }
-                foreach ($inferieurs as $key => $idEmpSubalterne) {
-                    $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+                if(empty($inferieurs) == false) {
+                    foreach ($inferieurs as $key => $idEmpSubalterne) {
+                        $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+                    }
                 }
+                
                 // insert avantage
                 foreach ($data['avantages']['nom'] as $key => $nom_avantage) {
                     $prix_avantage = $data['avantages']['prix'][$key];
@@ -53,7 +58,7 @@ class ChgtContrat extends CI_Controller {
 
                 $data['superieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, 1);
                 $data['inferieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, -1);
-                $this->load->view('pages/contrat/fichePoste', $data);
+                $this->load->view('pages/contrat/ficheGenere', $data);
             } 
         }
         else {
