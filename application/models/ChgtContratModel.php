@@ -106,4 +106,14 @@ class ChgtContratModel extends CI_Model {
         $query=$query->row();
         return $query;
     }
+    public function saveManyAvantages($avantages, $idContratTravail){
+        foreach($avantages as $a){
+            $this->saveAvantage($a, $idContratTravail);
+        }
+    }
+    public function saveAvantage($avantage, $idContratTravail){
+        $query="insert into avantages values(null, %s, '%s', %s)";
+        $query=sprintf($query, $idContratTravail, $avantage["nom"], $avantage["prix"]);
+        $this->db->query($query);
+    }
 }

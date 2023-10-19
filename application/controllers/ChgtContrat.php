@@ -34,11 +34,18 @@ class ChgtContrat extends CI_Controller {
         $ostie=$this->input->post("ostie");
         $salaireBrut=$this->input->post("salaire_brut");
         $idContratTravail=$this->chgtContrat->saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
-        $data["idContratTravail"]=$idContratTravail;
+        $data["idContratTravail"]=$idContratTravail->last_id;
         $this->load->view("pages/contrat/etablirAvantage", $data);
     }
     public function saveAvantages(){
-        
+        $idContratTravail=$this->input->post("idContratTravail");
+        $avantages=array();
+        for($i=1;$this->input->post("nom_avantage".$i)!==null;$i++){
+            $avantages[$i-1]["nom"]=$this->input->post("nom_avantage".$i);
+            $avantages[$i-1]["prix"]=$this->input->post("prix_avantage".$i);
+        }
+        $this->chgtContrat->saveManyAvantages($avantages, $idContratTravail);
+        echo "HAAAAAAAAAAAAAAAAAAAAAAAA";
     }
     public function genererFichePoste() {
         $superieurs = $this->input->post('superieurs');
