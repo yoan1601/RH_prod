@@ -4,8 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ChgtContrat extends CI_Controller {
     public function choixContrat($idContratEssai){
         $data["idContratEssai"]=$idContratEssai;
+        $data["types_contrat"]=$this->chgtContrat->getTypeContrats();
         $data['services'] = $this->service->getAllServices();
         $this->load->view("pages/contrat/choixContrat", $data);
+    }
+    public function changementContrat(){
+        $type_contrat=$this->input->post("type_contrat");
+        $attrTypeContrat=explode(":", $type_contrat);
+        $contratEssai=$this->contrat->getContratEssaiById($this->input->post("idContratEssai"));
+        $dateActuelle=(new DateTime())->format("d/m/Y");
+        $dureeHTML="none";
+        if($attrTypeContrat[0]==10){
+            $dureeHTML="block";
+        }
+        $this->load->helper("genre");
+        $data["genre"]=getGenreName($contratEssai->sexe_info);
+        $data["contratEssai"]=$contratEssai;
+        $data["dateActuelle"]=$dateActuelle;
+        $data["dureeHTML"]=$dureeHTML;
+        $data["typeContrat"]=$attrTypeContrat[1];
+        $this->load->view("pages/contrat/changementContrat", $data);
     }
     public function genererFichePoste() {
         $superieurs = $this->input->post('superieurs');

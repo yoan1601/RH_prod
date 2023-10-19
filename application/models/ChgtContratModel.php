@@ -88,4 +88,10 @@ class ChgtContratModel extends CI_Model {
         }
         return $query;
     }
+    public function getTypeContrats(){
+        $query="select * from type_contrats where code_type_contrat<>1";
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+    }
 }
