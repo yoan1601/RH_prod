@@ -11,7 +11,7 @@ $this->load->view('templates/navbar');
 		<p></p>
 		<p class="fin">nun</p>
 		<p>
-		<h3 class="card-title"><?= $entretien_recrutement_service->nom_service ?> <?= $entretien_recrutement_service->mission ?></h3>
+		<h3 class="card-title"><?php if($entretien_recrutement_service != null) { ?><?= $entretien_recrutement_service->nom_service ?> <?= $entretien_recrutement_service->mission ?><?php } ?></h3>
 		</p>
 		<div class="list-group">
 			<table>
