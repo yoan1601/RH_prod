@@ -11,32 +11,35 @@ class FichePaieModel extends CI_Model {
         $data['plafond_cnaps'] = 20000;
 
         $dateActuelle = new DateTime();
+        $data['dateActuelle'] = $dateActuelle->format('Y-m-d');
 
         // Définit la date au 1er jour du mois en cours
         $datePremierDuMois = new DateTime($dateActuelle->format('Y-m-01'));
+        $data['datePremierDuMois'] = $datePremierDuMois->format('Y-m-d');
 
         // Calcule la différence en jours
         $interval = $dateActuelle->diff($datePremierDuMois);
         $nombreDeJours = $interval->days;
+        $data['nombreDeJours'] = $nombreDeJours;
         $data['salaire_debutMois_now'] = $nombreDeJours * $data['taux_journalier'];
 
-        $nombreAbsenceHeure = 0;
-        $data['absence_deductible'] = $nombreAbsenceHeure * -$data['taux_horaire'];
+        $data['nombreAbsenceHeure'] = 0;
+        $data['absence_deductible'] = $data['nombreAbsenceHeure'] * -$data['taux_horaire'];
 
         $data['total_prime'] = 0;
         //primes
         foreach ($data['allTypePrime'] as $key => $prime) {
-			$heurePrime = $data[$prime->nom_type_prime];
-            $data['montantPrime'.$prime->nom_type_prime] = $heurePrime * $data['taux_horaire'];
-            $data['total_prime'] += $data['montantPrime'.$prime->nom_type_prime];
+			$montantPrime = $data[$prime->nom_type_prime];
+            $data['total_prime'] += $montantPrime;
 		}
 
         //HS
         $data['total_HS'] = 0;
         foreach ($data['allHsMajoration'] as $key => $HS) {
-			$heureHS = $data[$HS->nom_type_HS];
-            $data['montantHS'.$HS->nom_type_HS] = $heureHS * ($data['taux_horaire'] * (1 + $HS->majoration));
-            $data['total_HS'] += $data['montantHS'.$HS->nom_type_HS];
+			$heureHS = $data[$HS->nom_majoration];
+            $data['tauxHS'.$HS->nom_majoration] = $data['taux_horaire'] * (1 + $HS->majoration);
+            $data['montantHS'.$HS->nom_majoration] = $heureHS * ($data['taux_horaire'] * (1 + $HS->majoration));
+            $data['total_HS'] += $data['montantHS'.$HS->nom_majoration];
 		}
 
         $data['tauxDroitConge'] = ($salaire_base - $data['avance']) / 30;
@@ -63,7 +66,7 @@ class FichePaieModel extends CI_Model {
                 }
             } else { // max tranche null
                 if($data['salaire_brut'] > $tranche->min_tranche) {
-                    $data['IRSA'.$tranche->pourcentage_irsa] = ($tranche->max_tranche - $tranche->min_tranche) * ($tranche->pourcentage_irsa / 100);
+                    $data['IRSA'.$tranche->pourcentage_irsa] = ($data['salaire_brut'] - $tranche->min_tranche) * ($tranche->pourcentage_irsa / 100);
                 }
             }
             $data['totalIRSA'] += $data['IRSA'.$tranche->pourcentage_irsa];
@@ -71,6 +74,9 @@ class FichePaieModel extends CI_Model {
 
         $data['total_retenue'] = $data['cnaps1pourcent'] +  $data['sanitaire'] + $data['totalIRSA'];
         $data['net_a_payer'] = $data['salaire_brut'] - ($data['total_retenue'] + $data['avance']);
+        $data['montant_imposable'] = $data['salaire_brut'] - ($data['cnaps1pourcent'] + $data['sanitaire']);
+
+        return $data;
     }
 
     public function getAllIRSA() {
@@ -80,16 +86,22 @@ class FichePaieModel extends CI_Model {
     }
 
     public function getLatestContratEssai($idEmploye) {
-        $this->db->where('date_contrat_essai ','MAX(date_contrat_essai)');
+        $query="SELECT MAX(date_contrat_essai) AS latestDate FROM v_recrutement_poste_info_employe_contrat_essai WHERE id_employe = ".$idEmploye;
+        $query=$this->db->query($query);
+        $query=$query->row();
+        $this->db->where('date_contrat_essai ',$query->latestDate);
         $this->db->where('id_employe ',$idEmploye);
         $query = $this->db->get('v_recrutement_poste_info_employe_contrat_essai');
         return $query->result()[0];
     }
 
     public function getLatestContratTravail($idEmploye) {
-        $this->db->where('date_debut_contrat_travail ','MAX(date_debut_contrat_travail)');
+        $query="SELECT MAX(date_debut_contrat_travail) AS latestDate FROM v_contrat_travail_employe_recrutement_service_poste_categorie WHERE id_employe = ".$idEmploye;
+        $query=$this->db->query($query);
+        $query=$query->row();
+        $this->db->where('date_debut_contrat_travail ',$query->latestDate);
         $this->db->where('id_employe_contrat_travail ',$idEmploye);
-        $query = $this->db->get('contrat_travails');
+        $query = $this->db->get('v_contrat_travail_employe_recrutement_service_poste_categorie');
         return $query->result()[0];
     }
 

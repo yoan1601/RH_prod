@@ -23,6 +23,12 @@ class FichePaie extends CI_Controller {
 		redirect('fichePaie/listeEmploye');
 	}
 
+	public function saveFiche() {
+		$data = $this->session->fiche_data;
+		// creer fiche de paie + recuperer id fiche de paie
+		// 
+	}
+
 	public function genererFichePaie() {
 		$idEmploye = $this->input->post('idEmploye');
 		$data['employe'] = $this->fichePaie->getEmployeById($idEmploye);
@@ -49,10 +55,12 @@ class FichePaie extends CI_Controller {
 		$data['allHsMajoration'] = $this->fichePaie->getAllHsMajoration();
 
 		foreach ($data['allTypePrime'] as $key => $prime) {
-			$data[$prime->nom_type_prime] = $this->input->post('prime_'.$prime->nom_type_prime); 
+			$montantPrime = $this->input->post('prime_'.$prime->nom_type_prime) == '' ? 0 : $this->input->post('prime_'.$prime->nom_type_prime); 
+			$data[$prime->nom_type_prime] = $montantPrime; 
 		}
 		foreach ($data['allHsMajoration'] as $key => $majoration) {
-			$data[$majoration->nom_majoration] = $this->input->post('hsMajoration_'.$majoration->id_majoration); 
+			$nbHeurHS = $this->input->post('hsMajoration_'.$majoration->id_majoration) == '' ? 0 : $this->input->post('hsMajoration_'.$majoration->id_majoration);
+			$data[$majoration->nom_majoration] = $nbHeurHS; 
 		}
 
 		$data['rappelPeriodeAnterieure'] = $this->input->post('rappelPeriodeAnterieure');
@@ -62,6 +70,8 @@ class FichePaie extends CI_Controller {
 		if($data['droitPreavis'] == '') $data['droitPreavis'] = 0;
 
 		$data['indemniteLicenciement'] = $this->input->post('indemniteLicenciement');
+		if($data['indemniteLicenciement'] == '') $data['indemniteLicenciement'] = 0;
+		
 		$idTypeVirement = $this->input->post('idTypeVirement');
 		$data['typeVirement'] = $this->fichePaie->getTypeVirementById($idTypeVirement);
 		$data['avance'] = $this->input->post('avance');
@@ -71,10 +81,16 @@ class FichePaie extends CI_Controller {
 		//CONGE  -> tokony azo avy any amle conge
 		$data['nbJourCongePaye'] = 1;
 
-		//PROCESSION calcul
-		$this->fichePaie->etablir_elements_calculs($data);
+		$data['nbChiffreApresVirugle'] = 2;
 
-		$this->load->view('pages/fichePaie/fichePaie.php', $data);
+		$services = $this->service->getAllServices();
+		//PROCESSION calcul
+		$data = $this->fichePaie->etablir_elements_calculs($data);
+
+		$this->session->set_userdata('fiche_data', $data);
+
+		var_dump($data);
+		$this->load->view('pages/fichePaie/fichePaie', ['data' => $data, 'services' => $services]);
 	}
 
     public function listeEmploye() {
@@ -94,7 +110,7 @@ class FichePaie extends CI_Controller {
 		$data['allTypeVirement'] = $this->fichePaie->getAllTypeVirement();
 		$data['allTypePrime'] = $this->fichePaie->getAllTypePrime();
 		$data['allHsMajoration'] = $this->fichePaie->getAllHsMajoration();
-		$this->load->view('back_test/preFichePaie', $data);
+		$this->load->view('pages/fichePaie/avantFiche', $data);
 	}
 
 }
