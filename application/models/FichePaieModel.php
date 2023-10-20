@@ -3,6 +3,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class FichePaieModel extends CI_Model {
 
+    public function insertDroitsSalaire($idFichePaie, $droits) {
+        foreach ($droits as $key => $droit) {
+            $donnee = array(
+                'id_fiche_droit_salaire' => $idFichePaie,
+                'droit_salaire' => $droit['libele'],
+                'montant_droit_salaire' => $droit['montant']
+            );
+            $this->db->insert('droit_salaires', $donnee);
+        }
+    }
+
+    public function insertHS($id_fiche_paie, $id_majoration_HS, $montant_HS) {
+        $data = array(
+            'id_fiche_hs' => $id_fiche_paie,
+            'id_majoration_hs' => $id_majoration_HS,
+            'montant_hs' => $montant_HS
+        );
+        $this->db->insert('heure_supplementaires', $data);
+        return $this->db->insert_id();
+    }
+
+    public function insertPrime($idFichePaie, $idTypePrime, $montantPrime) {
+        $data = array(
+            'id_fiche_prime' => $idFichePaie,
+            'id_type_prime_prime' => $idTypePrime,
+            'montant_prime' => $montantPrime
+        );
+        $this->db->insert('primes', $data);
+        return $this->db->insert_id();
+    }
+
+    public function insertFichePaie($data) {
+        $id_contrat_essai = null;
+        $id_contrat_travail = null;
+        
+        if($data['is_contrat_essai'] == 1) $id_contrat_essai = $data['contrat_actuel']->id_contrat_essai;
+        else $id_contrat_travail = $data['contrat_actuel']->id_contrat_travail;
+
+        $donnee =array(
+            'id_employe_fiche' => $data['employe']->id_employe,
+            'date_fiche_paie' => $data['dateActuelle'],
+            'id_contrat_travail' => $id_contrat_travail,
+            'id_contrat_essai' => $id_contrat_essai,
+            'id_type_virement_fiche' => $data['typeVirement']->id_type_virement 
+        );
+
+        $this->db->insert('fiche_paies', $donnee);
+        return $this->db->insert_id();
+    }
+
     public function etablir_elements_calculs($data) {
         $salaire_base = $data['salaire_base'];
         $data['taux_journalier'] = $salaire_base / 30;

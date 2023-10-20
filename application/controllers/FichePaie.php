@@ -26,7 +26,30 @@ class FichePaie extends CI_Controller {
 	public function saveFiche() {
 		$data = $this->session->fiche_data;
 		// creer fiche de paie + recuperer id fiche de paie
-		// 
+		$idFichePaie = $this->fichePaie->insertFichePaie($data);
+		//primes
+		foreach ($data['allTypePrime'] as $key => $prime) {
+			$montant_prime = $data[$prime->nom_type_prime];
+			$this->fichePaie->insertPrime($idFichePaie, $prime->id_type_prime, $montant_prime);
+		}
+		//HS
+		foreach ($data['allHsMajoration'] as $key => $majoration) {
+			$montant_HS = $data['montantHS'.$majoration->nom_majoration];
+			$this->fichePaie->insertHS($idFichePaie, $majoration->id_majoration, $montant_HS);
+		}
+		//droit
+		$montant_indemnite_licencement = $data['indemniteLicenciement'];
+		$montant_droit_preavis = $data['droitPreavis'];
+		$montant_rappel_droit_anterieur = $data['rappelPeriodeAnterieure'];
+
+		$droits = array(
+			0 => array( 'libele' => 'Indamnite de licencement', 'montant' => $montant_indemnite_licencement ),	
+			1 => array( 'libele' => 'Droit de preavis', 'montant' => $montant_droit_preavis ),	
+			2 => array( 'libele' => 'Rappel de droit anterieur', 'montant' => $montant_rappel_droit_anterieur )		
+		);
+
+		$this->fichePaie->insertDroitsSalaire($idFichePaie,$droits);
+		redirect('fichePaie');
 	}
 
 	public function genererFichePaie() {
@@ -45,10 +68,14 @@ class FichePaie extends CI_Controller {
 		// si non -> alaina le  salaire_brut_essai
 		$contrat_essai_actuel = $this->fichePaie->getLatestContratEssai($idEmploye);
 		$data['salaire_base'] = $contrat_essai_actuel->salaire_brut_essai; 
+		$data['contrat_actuel'] = $contrat_essai_actuel;
+		$data['is_contrat_essai'] = 1;
 		// si oui -> alaina le salaire_brut anle dernier contrat travail
 		if($manana_contrat_travail_ve > 0) {
 			$contrat_travail_actuel = $this->fichePaie->getLatestContratTravail($idEmploye);
 			$data['salaire_base'] = $contrat_travail_actuel->salaire_brut;
+			$data['contrat_actuel'] = $contrat_travail_actuel;
+			$data['is_contrat_essai'] = 0;
 		}
 
 		$data['allTypePrime'] = $this->fichePaie->getAllTypePrime();
@@ -89,7 +116,7 @@ class FichePaie extends CI_Controller {
 
 		$this->session->set_userdata('fiche_data', $data);
 
-		var_dump($data);
+		// var_dump($data);
 		$this->load->view('pages/fichePaie/fichePaie', ['data' => $data, 'services' => $services]);
 	}
 

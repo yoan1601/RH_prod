@@ -16,12 +16,12 @@ $this->load->view('templates/navbar');
         </p>
         <?php foreach ($allTypePrime as $key => $prime) { ?>
             <p>Prime <?= $prime->nom_type_prime ?> :
-            <p><input type="montant" placeholder="en jour" name="prime_<?= $prime->nom_type_prime ?>" id=""></p>
+            <p><input type="number" step="0.01" placeholder="montant" name="prime_<?= $prime->nom_type_prime ?>" id=""></p>
             </p>
         <?php } ?>
         <?php foreach ($allHsMajoration as $key => $majoration) { ?>
             <p>Heures supplementaires <?= $majoration->nom_majoration ?> % :
-            <p><input type="number" placeholder="en heure" name="hsMajoration_<?= $majoration->id_majoration ?>" id=""></p>
+            <p><input type="number" step="0.01" placeholder="en heure" name="hsMajoration_<?= $majoration->id_majoration ?>" id=""></p>
             </p>
         <?php } ?>
     </div>
@@ -29,13 +29,13 @@ $this->load->view('templates/navbar');
         <p class="trans">nunn</p>
         <p class="trans">nunn</p>
         <p>Rappel sur periode anterieur:
-        <p><input type="number" placeholder="montant" name="rappelPeriodeAnterieure" id=""></p>
+        <p><input type="number" step="0.01" placeholder="montant" name="rappelPeriodeAnterieure" id=""></p>
         </p>
         <p>Droits de preavis:
-        <p><input type="number" placeholder="montant" name="droitPreavis" id=""></p>
+        <p><input type="number" step="0.01" placeholder="montant" name="droitPreavis" id=""></p>
         </p>
         <p>Indamnites de licencement:
-        <p><input type="number" placeholder="montant" name="indemniteLicenciement" id=""></p>
+        <p><input type="number" step="0.01" placeholder="montant" name="indemniteLicenciement" id=""></p>
         </p>
         <p>Type de virement:
         <p>
@@ -46,7 +46,9 @@ $this->load->view('templates/navbar');
             </select>
         </p>
         </p>
-
+        <p>Avance:
+        <p><input type="number" step="0.01" placeholder="montant" name="avance" id=""></p>
+        </p>
         <p class="trans">nunn</p>
     </div>
 
