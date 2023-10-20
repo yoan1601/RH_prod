@@ -61,3 +61,19 @@ create or replace view v_essai_info_employe_poste as
     from v_contrat_essai_info_employes as v
         join postes on v.id_poste_recrutement=postes.id_poste
         join categories on postes.id_categorie_poste=categories.id_categorie;
+
+create or replace view v_contrat_travail_info_employe as
+    select *
+    from contrat_travails
+        join employes on contrat_travails.id_employe_contrat_travail=employes.id_employe
+        join information_users on employes.id_info_employe=information_users.id_information_user
+        join recrutements on contrat_travails.id_recrutement_contrat_travail=recrutements.id_recrutement
+        join postes on recrutements.id_poste_recrutement=postes.id_poste
+        join categories on postes.id_categorie_poste=categories.id_categorie
+        join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat;
+
+create or replace view v_info_employes as
+    select *
+    from employes
+        join information_users on employes.id_info_employe=information_users.id_information_user
+        join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat;

@@ -1,3 +1,30 @@
+INSERT INTO contrat_essai
+	( id_contrat_essai, id_info_contrat_essai, date_contrat_essai, id_recrutement_contrat_essai, salaire_brut_essai, salaire_net_essai, duree_contrat_essai) VALUES ( DEFAULT, 8, '2023-04-01', 7, 4000000, 2000000, 286 );
+
+INSERT INTO contrat_essai
+	( id_contrat_essai, id_info_contrat_essai, date_contrat_essai, id_recrutement_contrat_essai, salaire_brut_essai, salaire_net_essai, duree_contrat_essai) VALUES ( DEFAULT, 4, '2023-01-01', 7, 2500000, 2000000, 360 ),
+    ( DEFAULT, 5, '2023-02-01', 7, 1520000, 1000000, 180 ),
+    ( DEFAULT, 6, '2023-03-01', 7, 3000000, 1500000, 200 );
+
+INSERT INTO hs_majorations
+	(majoration, nom_majoration) VALUES ( 30 , '30'),
+     ( 40 , '40'),
+     ( 50 , '50'),
+     ( 100, '100' ),
+     ( 30, 'heures de nuit' );
+
+INSERT INTO type_primes
+	(nom_type_prime) VALUES 
+    ( 'rendement' ),
+    ( 'anciennete' ),
+    ( 'diverses' );
+
+INSERT INTO type_virements
+	(nom_type_virement) VALUES 
+    ( 'Virement cheque' ),
+    ( 'Espece' );
+
+
 INSERT INTO hierarchies
 	( id_hierarchie, id_employe_hierarchie, id_employe_collaborateur, position_hierarchie, id_contrat_travail) VALUES 
     ( DEFAULT, 1, 2, 1, 1);

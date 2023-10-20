@@ -59,20 +59,22 @@ class ChgtContratModel extends CI_Model {
     }
 
     public function getSubalternes($niveau) {
-        $this->db->where('niveau < ', $niveau);
+        /*$this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
-
-        $query = $this->db->get('v_recrutement_poste_info_employe');
-
+        $query = $this->db->get('v_recrutement_poste_info_employe');*/
+        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0";
+        $query=sprintf($query, $niveau);
+        $query=$this->db->query($query);
         return $query->result();
     }
 
     public function getSuperieurHierarchiques($niveau) {
-        $this->db->where('niveau > ', $niveau);
-        $this->db->where('etat_info > ', 0);
-
-        $query = $this->db->get('v_recrutement_poste_info_employe');
-
+        /*$this->db->where('niveau > ', $niveau);
+        $this->db->where('etat_info > ', 0);*/
+        //$query = $this->db->get('v_recrutement_poste_info_employe');
+        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0";
+        $query=sprintf($query, $niveau);
+        $query=$this->db->query($query);
         return $query->result();
     }
     
@@ -104,6 +106,37 @@ class ChgtContratModel extends CI_Model {
         $query="select max(id_contrat_travail) as last_id from contrat_travails";
         $query=$this->db->query($query);
         $query=$query->row();
+        return $query;
+    }
+    public function saveManyAvantages($avantages, $idContratTravail){
+        foreach($avantages as $a){
+            $this->saveAvantage($a, $idContratTravail);
+        }
+    }
+    public function saveAvantage($avantage, $idContratTravail){
+        $query="insert into avantages values(null, %s, '%s', %s)";
+        $query=sprintf($query, $idContratTravail, $avantage["nom"], $avantage["prix"]);
+        $this->db->query($query);
+    }
+    public function getContratTravailById($idContratTravail){
+        $query="select * from v_contrat_travail_info_employe where id_contrat_travail=%s";
+        $query=sprintf($query, $idContratTravail);
+        $query=$this->db->query($query);
+        $query=$query->row();
+        if(isset($query)){
+            $query->salaire_brut_string=number_format($query->salaire_brut, 2, ",", " ");
+            $query->avantages=$this->getAvantagesForContratTravail($idContratTravail);
+        }
+        return $query;
+    }
+    public function getAvantagesForContratTravail($idContratTravail){
+        $query="select * from avantages where id_contrat_travail_avantage=%s";
+        $query=sprintf($query, $idContratTravail);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        foreach($query as $row){
+            $row->prix_string=number_format($row->prix_avantage, 2, ",", " ");
+        }
         return $query;
     }
 }
