@@ -1,3 +1,14 @@
+-- recrutements, poste, info_user, employe, contrat_essaie
+CREATE OR REPLACE VIEW v_recrutement_poste_info_employe_contrat_essai AS (
+SELECT
+*,
+DATEDIFF(CURRENT_DATE, essai.date_contrat_essai) AS anciennete
+FROM v_recrutement_poste_info_employe vrpinfoemp 
+LEFT JOIN contrat_essai essai ON essai.id_info_contrat_essai = vrpinfoemp.id_info_employe
+WHERE essai.id_contrat_essai IS NOT NULL
+GROUP BY vrpinfoemp.id_employe
+);
+
 -- hierarchie, info_user, employe, contrat_travail, recrutement, service, poste
 CREATE OR REPLACE VIEW v_hierarchie_info_user_poste AS (
 SELECT 
@@ -63,7 +74,8 @@ FROM v_recrutement_poste vrp
 LEFT JOIN cv ON cv.id_poste_cv = vrp.id_poste
 LEFT JOIN information_users info ON info.id_information_user = cv.id_info_user_cv
 LEFT JOIN categories categ ON categ.id_categorie = vrp.id_categorie_poste
-WHERE cv.id_cv IS NOT NULL
+LEFT JOIN employes emp ON emp.id_info_employe = info.id_information_user
+WHERE cv.id_cv IS NOT NULL AND emp.id_employe IS NOT NULL
 );
 
 -- recrutements , postes
