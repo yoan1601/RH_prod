@@ -142,5 +142,6 @@ $autoload['model'] = array(
     'ContratModel' => 'contrat',
     'PosteModel' => 'poste',
     'ChgtContratModel' => 'chgtContrat',
-    'FichePaieModel' => 'fichePaie'
+    'FichePaieModel' => 'fichePaie',
+    'CongeModel' => 'conge'
 );

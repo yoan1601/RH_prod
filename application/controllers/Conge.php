@@ -22,4 +22,8 @@ class Conge extends CI_Controller {
         $data["devise"]="Ar";
         $this->load->view("pages/employesConge/fichePoste", $data);
     }
+    public function demandeConge($idEmploye){
+        $data["idEmploye"]=$idEmploye;
+        $this->load->view("pages/employesConge/demandeConge", $data);
+    }
 } ?>

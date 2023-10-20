@@ -21,7 +21,7 @@
                         <td><?= $e->matricule_employe ?></td>
                         <td><?= $e->nom_info." ".$e->prenom_info ?></td>
 						<td><?= $e->nom_poste ?></td>
-						<td class="listeAdmis"><a href="<?= site_url("conge/afficheFichePosteForEmploye/".$e->id_contrat_travail) ?>"><button>Fiche de poste</button></a><button class="embauche">demande conge</button></td>
+						<td class="listeAdmis"><a href="<?= site_url("conge/afficheFichePosteForEmploye/".$e->id_contrat_travail) ?>"><button>Fiche de poste</button></a><a href=""><button class="embauche">demande conge</button></a></td>
 					</tr>
 					<?php } ?>
 				</table>

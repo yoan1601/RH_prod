@@ -77,3 +77,29 @@ create or replace view v_info_employes as
     from employes
         join information_users on employes.id_info_employe=information_users.id_information_user
         join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat;
+
+create or replace view v_demande_conge_type as
+    select *
+    from demande_conges
+        join type_conges on demande_conges.id_type_conge_demande_conge=type_conges.id_type_conge;
+
+create or replace view v_conges_total as
+    select employes.id_employe, (datediff((select now()), contrat_essai.date_contrat_essai)/30)*2.5 as total_conges
+    from employes
+        join contrat_essai on employes.id_info_employe=contrat_essai.id_info_contrat_essai
+    group by employes.id_employe;
+
+create or replace view v_conges_restant as
+    select v_conges_total.id_employe, v_conges_total.total_conges-v_conges_demandes.heures_demandes as conges_restant
+    from v_conges_total
+        join v_conges_demandes on v_conges_total.id_employe=v_conges_demandes.id_employe_demande_conge;
+
+create or replace view v_conges_demandes as
+    select id_employe_demande_conge, sum(timestampdiff(HOUR, fin_demande_conge, debut_demande_conge)) as heures_demandes
+    from v_demande_conge_type
+    where est_deductible=1;
+
+create or replace view v_conges_non_deductibles_demandes as
+    select id_employe_demande_conge, sum(timestampdiff(HOUR, fin_demande_conge, debut_demande_conge)) as heures_demandes
+    from v_demande_conge_type
+    where est_deductible=0;

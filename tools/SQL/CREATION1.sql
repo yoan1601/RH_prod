@@ -40,3 +40,22 @@ create table avantages(
 		references contrat_travails(id_contrat_travail)
 )engine=InnoDB;
 alter table postes add foreign key(id_categorie_poste) references categories(id_categorie);
+create table type_conges(
+	id_type_conge int primary key auto_increment,
+	nom_type_conge varchar(255) not null,
+	est_deductible int not null
+);
+create table demande_conges(
+	id_demande_conge int primary key auto_increment,
+	id_employe_demande_conge int,
+	debut_demande_conge datetime not null,
+	fin_demande_conge datetime not null,
+	id_type_conge_demande_conge int,
+	motif_demande_conge text,
+	date_demande_conge datetime not null,
+	etat_demande_conge int not null,
+	foreign key(id_employe_demande_conge)
+		references employes(id_employe),
+	foreign key(id_type_conge_demande_conge)
+		references type_conges(id_type_conge)
+);
