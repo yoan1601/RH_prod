@@ -59,20 +59,22 @@ class ChgtContratModel extends CI_Model {
     }
 
     public function getSubalternes($niveau) {
-        $this->db->where('niveau < ', $niveau);
+        /*$this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
-
-        $query = $this->db->get('v_recrutement_poste_info_employe');
-
+        $query = $this->db->get('v_recrutement_poste_info_employe');*/
+        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0";
+        $query=sprintf($query, $niveau);
+        $query=$this->db->query($query);
         return $query->result();
     }
 
     public function getSuperieurHierarchiques($niveau) {
-        $this->db->where('niveau > ', $niveau);
-        $this->db->where('etat_info > ', 0);
-
-        $query = $this->db->get('v_recrutement_poste_info_employe');
-
+        /*$this->db->where('niveau > ', $niveau);
+        $this->db->where('etat_info > ', 0);*/
+        //$query = $this->db->get('v_recrutement_poste_info_employe');
+        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0";
+        $query=sprintf($query, $niveau);
+        $query=$this->db->query($query);
         return $query->result();
     }
     

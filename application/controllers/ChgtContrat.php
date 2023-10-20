@@ -92,9 +92,21 @@ class ChgtContrat extends CI_Controller {
         }
         $idContratTravail=$this->chgtContrat->saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
         $this->chgtContrat->saveManyAvantages($avantages, $idContratTravail->last_id);
-        echo "HAAAAAAAAAAAAAAAAA";
+        redirect("chgtContrat/toFichePoste/".$idContratTravail->last_id);
     }
-    public function genererFichePoste() {
+    public function toFichePoste($idContratTravail) {
+        $contratTravail=$this->chgtContrat->getContratTravailById($idContratTravail);
+        $niveau_poste = $contratTravail->niveau;
+        $data['superieurs'] = $this->chgtContrat->getSuperieurHierarchiques($niveau_poste);
+        $data['subalternes'] = $this->chgtContrat->getSubalternes($niveau_poste);
+        $data["contratTravail"]=$contratTravail;
+        $this->load->helper("stringvalue");
+        $data["genre"]=getGenreName($contratTravail->sexe_info);
+        $data["cnaps"]=getBooleanValue($contratTravail->affiliation_cnaps);
+        $data["ostie"]=getBooleanValue($contratTravail->affiliation_organisme_sanitaire);
+        $this->load->view('pages/contrat/fichePoste', $data);
+    }
+    public function genererFichePoste($idContratTravail) {
         $superieurs = $this->input->post('superieurs');
         $inferieurs = $this->input->post('inferieurs');
 
@@ -134,17 +146,5 @@ class ChgtContrat extends CI_Controller {
             redirect('recrutement/index');
         }
 
-    }
-
-	public function toFichePoste() {
-        $data = $this->session->data_chgt_contrat;
-
-        $niveau_poste = $data['info_user_recrutement_poste']->niveau;
-
-        $data['superieurs'] = $this->chgtContrat->getSuperieurHierarchiques($niveau_poste);
-        $data['subalternes'] = $this->chgtContrat->getSubalternes($niveau_poste);
-
-        // var_dump($data);
-        $this->load->view('pages/contrat/fichePoste', $data);
     }
 }
