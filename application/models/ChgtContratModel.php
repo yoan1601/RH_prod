@@ -116,4 +116,25 @@ class ChgtContratModel extends CI_Model {
         $query=sprintf($query, $idContratTravail, $avantage["nom"], $avantage["prix"]);
         $this->db->query($query);
     }
+    public function getContratTravailById($idContratTravail){
+        $query="select * from v_contrat_travail_info_employe where id_contrat_travail=%s";
+        $query=sprintf($query, $idContratTravail);
+        $query=$this->db->query($query);
+        $query=$query->row();
+        if(isset($query)){
+            $query->salaire_brut_string=number_format($query->salaire_brut, 2, ",", " ");
+            $query->avantages=$this->getAvantagesForContratTravail($idContratTravail);
+        }
+        return $query;
+    }
+    public function getAvantagesForContratTravail($idContratTravail){
+        $query="select * from avantages where id_contrat_travail_avantage=%s";
+        $query=sprintf($query, $idContratTravail);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        foreach($query as $row){
+            $row->prix_string=number_format($row->prix_avantage, 2, ",", " ");
+        }
+        return $query;
+    }
 }
