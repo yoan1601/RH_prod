@@ -30,6 +30,7 @@ td{
 	overflow-y: auto;
 	max-height: 300px;
 	border-radius: 5px;
+	max-width: 1000px;
 }
 
 .card-body table{
@@ -155,4 +156,8 @@ table{
 	color: #e4e2e2;
 	transition: 0.3s;
     font-family: 'titillium_weblight';	
+ }
+
+ .listeAdmis button{
+	margin-top: 5%;
  }

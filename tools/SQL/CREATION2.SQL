@@ -1,3 +1,9 @@
+CREATE  TABLE hs_majorations ( 
+	id_majoration        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	majoration           DECIMAL(10,2)  NOT NULL     ,
+	nom_majoration       VARCHAR(255)       
+ ) engine=InnoDB;
+
 CREATE  TABLE employes ( 
 	id_employe           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	matricule_employe    VARCHAR(50)  NOT NULL     ,
