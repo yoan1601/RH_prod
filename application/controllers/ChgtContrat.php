@@ -183,10 +183,10 @@ class ChgtContrat extends CI_Controller {
         $idContratTravail=$this->chgtContrat->saveChangeContrat($dateContratTravail, $idEmploye, $idRecrutement, $duree, $cnaps, $ostie, $salaireBrut);
         $this->chgtContrat->saveManyAvantages($avantages, $idContratTravail->last_id);
         foreach ($superieurs as $key => $idEmpSuperieur) {
-            $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
+            $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail->last_id, 1);
         }
         foreach ($inferieurs as $key => $idEmpSubalterne) {
-            $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
+            $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail->last_id, -1);
         }
         redirect("recrutement/index");
     }
