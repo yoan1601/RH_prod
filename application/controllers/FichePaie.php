@@ -33,6 +33,17 @@ class FichePaie extends CI_Controller {
 		$data['anciennete'] = $annees.' annee(s) '.$mois.' mois '.$jours.' jour(s) ';
 
 		// salaire de base
+		// verifier si employe manana contrat_travails
+		$manana_contrat_travail_ve = $this->fichePaie->mananaContratTravail($idEmploye);
+
+		// si non -> alaina le  salaire_brut_essai
+		$contrat_essai_actuel = $this->fichePaie->getLatestContratEssai($idEmploye);
+		$data['salaire_brut'] = $contrat_essai_actuel->salaire_brut_essai; 
+		// si oui -> alaina le salaire_brut anle dernier contrat travail
+		if($manana_contrat_travail_ve > 0) {
+			$contrat_travail_actuel = $this->fichePaie->getLatestContratTravail($idEmploye);
+			$data['salaire_brut'] = $contrat_travail_actuel->salaire_brut;
+		}
 
 		$data['allTypePrime'] = $this->fichePaie->getAllTypePrime();
 		$data['allHsMajoration'] = $this->fichePaie->getAllHsMajoration();
