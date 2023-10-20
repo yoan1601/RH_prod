@@ -1,3 +1,11 @@
+INSERT INTO rh_prod.tranche_irsa
+	( id_tranche_irsa, min_tranche, max_tranche, pourcentage_irsa) VALUES 
+    ( DEFAULT, 0, 350000, 0),
+    ( DEFAULT, 350001, 400000, 5),
+    ( DEFAULT, 400001, 500000, 10),
+    ( DEFAULT, 500001, 600000, 15),
+    ( DEFAULT, 600000, null, 20);
+
 INSERT INTO contrat_essai
 	( id_contrat_essai, id_info_contrat_essai, date_contrat_essai, id_recrutement_contrat_essai, salaire_brut_essai, salaire_net_essai, duree_contrat_essai) VALUES ( DEFAULT, 8, '2023-04-01', 7, 4000000, 2000000, 286 );
 
