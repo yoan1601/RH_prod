@@ -84,6 +84,7 @@ SELECT
 *
 FROM recrutements recru  
 LEFT JOIN postes ON postes.id_poste = recru.id_poste_recrutement
+join categories on postes.id_categorie_poste=categories.id_categorie
 );
 
 --  entretien , recrutement , service

@@ -40,40 +40,22 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('id_employe ', $idEmploye);
         return $this->db->update('employes', $data);
     }
-
-    public function insertContratTravail($data) {
-        if(isset($data['dureeContrat']) == false) { $data['dureeContrat'] = null; }
-        $cnaps = $data['cnaps'] == 'OUI' ? 1 : 0; 
-        $sanitaire = $data['sanitaire'] == 'OUI' ? 1 : 0; 
-        $donnee = array(
-            'date_debut_contrat_travail' => $data['dateActuelle'],
-            'id_employe_contrat_travail' => $data['info_user_recrutement_poste']->id_employe,
-            'id_recrutement_contrat_travail' => $data['info_user_recrutement_poste']->id_recrutement,
-            'duree_contrat_travail' => $data['dureeContrat'],
-            'affiliation_cnaps' => $cnaps,
-            'affiliation_organisme_sanitaire' => $sanitaire
-        );
-
-        $this->db->insert('contrat_travails', $donnee);
-        return $this->db->insert_id();
-    }
-
-    public function getSubalternes($niveau) {
+    public function getSubalternes($niveau, $idInfo) {
         /*$this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
         $query = $this->db->get('v_recrutement_poste_info_employe');*/
-        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0";
-        $query=sprintf($query, $niveau);
+        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0 and id_information_user<>%s";
+        $query=sprintf($query, $niveau, $idInfo);
         $query=$this->db->query($query);
         return $query->result();
     }
 
-    public function getSuperieurHierarchiques($niveau) {
+    public function getSuperieurHierarchiques($niveau, $idInfo) {
         /*$this->db->where('niveau > ', $niveau);
         $this->db->where('etat_info > ', 0);*/
         //$query = $this->db->get('v_recrutement_poste_info_employe');
-        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0";
-        $query=sprintf($query, $niveau);
+        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0 and id_information_user<>%s";
+        $query=sprintf($query, $niveau, $idInfo);
         $query=$this->db->query($query);
         return $query->result();
     }

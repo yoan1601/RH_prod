@@ -135,7 +135,7 @@ class RecrutementModel extends CI_Model {
         return false;
     }
     public function getRecrutementById($idRecrutement){
-        $query="select * from recrutements where id_recrutement=%s";
+        $query="select * from v_recrutement_poste where id_recrutement=%s";
         $query=sprintf($query, $idRecrutement);
         $query=$this->db->query($query);
         $query=$query->result();
