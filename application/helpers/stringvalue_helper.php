@@ -5,4 +5,10 @@
         }
         return "Femme";
     }
+    function getBooleanValue($oui_non){
+        if($oui_non==1){
+            return "Oui";
+        }
+        return "Non";
+    }
 ?>

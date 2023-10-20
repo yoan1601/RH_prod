@@ -105,6 +105,156 @@ select {
 }
 
 option{
-    
     background-color: none;
+}
+
+.demande-card{
+    width: 70%;
+    margin: auto;
+    margin-top: 5%;
+    height: 60%;
+    border-radius: 10px;
+	box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
+}
+
+.demande-card input , .demande-card select{ 
+    width: 70%;
+    border-radius: 5px;
+    border: solid 1px gray;
+    height: 3em;
+    border-left: solid 3px green;
+}
+
+.demande-body{
+    width: 70%;
+    margin: auto;
+}
+
+.demande-group {
+    margin-left: 20%;
+}
+
+.demande-span{
+    color: white;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    height: 2em;
+    border-radius: 5px;
+    background-color: blueviolet;
+    transition: 0.4s;
+}
+
+.demande-span span{
+ margin-top: 0.5em;
+}
+
+.demande-span:hover{
+    transition: 0.4s;
+    width: 25%;
+    border: 1px solid blueviolet;
+    background-color: white;
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.popupModule{
+    display: none !important;
+}
+
+.popupModule.active{
+	display: block !important;
+	opacity: 1;
+	z-index: 999;
+    backdrop-filter: blur(7px) ;
+    height: 115vh;
+    width: 100%;
+    margin-top: -115vh;
+    position: relative;
+}
+
+.popupModule .validation{
+    margin-top: 10%;
+    width: 40%;
+    margin-left: 30%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
+}
+
+.gold{
+    margin-top: 10vh;
+}
+
+.validation .content-demande{
+    margin-left: 10%;
+}
+
+
+.validation center button {
+     height: 3em;
+     width: 40%;
+     border-radius: 5px;
+     color: white;
+     background-color: blueviolet;
+     border: none;
+     transition: 0.4s;
+}
+
+.validation center button:hover {
+    transition: 0.4s;
+    height: 3em;
+    width: 35%;
+    border-radius: 5px;
+    color: blueviolet;
+    background-color:white;
+    border: solid 1px  blueviolet;
+    cursor: pointer;
+}
+
+.validation img{
+    margin-top: -2%;
+    margin-left: 90%;
+    width: 40px;
+    height: 40px;
+}
+
+.validation img:hover{
+cursor: pointer;
+}
+
+.list-paie{
+    width: 70%;
+    margin: auto;
+    margin-top: 5%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow:0px 0px 6px rgba(128, 128, 128, 0.76);
+
+}
+
+.teny td{
+    width: 190px;
+    border-left: solid 1px ;
+}
+
+.teny{
+    overflow-y: auto;
+	overflow-x: auto;
+	max-height: 300px;
+    width: 1000px;
+    margin-left: 10%;
+    border-radius: 5px;
+}
+
+.etat{
+    width: 1700px;
+}
+
+.list .card-title{
+    margin-left: 5%;
+}
+
+.list table{
+    border: solid 1px gray;
 }

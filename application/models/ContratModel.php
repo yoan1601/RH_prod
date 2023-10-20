@@ -22,7 +22,7 @@ class ContratModel extends CI_Model {
     public function getRecrutementById($idRecrutement) {
         $this->db->where('id_recrutement ', $idRecrutement);
 
-        $query = $this->db->get('v_recrutement_poste');
+        $query = $this->db->get('v_recrutement_poste_info');
 
         return $query->row(); 
     }
@@ -132,6 +132,13 @@ class ContratModel extends CI_Model {
         $currentDate=new DateTime();
         $query->fin_contrat_essai=date("Y-M-d", strtotime($currentDate->format("Y-m-d")." + ".$query->duree_contrat_essai." day"));
         $query->jours_restant=date_diff($currentDate, date_create($query->fin_contrat_essai))->days;
+        return $query;
+    }
+    public function getEmployeById($idEmploye){
+        $query="select * from v_info_employes where id_employe=%s";
+        $query=sprintf($query, $idEmploye);
+        $query=$this->db->query($query);
+        $query=$query->row();
         return $query;
     }
 }
