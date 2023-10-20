@@ -22,7 +22,7 @@ $this->load->view('templates/navbar');
 				<?php foreach ($futurEmployes as $key => $emp) { ?>
 					<tr>
 						<td><?= $emp->nom_info  ?> <?= $emp->prenom_info ?></td>
-						<td class="listeAdmis"><a href="<?= site_url('contrat/contracter/'.$emp->id_information_user.'/'.$entretien_recrutement_service->id_recrutement) ?>"><button class="embauche">Choix d'embauche</button></a></td>
+						<td class="listeAdmis"><a href="<?= site_url('contrat/contracter/'.$emp->id_information_user.'/'.$entretien_recrutement_service->id_recrutement) ?>"><button class="embauche">Contracter</button></a></td>
 					</tr>
 				<?php } ?>
 			</table>

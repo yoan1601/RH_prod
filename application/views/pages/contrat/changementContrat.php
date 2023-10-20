@@ -18,14 +18,14 @@
         <p>Poste:<?= $contratEssai->nom_poste ?></p>
         <p>Mission:<?= $contratEssai->mission ?></p>
         <p>Categorie:<?= $contratEssai->nom_categorie ?></p>
-        <p>Date de changement du contrat:<?= $dateActuelle ?></p>
+        <p>Date de changement du contrat:<?= $dateActuelleAffiche ?></p>
         <p style="display:<?= $dureeHTML ?>">Duree du contrat<input type="number" name="dureeContratChange" value="0" min="0" id=""></p>
         <p>Affiliation CNAPS:<input type="radio" name="cnaps" value="1" id="" required>OUI<input type="radio" name="cnaps" value="0" id="">NON</p>
         <p>Affiliation Organisme sanitaire:<input type="radio" name="ostie" value="1" id="" required>OUI<input type="radio" name="ostie" value="0" id="">NON</p>
         <p>Salaire brut: <input type="number" step="0.01" name="salaire_brut" min="0"></p>
         <p class="trans">nunn</p>
     </div>
-    <input type="hidden" name="dateActuelle" value="<?= $dateActuelle ?>">
+    <input type="hidden" name="dateActuelle" value="<?= $dateActuelleValeur ?>">
     <input type="hidden" name="idEmploye" value="<?= $contratEssai->id_employe ?>">
     <input type="hidden" name="idRecrutement" value="<?= $contratEssai->id_recrutement ?>">
     <center><button type="submit" class="contrat">Etablir les avantages</button></center>
