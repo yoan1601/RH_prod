@@ -233,10 +233,28 @@ cursor: pointer;
 
 }
 
-.h td{
+.teny td{
+    width: 190px;
     border-left: solid 1px ;
 }
 
-.vola td{
-    justify-content: space-between;
+.teny{
+    overflow-y: auto;
+	overflow-x: auto;
+	max-height: 300px;
+    width: 1000px;
+    margin-left: 10%;
+    border-radius: 5px;
+}
+
+.etat{
+    width: 1700px;
+}
+
+.list .card-title{
+    margin-left: 5%;
+}
+
+.list table{
+    border: solid 1px gray;
 }

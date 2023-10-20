@@ -24,7 +24,9 @@
 
 .list-group{
 	overflow-y: auto;
+	overflow-x: auto;
 	max-height: 300px;
+	max-height: 1000px;
 	border-radius: 5px;
 }
 
@@ -103,3 +105,4 @@ table{
   .list{
 	margin-top: 5%;
   }
+

@@ -30,6 +30,7 @@ td{
 	overflow-y: auto;
 	max-height: 300px;
 	border-radius: 5px;
+	max-width: 1000px;
 }
 
 .card-body table{
