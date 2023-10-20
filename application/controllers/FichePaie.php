@@ -33,6 +33,17 @@ class FichePaie extends CI_Controller {
 		$data['anciennete'] = $annees.' annee(s) '.$mois.' mois '.$jours.' jour(s) ';
 
 		// salaire de base
+		// verifier si employe manana contrat_travails
+		$manana_contrat_travail_ve = $this->fichePaie->mananaContratTravail($idEmploye);
+
+		// si non -> alaina le  salaire_brut_essai
+		$contrat_essai_actuel = $this->fichePaie->getLatestContratEssai($idEmploye);
+		$data['salaire_base'] = $contrat_essai_actuel->salaire_brut_essai; 
+		// si oui -> alaina le salaire_brut anle dernier contrat travail
+		if($manana_contrat_travail_ve > 0) {
+			$contrat_travail_actuel = $this->fichePaie->getLatestContratTravail($idEmploye);
+			$data['salaire_base'] = $contrat_travail_actuel->salaire_brut;
+		}
 
 		$data['allTypePrime'] = $this->fichePaie->getAllTypePrime();
 		$data['allHsMajoration'] = $this->fichePaie->getAllHsMajoration();
@@ -45,10 +56,25 @@ class FichePaie extends CI_Controller {
 		}
 
 		$data['rappelPeriodeAnterieure'] = $this->input->post('rappelPeriodeAnterieure');
+		if($data['rappelPeriodeAnterieure'] == '') $data['rappelPeriodeAnterieure'] = 0;
+
 		$data['droitPreavis'] = $this->input->post('droitPreavis');
+		if($data['droitPreavis'] == '') $data['droitPreavis'] = 0;
+
 		$data['indemniteLicenciement'] = $this->input->post('indemniteLicenciement');
 		$idTypeVirement = $this->input->post('idTypeVirement');
 		$data['typeVirement'] = $this->fichePaie->getTypeVirementById($idTypeVirement);
+		$data['avance'] = $this->input->post('avance');
+
+		if($data['avance'] == '') $data['avance'] = 0;
+
+		//CONGE  -> tokony azo avy any amle conge
+		$data['nbJourCongePaye'] = 1;
+
+		//PROCESSION calcul
+		$this->fichePaie->etablir_elements_calculs($data);
+
+		$this->load->view('pages/fichePaie/fichePaie.php', $data);
 	}
 
     public function listeEmploye() {
@@ -57,7 +83,7 @@ class FichePaie extends CI_Controller {
 		$dateActuelle=(new DateTime())->format("d/m/Y");
 		$data['dateActuelle'] = $dateActuelle;
 		$data['services'] = $this->service->getAllServices();
-		$this->load->view('back_test/listeEmployeFiche', $data);
+		$this->load->view('pages/fichePaie/creationFichePaie.php', $data);
     }
 
 	public function creationMajFichePaie($idEmploye = 1) {
