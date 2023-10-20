@@ -2,7 +2,7 @@
 	$this->load->view('templates/header');
 	$this->load->view('templates/navbar');
 ?>
-<form action="<?= site_url('chgtContrat/saveChangementContrat') ?>" method="post">
+<form action="<?= site_url('chgtContrat/toFichePoste') ?>" method="post">
     <p><center><h2>Changement de contrat</h2></center></p>
     <p><center><h3><?= $employe->matricule_employe ?> type de contrat <?= $employe->nom_type_contrat ?></h3></center></p>
     <div class="container-contratResume">
