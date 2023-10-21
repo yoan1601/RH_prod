@@ -3,6 +3,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class FichePaieModel extends CI_Model {
 
+    public function getAllSommeFichePaieByIdFichePaie($id_fiche_paie) {
+        $this->db->where('id_fiche_paie', $id_fiche_paie);
+        $query = $this->db->get('v_total_prime_hs_indemnite_retenue_avance');
+        return $query->row();
+    }
+
+    public function getAllFichePaieData() {
+        $query = $this->db->get('v_fiche_paie');
+        $allFichePrime = $query->result();
+        foreach ($allFichePrime as $key => $fiche) {
+            $data['primes'.$fiche->id_fiche_paie] = $this->fichePaie->getAllPrimesByIdFichePaie($fiche->id_fiche_paie);
+            $data['droits'.$fiche->id_fiche_paie] = $this->fichePaie->getAllDroitSalaireByIdFichePaie($fiche->id_fiche_paie);
+            $data['HS'.$fiche->id_fiche_paie] = $this->fichePaie->getAllHsByIdFichePaie($fiche->id_fiche_paie);
+            $data['somme'.$fiche->id_fiche_paie] = $this->fichePaie->getAllSommeFichePaieByIdFichePaie($fiche->id_fiche_paie);
+            $data['salaire_net'.$fiche->id_fiche_paie] = $fiche->salaire_brut + $data['somme'.$fiche->id_fiche_paie]->total_prime + $data['somme'.$fiche->id_fiche_paie]->total_indemnite + $data['somme'.$fiche->id_fiche_paie]->total_hs - $data['somme'.$fiche->id_fiche_paie]->total_retenue; 
+            $data['net_a_payer'.$fiche->id_fiche_paie] = $data['salaire_net'.$fiche->id_fiche_paie] - $data['somme'.$fiche->id_fiche_paie]->total_avance;
+            $data['net_mois'.$fiche->id_fiche_paie] = $data['net_a_payer'.$fiche->id_fiche_paie] + $data['somme'.$fiche->id_fiche_paie]->total_indemnite;
+        }
+
+        return [ $allFichePrime, $data ];
+    }
+
+    public function getAllPrimesByIdFichePaie($id_fiche_paie) {
+        $this->db->where('id_fiche_prime', $id_fiche_paie);
+        $query = $this->db->get('v_prime');
+        return $query->result();
+    }
+
+    public function getAllDroitSalaireByIdFichePaie($id_fiche_paie) {
+        $this->db->where('id_fiche_droit_salaire', $id_fiche_paie);
+        $query = $this->db->get('droit_salaires');
+        return $query->result();
+    }
+
+    public function getAllHsByIdFichePaie($id_fiche_paie) {
+        $this->db->where('id_fiche_hs', $id_fiche_paie);
+        $query = $this->db->get('v_heure_supplementaires');
+        return $query->result();
+    }
+
+    public function insertAvance($idFichePaie, $montantAvance) {
+        $data = array(
+            'id_fiche_avance' => $idFichePaie,
+            'montant_avance' => $montantAvance
+        );
+        $this->db->insert('avances', $data);
+        return $this->db->insert_id();
+    }
+
+    public function insertRetenue($idFichePaie, $idTypeRetenue, $montantRetenue) {
+        $data = array(
+            'id_fiche_retenue' => $idFichePaie,
+            'id_type_retenue_retenue' => $idTypeRetenue,
+            'montant_retenue' => $montantRetenue
+        );
+        $this->db->insert('retenues', $data);
+        return $this->db->insert_id();
+    }
+
     public function insertDroitsSalaire($idFichePaie, $droits) {
         foreach ($droits as $key => $droit) {
             $donnee = array(

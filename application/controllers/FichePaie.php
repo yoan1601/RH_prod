@@ -23,6 +23,15 @@ class FichePaie extends CI_Controller {
 		redirect('fichePaie/listeEmploye');
 	}
 
+	public function listeFichePaie() {
+		$services = $this->service->getAllServices();
+		$allFichePaie = $this->fichePaie->getAllFichePaieData()[0];
+		$dataFichePaie = $this->fichePaie->getAllFichePaieData()[1];
+
+		$nbChiffreVirgule = 2;
+		$this->load->view('pages/fichePaie/etatPaie', ['allFichePaie' => $allFichePaie, 'dataFichePaie' => $dataFichePaie, 'services' => $services, 'nbChiffreVirgule' => $nbChiffreVirgule]);
+	}
+
 	public function saveFiche() {
 		$data = $this->session->fiche_data;
 		// creer fiche de paie + recuperer id fiche de paie
@@ -49,6 +58,15 @@ class FichePaie extends CI_Controller {
 		);
 
 		$this->fichePaie->insertDroitsSalaire($idFichePaie,$droits);
+
+		foreach ($data['allTranche_IRSA'] as $key => $IRSA) {
+			$montant_IRSA = $data['IRSA'.$IRSA->pourcentage_irsa];
+			$idTypeRetenue = $IRSA->id_tranche_irsa;
+			$this->fichePaie->insertRetenue($idFichePaie, $idTypeRetenue, $montant_IRSA);
+		}
+
+		$this->fichePaie->insertAvance($idFichePaie, $data['avance']);
+
 		redirect('fichePaie');
 	}
 
