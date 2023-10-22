@@ -18,117 +18,46 @@
                     <td>Nom prenom</td>
                     <td>Date embauche</td>
                     <td>CAT</td>
-                    <td> Fonction</td>
+                    <td>Fonction</td>
                     <td>Salaire de base</td>
                     <td>HSUP</td>
-                    <td>Cnaps</td>
-                     <td>Sanitaire</td>
-                    <td>IRSA</td>
+                    <td>Primes</td>
                     <td>Total retenues</td>
                      <td>Salaire net</td>
                      <td>Avance</td>
                      <td>Net a payer</td>
                     <td>Autres indemnites</td>
                     <td>Net du mois</td>
-                     <td>Actions</td>
+                     <!-- <td>Actions</td> -->
 					</tr>
+                    <?php foreach ($allFichePaie as $key => $fichePaie) { ?> 
                     <tr>
-                        <td>1/1/2022</td> 
-                        <td>EMP1</td> 
-                        <td>Rakoto rabe</td> 
-                        <td>1/1/2010</td> 
-                        <td>N20</td>
-                        <td>Dev web</td> 
-                        <td>300 000</td> 
-                        <td>50 000</td> 
-                        <td>180 000</td> 
-                        <td>250 000</td> 
-                        <td>4500</td> 
-                        <td>56200</td> 
-                        <td>123456</td> 
-                        <td>35465</td> 
-                        <td>13551</td> 
-                        <td>15135</td> 
-                        <td>1351511</td>
-                        <td>
+                        <td><?= $fichePaie->date_fiche_paie ?></td> 
+                        <td><?= $fichePaie->matricule_employe ?></td> 
+                        <td><?= $fichePaie->nom_info ?> <?= $fichePaie->prenom_info ?></td> 
+                        <td><?= $fichePaie->date_contrat_essai ?></td> 
+                        <td><?= $fichePaie->nom_categorie_travail ?></td>
+                        <td><?= $fichePaie->nom_poste_essai ?></td> 
+                        <?php if($fichePaie->id_contrat_travail != null) { ?>
+                        <td><?= number_format($fichePaie->salaire_brut, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <?php } else { ?>
+                        <td><?= number_format($fichePaie->salaire_brut_essai, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <?php } ?>
+                        <td><?= number_format($dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_hs, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_prime, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_retenue, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['salaire_net'.$fichePaie->id_fiche_paie], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_avance, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['net_a_payer'.$fichePaie->id_fiche_paie], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_indemnite, $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($dataFichePaie['net_mois'.$fichePaie->id_fiche_paie], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <!-- <td>
                             <center>
                                 <button class="embauche">Detail</button>
                             </center>
-                        </td>
+                        </td> -->
                     </tr>
-                    <tr>
-                        <td>1/1/2022</td> 
-                        <td>EMP1</td> 
-                        <td>Rakoto rabe</td> 
-                        <td>1/1/2010</td> 
-                        <td>N20</td>
-                        <td>Dev web</td> 
-                        <td>300 000</td> 
-                        <td>50 000</td> 
-                        <td>180 000</td> 
-                        <td>250 000</td> 
-                        <td>4500</td> 
-                        <td>56200</td> 
-                        <td>123456</td> 
-                        <td>35465</td> 
-                        <td>13551</td> 
-                        <td>15135</td> 
-                        <td>1351511</td>
-                        <td>
-                            <center>
-                                <button class="embauche">Detail</button>
-                            </center>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1/1/2022</td> 
-                        <td>EMP1</td> 
-                        <td>Rakoto rabe</td> 
-                        <td>1/1/2010</td> 
-                        <td>N20</td>
-                        <td>Dev web</td> 
-                        <td>300 000</td> 
-                        <td>50 000</td> 
-                        <td>180 000</td> 
-                        <td>250 000</td> 
-                        <td>4500</td> 
-                        <td>56200</td> 
-                        <td>123456</td> 
-                        <td>35465</td> 
-                        <td>13551</td> 
-                        <td>15135</td> 
-                        <td>1351511</td>
-                        <td>
-                            <center>
-                                <button class="embauche">Detail</button>
-                            </center>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1/1/2022</td> 
-                        <td>EMP1</td> 
-                        <td>Rakoto rabe</td> 
-                        <td>1/1/2010</td> 
-                        <td>N20</td>
-                        <td>Dev web</td> 
-                        <td>300 000</td> 
-                        <td>50 000</td> 
-                        <td>180 000</td> 
-                        <td>250 000</td> 
-                        <td>4500</td> 
-                        <td>56200</td> 
-                        <td>123456</td> 
-                        <td>35465</td> 
-                        <td>13551</td> 
-                        <td>15135</td> 
-                        <td>1351511</td>
-                        <td>
-                            <center>
-                                <button class="embauche">Detail</button>
-                            </center>
-                        </td>
-                    </tr>
-
+                    <?php } ?>
 				</table>
               </div>
             </div>

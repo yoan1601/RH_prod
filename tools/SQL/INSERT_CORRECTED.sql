@@ -40,15 +40,15 @@ insert into cv_reponses values(null, 2, 1, 2);
 insert into cv_reponses values(null, 2, 2, 3);
 
 -- ID, ID INFO USER, ID REPONSE
-insert into questionnaire_reponse_choisis values(null, 1, 1);
-insert into questionnaire_reponse_choisis values(null, 1, 3);
+insert into questionnaire_reponse_choisis values(null, 4, 1);
+insert into questionnaire_reponse_choisis values(null, 4, 3);
 
-insert into questionnaire_reponse_choisis values(null, 2, 2);
-insert into questionnaire_reponse_choisis values(null, 2, 3);
+insert into questionnaire_reponse_choisis values(null, 5, 2);
+insert into questionnaire_reponse_choisis values(null, 5, 3);
 
 -- ID, ID INFO USER, NOTE, ID ENTRETIEN
-insert into note_entretiens values(null, 1, 12, 1);
-insert into note_entretiens values(null, 2, 17, 1);
+insert into note_entretiens values(null, 4, 12, 1);
+insert into note_entretiens values(null, 5, 17, 1);
 
 insert into type_contrats values(null, '1', 'Essai'),
                                 (null, '10', 'CDD'),
