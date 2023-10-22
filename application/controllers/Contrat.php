@@ -37,7 +37,7 @@ class Contrat extends CI_Controller {
         $data['salaire_net'] = $this->input->post('salaire_net');
         $data['duree_contrat'] = $this->input->post('duree_contrat');
         $data['info_user'] = $this->contrat->getInfoById($idInfo);
-        $data['recrutement'] = $this->contrat->getRecrutementById($idRecrutement);
+        $data['recrutement'] = $this->recrutement->getRecrutementById($idRecrutement);
         $data['services'] = $this->service->getAllServices();
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
         $matricule=$this->contrat->saveContratEssai($idInfo, $data['dateActuelle'], $idRecrutement, $data['salaire_brut'], $data['salaire_net'], $data['duree_contrat']);
@@ -57,7 +57,7 @@ class Contrat extends CI_Controller {
         $data['salaire_net'] = $contrat->salaire_net_essai;
         $data['duree_contrat'] = $contrat->duree_contrat_essai;
         $data['info_user'] = $this->contrat->getInfoById($contrat->id_info_contrat_essai);
-        $data['recrutement'] = $this->contrat->getRecrutementById($contrat->id_recrutement_contrat_essai);
+        $data['recrutement'] = $this->recrutement->getRecrutementById($contrat->id_recrutement_contrat_essai);
         $data['services'] = $this->service->getAllServices();
         $matricule=$contrat->matricule_employe;
         $data['matricule']=$matricule;
@@ -72,7 +72,7 @@ class Contrat extends CI_Controller {
 
     public function contracter($idInfo, $idRecrutement) {
         $data['info_user'] = $this->contrat->getInfoById($idInfo);
-        $data['recrutement'] = $this->contrat->getRecrutementById($idRecrutement);
+        $data['recrutement'] = $this->recrutement->getRecrutementById($idRecrutement);
         $data['services'] = $this->service->getAllServices();
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
         if($data['info_user']->sexe_info=='1'){

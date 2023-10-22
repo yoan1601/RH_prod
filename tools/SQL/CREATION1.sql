@@ -42,20 +42,43 @@ create table avantages(
 alter table postes add foreign key(id_categorie_poste) references categories(id_categorie);
 create table type_conges(
 	id_type_conge int primary key auto_increment,
-	nom_type_conge varchar(255) not null,
-	est_deductible int not null
+	nom_type_conge varchar(255) not null
 );
 create table demande_conges(
 	id_demande_conge int primary key auto_increment,
 	id_employe_demande_conge int,
+	date_demande_conge datetime not null,
 	debut_demande_conge datetime not null,
 	fin_demande_conge datetime not null,
+	valide_demande_conge int not null,
 	id_type_conge_demande_conge int,
 	motif_demande_conge text,
-	date_demande_conge datetime not null,
-	etat_demande_conge int not null,
 	foreign key(id_employe_demande_conge)
 		references employes(id_employe),
 	foreign key(id_type_conge_demande_conge)
 		references type_conges(id_type_conge)
+);
+create table conges(
+	id_conge int primary key auto_increment,
+	id_employe_conge int,
+	id_demande_conge_conge int,
+	debut_conge datetime not null,
+	foreign key(id_employe_conge)
+		references employes(id_employe),
+	foreign key(id_demande_conge_conge)
+		references demande_conges(id_demande_conge)
+);
+create table fin_conges(
+	id_fin_conge int primary key auto_increment,
+	id_conge_fin_conge int,
+	fin_conge datetime not null,
+	foreign key(id_conge_fin_conge)
+		references conges(id_conge)
+);
+create table nombre_max_jours_cumules(
+	id_nombre_max int primary key auto_increment,
+	id_type_nombre_max int,
+	nombre_heures decimal not null,
+	foreign key(id_type_nombre_max)
+		references type_conges(id_type_conge) 
 );
