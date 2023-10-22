@@ -8,7 +8,7 @@
 				<p></p>
 				<p></p>
 				<p class="fin">nun</p>
-				<p><h3 class="card-title">Date actuelle : 1/1/2023</h3></p>
+				<p><h3 class="card-title">Date actuelle : <?= $dateActuelle ?></h3></p>
               <div class="list-group">
 				<table>
 					<tr class="title_text">
@@ -16,27 +16,13 @@
 						<td>Nom prenom</td>
 						<td class="listeAdmis">Actions</td>
 					</tr>
+					<?php foreach ($listeEmp as $key => $emp) { ?>
 					<tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">creer/maj fiche de paie</button></td>
+                        <td><?= $emp->matricule_employe ?></td>
+                        <td><?= $emp->nom_info ?> <?= $emp->prenom_info ?></td>
+						<td class="listeAdmis"><a href="<?= site_url('fichePaie/creationMajFichePaie/'.$emp->id_employe) ?>"><button class="embauche">creer/maj fiche de paie</button></a></td>
 					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">creer/maj fiche de paie</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">creer/maj fiche de paie</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">creer/maj fiche de paie</button></td>
-					</tr>
-	
+					<?php } ?>
 				</table>
               </div>
             </div>

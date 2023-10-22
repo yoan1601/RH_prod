@@ -1,3 +1,122 @@
+-- total primes, total HS, total droit/indemnite, retenues, avance
+CREATE OR REPLACE VIEW v_total_prime_hs_indemnite_retenue_avance AS 
+SELECT
+fp.id_fiche_paie,
+total_prime,
+total_hs,
+total_indemnite,
+total_retenue,
+total_avance
+FROM fiche_paies fp
+JOIN v_total_prime p ON p.id_fiche_paie = fp.id_fiche_paie
+JOIN v_total_hs hs ON hs.id_fiche_paie = fp.id_fiche_paie
+JOIN v_total_indemnite ds ON ds.id_fiche_paie = fp.id_fiche_paie
+JOIN v_total_retenue r ON r.id_fiche_paie = fp.id_fiche_paie
+JOIN v_total_avance av ON av.id_fiche_paie = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+CREATE OR REPLACE VIEW v_total_avance AS 
+SELECT
+fp.id_fiche_paie,
+SUM(r.montant_avance) total_avance
+FROM fiche_paies fp
+JOIN avances r ON r.id_fiche_avance = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+CREATE OR REPLACE VIEW v_total_retenue AS 
+SELECT
+fp.id_fiche_paie,
+SUM(r.montant_retenue) total_retenue
+FROM fiche_paies fp
+JOIN retenues r ON r.id_fiche_retenue = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+CREATE OR REPLACE VIEW v_total_indemnite AS 
+SELECT
+fp.id_fiche_paie,
+SUM(ds.montant_droit_salaire) total_indemnite
+FROM fiche_paies fp
+JOIN droit_salaires ds ON ds.id_fiche_droit_salaire = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+CREATE OR REPLACE VIEW v_total_hs AS 
+SELECT
+fp.id_fiche_paie,
+SUM(hs.montant_hs) total_hs
+FROM fiche_paies fp
+JOIN heure_supplementaires hs ON hs.id_fiche_hs = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+CREATE OR REPLACE VIEW v_total_prime AS 
+SELECT
+fp.id_fiche_paie,
+SUM(p.montant_prime) total_prime
+FROM fiche_paies fp
+JOIN primes p ON p.id_fiche_prime = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie
+;
+
+SELECT
+fp.id_fiche_paie,
+SUM(hs.montant_hs) total_hs
+FROM fiche_paies fp
+JOIN heure_supplementaires hs ON hs.id_fiche_hs = fp.id_fiche_paie
+GROUP BY fp.id_fiche_paie;
+
+
+-- prime, type_prime
+CREATE OR REPLACE view v_prime AS
+SELECT 
+* 
+FROM primes p 
+LEFT JOIN type_primes tp ON tp.id_type_prime = p.id_type_prime_prime
+;
+
+-- Fiche paie, type_virement
+CREATE OR REPLACE view v_fiche_paie AS
+SELECT 
+fp.*,
+tv.*,
+emp.*,
+info_user.*,
+ct.salaire_brut,
+ce.date_contrat_essai,
+ce.salaire_brut_essai,
+p_travail.nom_poste nom_poste_travail,
+p_essai.nom_poste nom_poste_essai,
+categ_travail.nom_categorie nom_categorie_travail,
+categ_travail.nom_categorie nom_categorie_essai,
+categ_travail.niveau niveau,
+categ_essai.niveau niveau_essai 
+FROM fiche_paies fp 
+LEFT JOIN type_virements tv ON tv.id_type_virement = fp.id_type_virement_fiche
+LEFT JOIN employes emp ON emp.id_employe = fp.id_employe_fiche
+LEFT JOIN information_users info_user ON info_user.id_information_user = emp.id_info_employe
+LEFT JOIN contrat_travails ct ON ct.id_employe_contrat_travail = emp.id_employe
+LEFT JOIN contrat_essai ce ON ce.id_info_contrat_essai = emp.id_info_employe
+LEFT JOIN recrutements recru_travail ON recru_travail.id_recrutement = ct.id_recrutement_contrat_travail
+LEFT JOIN recrutements recru_essai ON recru_essai.id_recrutement = ce.id_recrutement_contrat_essai
+LEFT JOIN postes p_travail ON p_travail.id_poste = recru_travail.id_poste_recrutement
+LEFT JOIN postes p_essai ON p_essai.id_poste = recru_essai.id_poste_recrutement
+LEFT JOIN categories categ_travail ON p_travail.id_categorie_poste = categ_travail.id_categorie
+LEFT JOIN categories categ_essai ON p_essai.id_categorie_poste = categ_essai.id_categorie
+GROUP BY fp.id_fiche_paie
+;
+
+-- heures supplementaires
+CREATE OR REPLACE view v_heure_supplementaires AS
+SELECT 
+* 
+FROM heure_supplementaires hs 
+LEFT JOIN hs_majorations hs_maj ON hs_maj.id_majoration = hs.id_majoration_hs
+;
+
+
 -- recrutements, poste, info_user, employe, contrat_essaie
 CREATE OR REPLACE VIEW v_recrutement_poste_info_employe_contrat_essai AS (
 SELECT
@@ -84,6 +203,7 @@ SELECT
 *
 FROM recrutements recru  
 LEFT JOIN postes ON postes.id_poste = recru.id_poste_recrutement
+join categories on postes.id_categorie_poste=categories.id_categorie
 );
 
 --  entretien , recrutement , service

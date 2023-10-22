@@ -40,44 +40,33 @@ class ChgtContratModel extends CI_Model {
         $this->db->where('id_employe ', $idEmploye);
         return $this->db->update('employes', $data);
     }
-
-    public function insertContratTravail($data) {
-        if(isset($data['dureeContrat']) == false) { $data['dureeContrat'] = null; }
-        $cnaps = $data['cnaps'] == 'OUI' ? 1 : 0; 
-        $sanitaire = $data['sanitaire'] == 'OUI' ? 1 : 0; 
-        $donnee = array(
-            'date_debut_contrat_travail' => $data['dateActuelle'],
-            'id_employe_contrat_travail' => $data['info_user_recrutement_poste']->id_employe,
-            'id_recrutement_contrat_travail' => $data['info_user_recrutement_poste']->id_recrutement,
-            'duree_contrat_travail' => $data['dureeContrat'],
-            'affiliation_cnaps' => $cnaps,
-            'affiliation_organisme_sanitaire' => $sanitaire
-        );
-
-        $this->db->insert('contrat_travails', $donnee);
-        return $this->db->insert_id();
-    }
-
-    public function getSubalternes($niveau) {
+    public function getSubalternes($niveau, $idInfo) {
         /*$this->db->where('niveau < ', $niveau);
         $this->db->where('etat_info > ', 0);
         $query = $this->db->get('v_recrutement_poste_info_employe');*/
-        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0";
-        $query=sprintf($query, $niveau);
+        $query="select * from v_recrutement_poste_info_employe where niveau < %s and etat_info > 0 and id_information_user<>%s";
+        $query=sprintf($query, $niveau, $idInfo);
         $query=$this->db->query($query);
         return $query->result();
     }
 
-    public function getSuperieurHierarchiques($niveau) {
+    public function getSuperieurHierarchiques($niveau, $idInfo) {
         /*$this->db->where('niveau > ', $niveau);
         $this->db->where('etat_info > ', 0);*/
         //$query = $this->db->get('v_recrutement_poste_info_employe');
-        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0";
-        $query=sprintf($query, $niveau);
+        $query="select * from v_recrutement_poste_info_employe where niveau > %s and etat_info > 0 and id_information_user<>%s";
+        $query=sprintf($query, $niveau, $idInfo);
         $query=$this->db->query($query);
         return $query->result();
     }
-    
+    public function getEmployesContratVraiByService($idService) {
+        $query = $this->db->get('v_recrutement_poste_info');
+        $query="select * from v_contrat_travail_employe_recrutement_service_poste_categorie where id_service=%s";
+        $query=sprintf($query, $idService);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+    }
     public function getInfoRecrutementPosteByIdInfoUser($id_info) {
         $query = $this->db->get('v_recrutement_poste_info');
 
@@ -138,5 +127,22 @@ class ChgtContratModel extends CI_Model {
             $row->prix_string=number_format($row->prix_avantage, 2, ",", " ");
         }
         return $query;
+    }
+    public function getHierarchiesForEmploye($idEmploye){
+        $query="select * from v_hierarchie_info_user where id_employe_hierarchie=%s";
+        $query=sprintf($query, $idEmploye);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        $superieurs=array();
+        $subalternes=array();
+        foreach($query as $row){
+            if($row->position_hierarchie==1){
+                $superieurs[]=$row;
+            }else if($row->position_hierarchie==-1){
+                $subalternes[]=$row;
+            }
+        }
+        $collaborateurs=array("superieurs"=>$superieurs, "subalternes"=>$subalternes);
+        return $collaborateurs;
     }
 }

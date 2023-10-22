@@ -7,45 +7,23 @@
 				<p></p>
 				<p></p>
 				<p class="fin">nun</p>
-				<p><h3 class="card-title">Liste des employes</h3></p>
+				<p><h3 class="card-title">Liste des employes du service: <?= $service->nom_service ?></h3></p>
               <div class="list-group">
 				<table>
 					<tr class="title_text">
 						<td>Numero Matricule</td>
 						<td>Nom prenom</td>
                         <td>Poste</td>
-                        <td>Service</td>
 						<td class="listeAdmis">Actions</td>
 					</tr>
+					<?php foreach($employes as $e){ ?>
 					<tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Fiche de poste</button><button class="embauche">demande conge</button></td>
+                        <td><?= $e->matricule_employe ?></td>
+                        <td><?= $e->nom_info." ".$e->prenom_info ?></td>
+						<td><?= $e->nom_poste ?></td>
+						<td class="listeAdmis"><a href="<?= site_url("conge/afficheFichePosteForEmploye/".$e->id_contrat_travail) ?>"><button>Fiche de poste</button></a><a href="<?= site_url("conge/demandeConge/".$e->id_employe."?service=".$service->id_service) ?>"><button class="embauche">demande conge</button></a></td>
 					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Fiche de poste</button><button class="embauche">demande conge</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Fiche de poste</button><button class="embauche">demande conge</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td>12/09/2023 15:10</td>
-                        <td>50 jours</td>
-						<td class="listeAdmis"><button>Fiche de poste</button><button class="embauche">demande conge</button></td>
-					</tr>
-	
+					<?php } ?>
 				</table>
               </div>
             </div>

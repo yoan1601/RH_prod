@@ -17,6 +17,9 @@
 						<p><a href="<?= site_url('service/creerService')?>">Creer</a></p>
 				</div>
 			</li>
+			<li><a href="<?= site_url('fichePaie'); ?>">Fiche paie</a>
+			<li><a href="<?= site_url('fichePaie/listeFichePaie'); ?>">Etat paie</a>
+			</li>
 			<li id="cveur">Liste CV	  
 				<div class="Layout listeCv">
 					<?php foreach ($services as $key => $service) { ?>

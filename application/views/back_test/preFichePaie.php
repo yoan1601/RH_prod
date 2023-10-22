@@ -16,7 +16,7 @@
             <p>prime de <?= $prime->nom_type_prime ?> <input type="number" name="prime_<?= $prime->nom_type_prime ?>" id=""></p>
         <?php } ?>
         <?php foreach ($allHsMajoration as $key => $majoration) { ?>
-            <p>Heures supplementaires <?= $majoration->nom_majoration ?> % <input type="number" name="hsMajoration_<?= $majoration->id_majoration ?>" id=""></p>
+            <p>Heures supplementaires <?= $majoration->nom_majoration ?> % <input type="number" placeholder="en jour" name="hsMajoration_<?= $majoration->id_majoration ?>" id=""></p>
         <?php } ?>
         <p>Rappel sur periodes anterieures <input type="number" name="rappelPeriodeAnterieure" id=""></p>
         <p>Droit de preavis <input type="number" name="droitPreavis" id=""></p>
