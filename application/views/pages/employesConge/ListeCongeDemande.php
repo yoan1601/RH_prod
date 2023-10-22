@@ -15,27 +15,13 @@
 						<td>Nom prenom</td>
 						<td class="listeAdmis">Actions</td>
 					</tr>
+					<?php foreach($demandes as $d){ ?>
 					<tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">Detail</button></td>
+                        <td><?= $d->matricule_employe ?></td>
+                        <td><?= $d->nom_info." ".$d->prenom_info ?></td>
+						<td class="listeAdmis"><a href="<?= site_url("conge/detailDemandeConge/".$d->id_demande_conge) ?>"><button class="embauche">Detail</button></a></td>
 					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">Detail</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">Detail</button></td>
-					</tr>
-                    <tr>
-                        <td>EMP0067</td>
-                        <td>Rakoto Doe</td>
-						<td class="listeAdmis"><button class="embauche">Detail</button></td>
-					</tr>
-	
+					<?php } ?>
 				</table>
               </div>
             </div>

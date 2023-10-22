@@ -71,6 +71,38 @@
               </p>
               </form>
             </div>
+            <div class="skills-content">
+              <p>
+                <div class="photo-container entretien"></div>
+              </p>
+              <p class="title-avant">Liste des employes</p>
+              <form action="<?= site_url("conge/listeEmployes") ?>" method="get">
+              <p><select name="service" id="">
+                <?php foreach($services as $service){ ?>
+                <option value="<?= $service->id_service ?>"><?= $service->nom_service ?></option>
+                <?php } ?>
+              </select></p>
+              <p>
+                <button type="submit">Voir plus</button></a>
+              </p>
+              </form>
+            </div>
+            <div class="skills-content">
+              <p>
+                <div class="photo-container entretien"></div>
+              </p>
+              <p class="title-avant">Liste des demandes de conge</p>
+              <form action="<?= site_url("conge/listeDemandeConge") ?>" method="get">
+              <p><select name="service" id="">
+                <?php foreach($services as $service){ ?>
+                <option value="<?= $service->id_service ?>"><?= $service->nom_service ?></option>
+                <?php } ?>
+              </select></p>
+              <p>
+                <button type="submit">Voir plus</button></a>
+              </p>
+              </form>
+            </div>
         </div>
         </center>
 
