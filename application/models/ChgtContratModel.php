@@ -59,7 +59,14 @@ class ChgtContratModel extends CI_Model {
         $query=$this->db->query($query);
         return $query->result();
     }
-    
+    public function getEmployesContratVraiByService($idService) {
+        $query = $this->db->get('v_recrutement_poste_info');
+        $query="select * from v_contrat_travail_employe_recrutement_service_poste_categorie where id_service=%s";
+        $query=sprintf($query, $idService);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        return $query;
+    }
     public function getInfoRecrutementPosteByIdInfoUser($id_info) {
         $query = $this->db->get('v_recrutement_poste_info');
 
@@ -120,5 +127,22 @@ class ChgtContratModel extends CI_Model {
             $row->prix_string=number_format($row->prix_avantage, 2, ",", " ");
         }
         return $query;
+    }
+    public function getHierarchiesForEmploye($idEmploye){
+        $query="select * from v_hierarchie_info_user where id_employe_hierarchie=%s";
+        $query=sprintf($query, $idEmploye);
+        $query=$this->db->query($query);
+        $query=$query->result();
+        $superieurs=array();
+        $subalternes=array();
+        foreach($query as $row){
+            if($row->position_hierarchie==1){
+                $superieurs[]=$row;
+            }else if($row->position_hierarchie==-1){
+                $subalternes[]=$row;
+            }
+        }
+        $collaborateurs=array("superieurs"=>$superieurs, "subalternes"=>$subalternes);
+        return $collaborateurs;
     }
 }

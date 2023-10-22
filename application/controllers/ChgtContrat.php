@@ -190,33 +190,4 @@ class ChgtContrat extends CI_Controller {
         }
         redirect("recrutement/index");
     }
-
-    public function genererFichePoste_sample() {
-        $idContratTravail=$this->input->post("idContratTravail");
-        $superieurs = $this->input->post('superieurs');
-        $inferieurs = $this->input->post('inferieurs');
-        $contratTravail=$this->chgtContrat->getContratTravailById($idContratTravail);
-        // update id_type_contrat dans employe
-        $idEmploye = $contratTravail->id_employe;
-        if(empty($superieurs) == false) {
-            foreach ($superieurs as $key => $idEmpSuperieur) {
-                $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSuperieur, $idContratTravail, 1);
-            }
-        }
-        if(empty($inferieurs) == false) {
-            foreach ($inferieurs as $key => $idEmpSubalterne) {
-                $this->chgtContrat->insertHierarchie($idEmploye, $idEmpSubalterne, $idContratTravail, -1);
-            }
-        }
-            
-        // insert avantage
-        foreach ($data['avantages']['nom'] as $key => $nom_avantage) {
-            $prix_avantage = $data['avantages']['prix'][$key];
-            $this->chgtContrat->insertAvantage($idContratTravail ,$nom_avantage, $prix_avantage);
-        }
-
-        $data['superieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, 1);
-        $data['inferieurs'] = $this->chgtContrat->getHierarchie($idContratTravail, -1);
-        $this->load->view('pages/contrat/ficheGenere', $data);
-    }
 }
