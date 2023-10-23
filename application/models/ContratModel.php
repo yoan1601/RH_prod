@@ -84,16 +84,12 @@ class ContratModel extends CI_Model {
         $query="insert into contrat_essai values(null, %s, '%s', %s, %s, %s, %s)";
         $query=sprintf($query, $idInfoUser, $dateContrat, $idRecrutement, $salaireBrut, $salaireNet, $dureeContrat);
         $this->db->query($query);
-        $this->db->close();
-        return $this->saveEmploye($idInfoUser);
     }
 
     public function saveEmploye($idInfoUser){
         $query="insert into employes values(null, 'null', %s, 1, 1)";
         $query=sprintf($query, $idInfoUser);
         $this->db->query($query);
-        $this->db->close();
-        return $this->saveMatricule($this->getLastIdEmploye($idInfoUser));
     }
 
     public function getLastIdEmploye($infoUser){
