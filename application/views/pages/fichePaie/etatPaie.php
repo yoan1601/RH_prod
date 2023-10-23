@@ -58,6 +58,23 @@
                         </td> -->
                     </tr>
                     <?php } ?>
+                    <tr>
+                        <td></td> 
+                        <td></td> 
+                        <td></td> 
+                        <td></td> 
+                        <td></td>
+                        <th>Total</th> 
+                        <td><?= number_format($somme["salaire_base"], $nbChiffreVirgule, '.', ' ') ?></td>
+                        <td><?= number_format($somme["HSUP"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["Primes"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["Retenues"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["net"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["avance"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["net_a_payer"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["autres_indemnites"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                        <td><?= number_format($somme["net_mois"], $nbChiffreVirgule, '.', ' ') ?></td> 
+                    </tr>
 				</table>
               </div>
             </div>
