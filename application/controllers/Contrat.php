@@ -40,7 +40,10 @@ class Contrat extends CI_Controller {
         $data['recrutement'] = $this->recrutement->getRecrutementById($idRecrutement);
         $data['services'] = $this->service->getAllServices();
         $data['dateActuelle'] = date('Y-m-d H:i:s'); // Format YYYY-MM-DD HH:MM:SS
-        $matricule=$this->contrat->saveContratEssai($idInfo, $data['dateActuelle'], $idRecrutement, $data['salaire_brut'], $data['salaire_net'], $data['duree_contrat']);
+        $this->contrat->saveContratEssai($idInfo, $data['dateActuelle'], $idRecrutement, $data['salaire_brut'], $data['salaire_net'], $data['duree_contrat']);
+        $this->contrat->saveEmploye($idInfo);
+        $lastEmpId=$this->contrat->getLastIdEmploye($idInfo);
+        $matricule=$this->contrat->saveMatricule($lastEmpId);
         $data['matricule']=$matricule;
         if($data['info_user']->sexe_info=='1'){
             $data['genre']="Homme";
