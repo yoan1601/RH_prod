@@ -1,3 +1,9 @@
+CREATE  TABLE rh_prod.avances ( 
+	id_avance            INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_fiche_avance      INT  NOT NULL     ,
+	montant_avance       DECIMAL(10,2)  NOT NULL DEFAULT (0)    
+ ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE  TABLE retenues ( 
 	id_retenue           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_fiche_retenue     INT  NOT NULL     ,
