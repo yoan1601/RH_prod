@@ -7,12 +7,13 @@ body{
 }
 
 .skill-container{
-    display: flex;
-    max-width: 1300px;
     width: 80%;
-    margin-top: 3%;
-    justify-content: center;
-	justify-content: space-between;
+    max-width: 1300px;
+    margin-top: 5%;
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,300px);
+    grid-gap: 10px;
 }
 
 .skills-content{
@@ -44,7 +45,7 @@ body{
     background-repeat: no-repeat;
 }
 
-.entretien{
+.listeentr{
     background-image:url('../../img/entretien.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -56,9 +57,32 @@ body{
     background-repeat: no-repeat;
 }
 
+.futuremp{
+    background-image:url('../../img/futuremp.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contrat{
+    background-image:url('../../img/contrat.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.employes{
+    background-image:url('../../img/emp.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.conge{
+    background-image:url('../../img/conge.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .title-avant{
-    font-family:'tektur';
+    font-family:'tekturregular';
     color: #f9b17a;
     text-decoration:overline;
 }
@@ -130,4 +154,11 @@ p button:hover{
 
 .linker{
     color: #2d3250;
+}
+
+.skills-content select{
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    border:solid 1px #2d3250;
 }
