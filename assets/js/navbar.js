@@ -30,6 +30,12 @@ cveur.addEventListener('click', () => {
 	liste.classList.toggle('active');
 });
 
+const entreteneur= document.getElementById('entreteneur');
+const entretiens = document.querySelector('.entretien');
+entreteneur.addEventListener('click', () => {
+	entretiens.classList.toggle('active');
+});
+
 const demande1= document.getElementById('popupDemande');
 const popup = document.querySelector('.popupModule');
 demande1.addEventListener('click', () => {
@@ -40,9 +46,4 @@ const quitbutton = document.querySelector('.quit');
 
 quitbutton.addEventListener('click', () => {
 	popup.classList.remove('active');
-});
-const entreteneur= document.getElementById('entreteneur');
-const entretiens = document.querySelector('.entretien');
-entreteneur.addEventListener('click', () => {
-	entretiens.classList.toggle('active');
 });

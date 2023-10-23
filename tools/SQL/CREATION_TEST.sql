@@ -77,3 +77,23 @@ create or replace view v_info_employes as
     from employes
         join information_users on employes.id_info_employe=information_users.id_information_user
         join type_contrats on employes.id_type_contrat_employe=type_contrats.id_type_contrat;
+
+create or replace view v_demande_conge_type as
+    select *
+    from demande_conges
+        join type_conges on demande_conges.id_type_conge_demande_conge=type_conges.id_type_conge;
+
+create or replace view v_conge_finis as
+    select *
+    from conges
+        join fin_conges on conges.id_conge=fin_conges.id_conge_fin_conge
+        join demande_conges on conges.id_demande_conge_conge=demande_conges.id_demande_conge;
+
+create or replace view v_demande_conge_employe_services as
+    select *
+    from demande_conges
+        join employes on demande_conges.id_employe_demande_conge=employes.id_employe
+        join contrat_travails on demande_conges.id_employe_demande_conge=contrat_travails.id_employe_contrat_travail
+        join recrutements on contrat_travails.id_recrutement_contrat_travail=recrutements.id_recrutement
+        join services on recrutements.id_service_recrutement=services.id_service
+        join information_users on employes.id_info_employe=information_users.id_information_user;
