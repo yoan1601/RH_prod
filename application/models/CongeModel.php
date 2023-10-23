@@ -13,7 +13,7 @@ class CongeModel extends CI_Model {
         }
         $date=date_sub($date, date_interval_create_from_date_string("3 years"));
         if($date<date_create($date_embauche)){
-            $date=$date_embauche;
+            $date=date_create($date_embauche);
         }
         $date_string=$date->format("Y-m-d");
         return $date_string;
@@ -28,7 +28,7 @@ class CongeModel extends CI_Model {
     public function getCongesPrisPeriode($idEmploye){
         $debutAnnee3ans=$this->getDebutAnnee3Ans($idEmploye);
         $dateActuelle=date_create();
-        $query="select * from v_conge_finis where id_employe_conge=%s and (fin_conge between now() and '%s') and id_type_conge_demande_conge=1 order by fin_conge";
+        $query="select * from v_conge_finis where id_employe_conge=%s and id_type_conge_demande_conge=1 order by fin_conge";
         $query=sprintf($query, $idEmploye, $debutAnnee3ans);
         $query=$this->db->query($query);
         $query=$query->result();
@@ -36,17 +36,15 @@ class CongeModel extends CI_Model {
             if(date_create($query[0]->debut_conge)<date_create($debutAnnee3ans)){
                 $query[0]->debut_conge=$debutAnnee3ans;
             }
-            if(date_create($query[count($query)-1]->fin_conge)>$dateActuelle){
-                $query[count($query)-1]->fin_conge=$dateActuelle->format("Y-m-d");
-            }
         }
+        return $query;
     }
     public function getCongePrisPeriodeTotal($idEmploye){
         $conges=$this->getCongesPrisPeriode($idEmploye);
         $somme=0;
         if($conges!==null){
             foreach($conges as $c){
-                $somme+=(strtotime($c->fin_conge)-strtotime($c->debut_conge)/86400);
+                $somme+=((strtotime($c->fin_conge)-strtotime($c->debut_conge))/86400);
             }
         }
         return $somme;

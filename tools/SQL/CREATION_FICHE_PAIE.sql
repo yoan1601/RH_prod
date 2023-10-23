@@ -1,3 +1,20 @@
+CREATE  TABLE rh_prod.avances ( 
+	id_avance            INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_fiche_avance      INT  NOT NULL     ,
+	montant_avance       DECIMAL(10,2)  NOT NULL DEFAULT (0)    
+ ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE  TABLE retenues ( 
+	id_retenue           INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
+	id_fiche_retenue     INT  NOT NULL     ,
+	id_type_retenue_retenue INT  NOT NULL     ,
+	montant_retenue      DECIMAL(10,2)  NOT NULL DEFAULT (0)    
+ ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE INDEX fk_retenues_tranche_irsa ON retenues ( id_type_retenue_retenue );
+
+ALTER TABLE retenues ADD CONSTRAINT fk_retenues_tranche_irsa FOREIGN KEY ( id_type_retenue_retenue ) REFERENCES tranche_irsa( id_tranche_irsa ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 CREATE  TABLE fiche_paies ( 
 	id_fiche_paie        INT  NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 	id_employe_fiche     INT  NOT NULL     ,
