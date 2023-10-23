@@ -46,7 +46,7 @@ body{
 }
 
 .listeentr{
-    background-image:url('../../img/entretien\ \(2\).jpg');
+    background-image:url('../../img/entretien.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -82,7 +82,7 @@ body{
 }
 
 .title-avant{
-    font-family:'tektur';
+    font-family:'tekturregular';
     color: #f9b17a;
     text-decoration:overline;
 }
@@ -154,4 +154,11 @@ p button:hover{
 
 .linker{
     color: #2d3250;
+}
+
+.skills-content select{
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    border:solid 1px #2d3250;
 }

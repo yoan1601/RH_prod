@@ -15,6 +15,7 @@ body{
     position: relative;
     /* position: fixed; */
     justify-content: space-between;
+    font-family: 'sans-serif';
     align-items: center;
     background-color: #00001d; 
     border-radius: 5px;
@@ -33,7 +34,7 @@ body{
     height: 100%;
     width: 50%;
     display: flex;
-	margin-right: 50px;
+	margin-right: 150px;
     justify-content: space-around;
 }
 
@@ -58,7 +59,7 @@ body{
 
 .navbar-links select option {
 	border:none;
-	font-family:'tektur';
+	font-family:'tekturregular';
 	background: none;
 	width: 60px;
 	background-color: #000000;
@@ -193,7 +194,7 @@ a{
 }
 
 ul li a{
-    font-family: 'tektur';
+    font-family: 'tekturregular';
 }
 
 
