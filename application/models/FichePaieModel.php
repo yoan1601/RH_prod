@@ -154,7 +154,8 @@ class FichePaieModel extends CI_Model {
         $data['tauxDroitConge'] = ($salaire_base - $data['avance']) / 30;
         $data['montantDroitConge'] = $data['nbJourCongePaye'] * $data['tauxDroitConge'];
 
-        $data['totalPositif'] = $salaire_base + $data['total_prime'] + $data['total_HS'] + $data['rappelPeriodeAnterieure'] + $data['montantDroitConge'] + $data['droitPreavis'] + $data['indemniteLicenciement'];
+        //$data['totalPositif'] = $salaire_base + $data['total_prime'] + $data['total_HS'] + $data['rappelPeriodeAnterieure'] + $data['montantDroitConge'] + $data['droitPreavis'] + $data['indemniteLicenciement'];
+        $data['totalPositif'] = $data["salaire_debutMois_now"] + $data['total_prime'] + $data['total_HS'] + $data['rappelPeriodeAnterieure']  + $data['droitPreavis'] + $data['indemniteLicenciement'];
         $data['totalNegatif'] = $data['absence_deductible'];
         $data['salaire_brut'] = $data['totalPositif'] - $data['totalNegatif'];
 

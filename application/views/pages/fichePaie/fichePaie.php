@@ -73,12 +73,12 @@ $this->load->view('templates/navbar');
             <td></td>
             <td><?= number_format($data['rappelPeriodeAnterieure'], $data['nbChiffreApresVirugle'], '.', ' ') ?></td>
          </tr>
-         <tr>
+         <!--<tr>
             <td>Droits de conge</td>
-            <td></td>
-            <td><?= number_format($data['tauxDroitConge'], $data['nbChiffreApresVirugle'], '.', ' ') ?></td>
-            <td><?= number_format($data['montantDroitConge'], $data['nbChiffreApresVirugle'], '.', ' ') ?></td>
-         </tr>
+            <td><?php //number_format($data["nbJourCongePaye"], 2)." jours"; ?></td>
+            <td><?php //number_format($data['tauxDroitConge'], $data['nbChiffreApresVirugle'], '.', ' ') ?></td>
+            <td><?php //number_format($data['montantDroitConge'], $data['nbChiffreApresVirugle'], '.', ' ') ?></td>
+         </tr>-->
          <tr>
             <td>Droits de preavis</td>
             <td></td>

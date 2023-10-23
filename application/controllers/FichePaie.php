@@ -29,7 +29,23 @@ class FichePaie extends CI_Controller {
 		$dataFichePaie = $this->fichePaie->getAllFichePaieData()[1];
 
 		$nbChiffreVirgule = 2;
-		$this->load->view('pages/fichePaie/etatPaie', ['allFichePaie' => $allFichePaie, 'dataFichePaie' => $dataFichePaie, 'services' => $services, 'nbChiffreVirgule' => $nbChiffreVirgule]);
+		$somme=array("salaire_base"=>0,"HSUP"=>0,"Primes"=>0,"Retenues"=>0,"net"=>0,"avance"=>0,"net_a_payer"=>0,"autres_indemnites"=>0,"net_mois"=>0);
+		foreach($allFichePaie as $fichePaie){
+			if($fichePaie->id_contrat_travail!==null){
+				$somme["salaire_base"]+=$fichePaie->salaire_brut;
+			}else{
+				$somme["salaire_base"]+=$fichePaie->salaire_brut_essai;
+			}
+			$somme["HSUP"]+=$dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_hs;
+			$somme["Primes"]+=$dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_prime;
+			$somme["Retenues"]+=$dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_retenue;
+			$somme["net"]+=$dataFichePaie['salaire_net'.$fichePaie->id_fiche_paie];
+			$somme["avance"]+=$dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_avance;
+			$somme["net_a_payer"]+=$dataFichePaie['net_a_payer'.$fichePaie->id_fiche_paie];
+			$somme["autres_indemnites"]+=$dataFichePaie['somme'.$fichePaie->id_fiche_paie]->total_indemnite;
+			$somme["net_mois"]+=$dataFichePaie['net_mois'.$fichePaie->id_fiche_paie];
+		}
+		$this->load->view('pages/fichePaie/etatPaie', ['allFichePaie' => $allFichePaie, 'dataFichePaie' => $dataFichePaie, 'services' => $services, 'nbChiffreVirgule' => $nbChiffreVirgule,'somme'=>$somme]);
 	}
 
 	public function saveFiche() {
@@ -124,7 +140,7 @@ class FichePaie extends CI_Controller {
 		if($data['avance'] == '') $data['avance'] = 0;
 
 		//CONGE  -> tokony azo avy any amle conge
-		$data['nbJourCongePaye'] = 1;
+		$data['nbJourCongePaye'] = $this->conge->getCongePrisPeriodeTotal($idEmploye);
 
 		$data['nbChiffreApresVirugle'] = 2;
 
