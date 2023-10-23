@@ -20,7 +20,7 @@
 
             <div class="skills-content">
               <p>
-                <div class="photo-container entretien"></div>
+                <div class="photo-container listeentr"></div>
               </p>
               <p class="title-avant">. Selection d'entretients</p>
               <p class="content-ph">
@@ -35,7 +35,7 @@
 
             <div class="skills-content">
               <p>
-                <div class="photo-container entretien"></div>
+                <div class="photo-container futuremp"></div>
               </p>
               <p class="title-avant">. Futurs employes</p>
               <p class="content-ph">
@@ -54,7 +54,7 @@
             </div>
             <div class="skills-content">
               <p>
-                <div class="photo-container entretien"></div>
+                <div class="photo-container contrat"></div>
               </p>
               <p class="title-avant">Contrats d'essai</p>
               <p class="content-ph">
@@ -73,7 +73,7 @@
             </div>
             <div class="skills-content">
               <p>
-                <div class="photo-container entretien"></div>
+                <div class="photo-container employes"></div>
               </p>
               <p class="title-avant">Liste des employes</p>
               <form action="<?= site_url("conge/listeEmployes") ?>" method="get">
@@ -89,7 +89,7 @@
             </div>
             <div class="skills-content">
               <p>
-                <div class="photo-container entretien"></div>
+                <div class="photo-container conge"></div>
               </p>
               <p class="title-avant">Liste des demandes de conge</p>
               <form action="<?= site_url("conge/listeDemandeConge") ?>" method="get">
